@@ -85,8 +85,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -194,7 +193,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "fd58b441b41d98be",
+  "active": "54990f9c470bb792",
   "lastOpenFiles": [
     "test.md",
     "New Note.md",
