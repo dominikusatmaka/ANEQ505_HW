@@ -30,9 +30,23 @@
               "icon": "lucide-file",
               "title": "test"
             }
+          },
+          {
+            "id": "4c682dffa0e699b7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "test.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "test"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -193,7 +207,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "54990f9c470bb792",
+  "active": "4c682dffa0e699b7",
   "lastOpenFiles": [
     "New Note.md",
     "test.md",
