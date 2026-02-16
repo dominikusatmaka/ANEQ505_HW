@@ -114,7 +114,7 @@ a.    Go into your slurm directory using OnDemand. Create a new file named **
 #SBATCH --mail-type=ALL
 #SBATCH --output=slurm-%j.out
 #SBATCH --qos=normal
-#SBATCH --mail-user=ADD_YOUR_EMAIL@colostate.edu
+#SBATCH --mail-user=C837854675@colostate.edu
 
 #What needs to go here in order to “turn on” qiime2? Hint: we do these 2 commands every time we activate qiime2!
 
@@ -153,12 +153,12 @@ qiime demux summarize \
 Fill in the blank to denoise your samples based on what you think should be trimmed (from the front of the reads) or truncated (from the ends of the reads) based on the demux_cow.qzv file. You can run this in the terminal or as a job.
 
 ```
-cd ADD PATH TO DADA2 DIRECTORY
+cd cd /scratch/alpine/$USER/cow/dada2
 
 qiime dada2 denoise-paired \
 --i-demultiplexed-seqs ../demux/demux_cow.qza \
---p-trim-left-f NUMBER \
---p-trim-left-r NUMBER \
+--p-trim-left-f 150 \
+--p-trim-left-r 150 \
 --p-trunc-len-f NUMBER \
 --p-trunc-len-r NUMBER \
 --p-n-threads 6 \
