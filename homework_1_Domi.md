@@ -82,6 +82,9 @@ ainteractive --ntasks=6 --time=02:00:00
 
 #insert your code here to activate qiime. Hint: there should be 2 things you add here
 
+module purge  
+  
+module load qiime2/2024.10_amplicon
 
 ```
 
@@ -115,13 +118,17 @@ a.    Go into your slurm directory using OnDemand. Create a new file named **
 
 #What needs to go here in order to “turn on” qiime2? Hint: we do these 2 commands every time we activate qiime2!
 
+module purge  
+  
+module load qiime2/2024.10_amplicon
+
 #change the following line if your file path looks different
 cd /scratch/alpine/$USER/cow/demux
 
 #Below is the command you will run to demultiplex the samples.
 
 qiime demux emp-paired \
---m-barcodes-file ../metadata/ADD BARCODE FILE NAME HERE \
+--m-barcodes-file ../metadata/cow_barcodes.txt \
 --m-barcodes-column barcode \
 --p-rev-comp-mapping-barcodes \
 --p-rev-comp-barcodes \
