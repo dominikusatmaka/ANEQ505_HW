@@ -1,1 +1,1 @@
-![[homework_1_mac (1)]]
+![[homework_1_Domi]]
