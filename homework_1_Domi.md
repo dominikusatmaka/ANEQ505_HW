@@ -172,21 +172,21 @@ qiime metadata tabulate \
 qiime feature-table summarize \
 --i-table cow_table_dada2.qza \
 --m-sample-metadata-file ../metadata/cow_metadata.txt \
---o-visualization dada2_stats.qzv
+--o-visualization dada2_table.qzv
 
 qiime feature-table tabulate-seqs \
 --i-data cow_seqs_dada2.qza \
---o-visualization dada2_stats.qzv
+--o-visualization dada2_seqs.qzv
 ```
 
 	
 Briefly **describe** the key information from each denoising output file:
-1. Representative Sequences
-2. Denoising Stats
+1. Representative Sequences : representative sequences is containing the final ASV inferred by DADA2 where this can be used for taxonomy assignment and phylogenetic tree construction.
+2. Denoising Stats : 
 3. Denoised Table
 
 **Answer the following questions:**  
-1. What is the mean reads per sample?
+1. What is the mean reads per sample? 
 2. How long are the reads?
 3. What is the maximum length of all your sequences?
 4. Which sample (not including extraction controls starting with EC) lost the highest % of reads?
