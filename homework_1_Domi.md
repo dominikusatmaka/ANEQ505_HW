@@ -145,7 +145,7 @@ qiime demux summarize \
 
  Run the script in your slurm directory as a job using: 
  ```
- sbatch name of your script.sh
+ sbatch demux.sh
  ```
 
 8.    Denoise. 
