@@ -186,11 +186,11 @@ Briefly **describe** the key information from each denoising output file:
 3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list how many times each ASV was observed in every sample, providing the basis for downstream diversity and taxonomic analysis.
 
 **Answer the following questions:**  
-1. What is the mean reads per sample? mean read per sample is between 36.000 to 38.000 reads.
+1. What is the mean reads per sample? mean read per sample is 15163.
 2. How long are the reads? between 251 and 427. But the mean length is 253.31.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
 4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? Sample 11S lost the highest percentage of reads during the denoising process. It started with 113,912 input reads and resulted in only 37,736 non-chimeric reads, representing a loss of approximately 66.87%.
-5. Why did you chose to trim or truncate where you did? 
+5. Why did you chose to trim or truncate where you did? I choose to trim or truncate because I want to remove low-quality bases at the ends of the reads (where sequencing error rates often spike because of the low quality data with the median or middle of boxplot feature < 30) to successfully merge the forward and reverse reads into a single sequence.
 
 **To submit your homework from this document:**
 write all of your commands here, then use command+P (for mac) or control+P (for windows) and search Git: commit. click it. then search for Git: Push and click it. go to your github online to check that it pushed correctly. we will check your github for homework credit. 
