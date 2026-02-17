@@ -183,14 +183,14 @@ qiime feature-table tabulate-seqs \
 Briefly **describe** the key information from each denoising output file:
 1. Representative Sequences : representative sequences is the file containing the final ASV identified after all the denoising process using DADA2. Usually this data include sequence ID, actual nucleotide sequence, and summary statistics of sequence length. 
 2. Denoising Stats : This file provides detailed tracking of read counts of each stage of the denoising process using DADA2. This data shows how many reads were input, filtered, denoised, merged, and identified as non-chimeric for each sample. 
-3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list 
+3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list how many times each ASV was observed in every sample, providing the basis for downstream diversity and taxonomic analysis.
 
 **Answer the following questions:**  
 1. What is the mean reads per sample? mean read per sample is between 36.000 to 38.000 reads.
 2. How long are the reads? between 251 and 427. But the mean length is 253.31.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
-4. Which sample (not including extraction controls starting with EC) lost the highest % of reads?
-5. Why did you chose to trim or truncate where you did?
+4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? Sample 11S lost the highest percentage of reads during the denoising process. It started with 113,912 input reads and resulted in only 37,736 non-chimeric reads, representing a loss of approximately 66.87%.
+5. Why did you chose to trim or truncate where you did? 
 
 **To submit your homework from this document:**
 write all of your commands here, then use command+P (for mac) or control+P (for windows) and search Git: commit. click it. then search for Git: Push and click it. go to your github online to check that it pushed correctly. we will check your github for homework credit. 
