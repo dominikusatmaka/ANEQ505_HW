@@ -186,7 +186,7 @@ Briefly **describe** the key information from each denoising output file:
 3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list 
 
 **Answer the following questions:**  
-1. What is the mean reads per sample? 
+1. What is the mean reads per sample? mean read per sample is between 36.000 to 38.000 reads.
 2. How long are the reads? between 251 and 427. But the mean length is 253.31.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
 4. Which sample (not including extraction controls starting with EC) lost the highest % of reads?
