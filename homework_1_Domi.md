@@ -181,14 +181,14 @@ qiime feature-table tabulate-seqs \
 
 	
 Briefly **describe** the key information from each denoising output file:
-1. Representative Sequences : representative sequences is containing the final ASV inferred by DADA2 where this can be used for taxonomy assignment and phylogenetic tree construction.
-2. Denoising Stats : 
-3. Denoised Table
+1. Representative Sequences : representative sequences is the file containing the final ASV identified after all the denoising process using DADA2. Usually this data include sequence ID, actual nucleotide sequence, and summary statistics of sequence length. 
+2. Denoising Stats : This file provides detailed tracking of read counts of each stage of the denoising process using DADA2. This data shows how many reads were input, filtered, denoised, merged, and identified as non-chimeric for each sample. 
+3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list 
 
 **Answer the following questions:**  
 1. What is the mean reads per sample? 
-2. How long are the reads?
-3. What is the maximum length of all your sequences?
+2. How long are the reads? between 251 and 427. But the mean length is 253.31.
+3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
 4. Which sample (not including extraction controls starting with EC) lost the highest % of reads?
 5. Why did you chose to trim or truncate where you did?
 
