@@ -189,7 +189,7 @@ Briefly **describe** the key information from each denoising output file:
 1. What is the mean reads per sample? mean read per sample is 15163.
 2. How long are the reads? between 251 and 427. But the mean length is 253.31.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
-4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? Sample 11S lost the highest percentage of reads during the denoising process. It started with 113,912 input reads and resulted in only 37,736 non-chimeric reads, representing a loss of approximately 66.87%. I think the sample with the highest
+4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? I think the sample with the highest lost percentage of reads is 2019.3.14.cow.oral.2.rep. Since it started with 11715 input reads and only resulted in 3387 non chimeric reads, which representing only 28.91% final reads results or loosing 71.09% reads.
 5. Why did you chose to trim or truncate where you did? I choose to trim or truncate because I want to remove low-quality bases at the ends of the reads (where sequencing error rates often spike because of the low quality data with the median or middle of boxplot feature < 30) to successfully merge the forward and reverse reads into a single sequence.
 
 **To submit your homework from this document:**
