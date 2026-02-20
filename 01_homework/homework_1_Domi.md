@@ -188,7 +188,7 @@ Briefly **describe** the key information from each denoising output file:
 3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list how many times each ASV was observed in every sample, providing the basis for downstream diversity and taxonomic analysis.
 
 **Answer the following questions:**  
-1. What is the mean reads per sample? mean read per sample is 11,115.7
+1. What is the mean reads per sample? mean read per sample is 11,115.7 (ini ada di dada2.table.qsv --> yang mean frequency)
 2. How long are the reads? between 250 and 427. But the mean length is 253.34.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
 4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? I think the sample with the highest lost percentage of reads is 2019.3.14.cow.oral.20. Since it started with 1906 input rea\ds and only resulted in 167 non chimeric reads, which representing only 8.76% final reads results or loosing 91.24% reads.
@@ -198,4 +198,4 @@ Briefly **describe** the key information from each denoising output file:
 write all of your commands here, then use command+P (for mac) or control+P (for windows) and search Git: commit. click it. then search for Git: Push and click it. go to your github online to check that it pushed correctly. we will check your github for homework credit. 
 
 Catatan : --p-exclude mitochondria,chloroplast,sp .... \ --> ini untuk exclude sequence tertentu yang kita tidak ingin untuk gunakan (bisa jadi karena ada kontaminan)
---p-include c_ \ --> ini untuk menambahkan jika ada sequence ada 
+--p-include c_ \ --> ini untuk menambahkan jika ada sequence ada (jika ada yang dihilangkan dari proses dan ingin kita tambahkan)
