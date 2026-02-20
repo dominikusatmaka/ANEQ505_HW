@@ -188,7 +188,7 @@ Briefly **describe** the key information from each denoising output file:
 3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list how many times each ASV was observed in every sample, providing the basis for downstream diversity and taxonomic analysis.
 
 **Answer the following questions:**  
-1. What is the mean reads per sample? mean read per sample is 15163. (Min is 112 and max is 43963)
+1. What is the mean reads per sample? mean read per sample is 11,097.9
 2. How long are the reads? between 251 and 427. But the mean length is 253.31.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
 4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? I think the sample with the highest lost percentage of reads is 2019.3.14.cow.oral.2.rep. Since it started with 11715 input reads and only resulted in 3387 non chimeric reads, which representing only 28.91% final reads results or loosing 71.09% reads.
