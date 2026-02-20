@@ -188,11 +188,10 @@ Briefly **describe** the key information from each denoising output file:
 3. Denoised Table : this file is a feature table that maps the representative sequences back to the sample. This data list how many times each ASV was observed in every sample, providing the basis for downstream diversity and taxonomic analysis.
 
 **Answer the following questions:**  
-1. What is the mean reads per sample? mean read per sample is 11,097.9
+1. What is the mean reads per sample? mean read per sample is 11,115.7
 2. How long are the reads? between 250 and 427. But the mean length is 253.34.
 3. What is the maximum length of all your sequences? The maximum length of all sequences is 427.
-4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? I think the sample with the highest lost percentage of reads is 2019.3.14.cow.oral.2.rep. Since it started with 11715 input rea\ds and only resulted in 3387 non chimeric reads, which representing only 28.91% final reads results or loosing 71.09% reads.
-yang benar oral 20
+4. Which sample (not including extraction controls starting with EC) lost the highest % of reads? I think the sample with the highest lost percentage of reads is 2019.3.14.cow.oral.20. Since it started with 1906 input rea\ds and only resulted in 167 non chimeric reads, which representing only 8.76% final reads results or loosing 91.24% reads.
 5. Why did you chose to trim or truncate where you did? I choose to trim or truncate because I want to remove low-quality bases at the ends of the reads (where sequencing error rates often spike because of the low quality data, with the median or middle of boxplot feature < 30) to successfully merge the forward and reverse reads into a single sequence.
 
 **To submit your homework from this document:**
