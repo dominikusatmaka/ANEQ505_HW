@@ -104,9 +104,14 @@ qiime taxa barplot \
 ## Filtered Taxa Bar Plot Questions ~={red}(10 points)=~
 
 **Question 1**: Attach a picture of your taxa bar plot, organized by cow sampling location (body_site) at the level 7 taxonomic level. What general trends do you notice? 
-![[Pasted image 20260227221950.png]]
+![[Pasted image 20260227222031.png]]
 
 **_Question 2**: What are the top 2 most abundant bacterial **classes** in the fecal samples? 
+
+d__Bacteria;p__Bacillota_A_368345;c__Clostridia_258483;o__Oscillospirales;f__Oscillospiraceae_88309;g__Faecousia;s__Faecousia sp000434635
+d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__UBA932;g__Cryptobacteroides;s__Cryptobacteroides sp902787255
+
+The top 2 most abundant bacterial classes in the fecal samples is Clostridia and Bacteroidia.
 
 **_Question 3**: What highly abundant ASV is shared between both the udder and skin samples?
 
@@ -132,7 +137,7 @@ Create a job script to run the phylogenetic tree building. Remember you must sta
 
 Go to OnDemand and create a new text file for your job script
 ```
-nano <YourJobName.sh>
+nano phylo.sh
 ```
 
 ```
@@ -143,13 +148,15 @@ nano <YourJobName.sh>
 #SBATCH --partition=amilan
 #SBATCH --time=04:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=YOUR_EMAIL_HERE@colostate.edu
+#SBATCH --mail-user=c837856475@colostate.edu
 #SBATCH --output=slurm-%j.out
 #SBATCH --qos=normal
 
 #Activate qiime
 #Insert the two commands you need to load qiime2
-
+module purge  
+  
+module load qiime2/2024.10_amplicon
 
 #Get reference
 wget --no-check-certificate -P ../tree https://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.sepp-reference.qza
@@ -157,7 +164,7 @@ wget --no-check-certificate -P ../tree https://ftp.microbio.me/greengenes_releas
 
 #Command
 qiime fragment-insertion sepp \
---i-representative-sequences ../dada2/Your_FILTERED_RepresentativeSequencesFile.qza \
+--i-representative-sequences ../dada2/cow_seqs_dada2_filtered300.qza \
 --i-reference-database ../tree/2022.10.backbone.sepp-reference.qza \
 --o-tree ../tree/tree_gg2.qza \
 --o-placements ../tree/tree_placements_gg2.qza
@@ -166,7 +173,7 @@ qiime fragment-insertion sepp \
 - submit the job from the terminal
 ```
 #submit the job
-sbatch YourJobName.sh
+sbatch phylo.sh
 ```
 We will use this file in the next homework!
 
