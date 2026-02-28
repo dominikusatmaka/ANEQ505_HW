@@ -37,12 +37,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01_homework/homework_1_Domi.md",
+                "file": "01_homework/homework_2_Domi.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homework_1_Domi"
+              "title": "homework_2_Domi"
             }
           }
         ],
@@ -211,10 +211,10 @@
   },
   "active": "b43ccc1f38ebdb5b",
   "lastOpenFiles": [
+    "01_homework/homework_1_Domi.md",
     "01_homework/homework_2_Domi.md",
     "VS_code_in_obsidian.md",
     "Untitled.md",
-    "01_homework/homework_1_Domi.md",
     "New Note.md",
     "test.md",
     "Cow Homework Domi.md",
