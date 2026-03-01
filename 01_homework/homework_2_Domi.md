@@ -180,14 +180,15 @@ We will use this file in the next homework!
 ### Once this job finishes, copy and paste what the slurm email says here ~={red}(1 point)=~: 
 
 #### for example: 
-Job ID: 24289371  
+
+Job ID: 24380210  
 Cluster: alpine  
-User/Group: [lindsval@colostate.edu](mailto:lindsval@colostate.edu)/[lindsvalpgrp@colostate.edu](mailto:lindsvalpgrp@colostate.edu)  
-State: TIMEOUT (exit code 0)  
+User/Group: c837856475@colostate.edu/c837856475pgrp@colostate.edu  
+State: COMPLETED (exit code 0)  
 Nodes: 1  
 Cores per node: 8  
-CPU Utilized: 03:57:54  
-CPU Efficiency: 12.37% of 1-08:03:52 core-walltime  
-Job Wall-clock time: 04:00:29  
-Memory Utilized: 6.55 GB  
-Memory Efficiency: 21.83% of 30.00 GB (3.75 GB/core)
+CPU Utilized: 03:11:32  
+CPU Efficiency: 11.69% of 1-03:18:16 core-walltime  
+Job Wall-clock time: 03:24:47  
+Memory Utilized: 8.61 GB  
+Memory Efficiency: 28.70% of 30.00 GB (3.75 GB/core)
