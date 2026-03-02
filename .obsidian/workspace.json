@@ -35,14 +35,12 @@
             "id": "b43ccc1f38ebdb5b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "01_homework/homework_2_Domi.md",
-                "mode": "source",
-                "source": false
+                "file": "01_homework/Pasted image 20260227222031.png"
               },
-              "icon": "lucide-file",
-              "title": "homework_2_Domi"
+              "icon": "lucide-image",
+              "title": "Pasted image 20260227222031"
             }
           }
         ],
@@ -209,11 +207,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "b43ccc1f38ebdb5b",
+  "active": "54990f9c470bb792",
   "lastOpenFiles": [
-    "01_homework/homework_1_Domi.md",
     "01_homework/homework_2_Domi.md",
-    "Pasted image 20260227222031.png",
+    "01_homework/homework_1_Domi.md",
+    "01_homework/Pasted image 20260227222031.png",
     "Pasted image 20260227221950.png",
     "VS_code_in_obsidian.md",
     "Untitled.md",
