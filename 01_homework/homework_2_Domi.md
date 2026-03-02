@@ -125,18 +125,29 @@ Alpha diversity measured using observed features indicates that fecal samples ha
 
 **Question 5**: do all samples contain archaea as well?
 
+Not all samples contain the taxa of archaea. Archaea are primarily detected in fecal samples, where methanogenic archaea commonly occur, while some samples and controls lack detectable archaeal sequences.
+
 **Question 6**: why do we filter out sp004296775?
+
+The taxon _sp004296775_ is filtered out because it represents an unnamed genome-level classification that is likely an artifact or biologically uninformative assignment. Removing this taxon improves dataset quality and prevents misleading ecological interpretation.
 
 **Question 7**: what is the difference between these two flags? 
 --p-exclude mitochondria,chloroplast,sp004296775 \
 --p-include c__ \
 
+The parameter `--p-exclude mitochondria,chloroplast,sp004296775` removes sequences matching these taxa, which are typically contaminants or non-target sequences. The parameter of `--p-include c__` retains only sequences classified at least to the class taxonomic level. Together, these filters remove unwanted taxa while ensuring that only well-classified bacterial sequences are analyzed.
+
 **Question 8**: do the positive controls look the same as each other? Yes or No?
+
+Yes, the positive controls appear similar to each other, indicating consistent sequencing and processing performance.
 
 **Question 9**: Do the negative/extraction controls (Samples labeled as EC), look like the positive controls? Yes or no? 
 
+No, the negative/extraction controls (EC samples) do not resemble the positive controls, as they contain different and typically low-abundance microbial profiles.
+
 **Question 10**: do the negative/extraction controls (Samples labeled as EC), look like the real samples? Yes or no?
 
+No, the negative/extraction controls do not resemble the real biological samples. It shows low diversity and composition consistent with background contamination rather than true microbial communities.
 ## Phylogenetic tree ~={red}(1point)=~
 
 Create a job script to run the phylogenetic tree building. Remember you must start a new terminal session, navigate to your slurm directory, and then submit the job. You do NOT need to start any other interactive sessions.This job will take about an hour. 
