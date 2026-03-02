@@ -104,7 +104,7 @@ qiime taxa barplot \
 ## Filtered Taxa Bar Plot Questions ~={red}(10 points)=~
 
 **Question 1**: Attach a picture of your taxa bar plot, organized by cow sampling location (body_site) at the level 7 taxonomic level. What general trends do you notice? 
-![[Pasted image 20260227222031.png]]
+![[Picture for Homework 2 Level 7 Body SIte.png]]
 
 
 The taxa bar plot organized by cow sampling location (body_site) at taxonomic level 7 showed clear differences in microbial composition among body sites. The fecal samples are dominated by more anaerobic gut-associated bacteria, primarily members of the classes _Clostridia_ and _Bacteroidia_, reflecting a typical intestinal microbiome of animal. In contrast, udder samples and skin samples display more similar microbial profiles to each other and contain taxa commonly associated with external body surfaces. Overall, microbial communities cluster strongly according to body site, indicating niche-specific microbial colonization. Control samples exhibit lower diversity and distinct compositions compared with biological samples.
