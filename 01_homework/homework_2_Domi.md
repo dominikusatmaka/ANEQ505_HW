@@ -106,16 +106,22 @@ qiime taxa barplot \
 **Question 1**: Attach a picture of your taxa bar plot, organized by cow sampling location (body_site) at the level 7 taxonomic level. What general trends do you notice? 
 ![[Pasted image 20260227222031.png]]
 
+The taxa bar plot organized by cow sampling location (body_site) at taxonomic level 7 showed clear differences in microbial composition among body sites. The fecal samples are dominated by more anaerobic gut-associated bacteria, primarily members of the classes _Clostridia_ and _Bacteroidia_, reflecting a typical intestinal microbiome of animal. In contrast, udder samples and skin samples display more similar microbial profiles to each other and contain taxa commonly associated with external body surfaces. Overall, microbial communities cluster strongly according to body site, indicating niche-specific microbial colonization. Control samples exhibit lower diversity and distinct compositions compared with biological samples.
+
 **_Question 2**: What are the top 2 most abundant bacterial **classes** in the fecal samples? 
 
 d__Bacteria;p__Bacillota_A_368345;c__Clostridia_258483;o__Oscillospirales;f__Oscillospiraceae_88309;g__Faecousia;s__Faecousia sp000434635
 d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__UBA932;g__Cryptobacteroides;s__Cryptobacteroides sp902787255
 
-The top 2 most abundant bacterial classes in the fecal samples is Clostridia and Bacteroidia.
+The two most abundant bacterial classes observed in fecal samples are Clostridia and Bacteroidia.
 
 **_Question 3**: What highly abundant ASV is shared between both the udder and skin samples?
 
+A highly abundant amplicon sequence variant (ASV) shared between both udder and skin samples is _Faecousia sp000434635_. This taxon belongs to the family of Oscillospiraceae.
+
 **_Question 4**: Which samples (still sorted by body_site) have higher alpha diversity in terms of observed features?
+
+Alpha diversity measured using observed features indicates that fecal samples have the highest microbial diversity compared with other body sites. Skin and udder samples showed moderate diversity, while control samples showed the lowest diversity. This pattern reflects the greater ecological complexity of the gastrointestinal environment.
 
 **Question 5**: do all samples contain archaea as well?
 
