@@ -35,14 +35,12 @@
             "id": "b43ccc1f38ebdb5b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "01_homework/homework_2_Domi.md",
-                "mode": "source",
-                "source": false
+                "file": "01_homework/Picture for Homework 2 Level 7 Body SIte.png"
               },
-              "icon": "lucide-file",
-              "title": "homework_2_Domi"
+              "icon": "lucide-image",
+              "title": "Picture for Homework 2 Level 7 Body SIte"
             }
           }
         ],
@@ -211,8 +209,8 @@
   },
   "active": "b43ccc1f38ebdb5b",
   "lastOpenFiles": [
-    "01_homework/Picture for Homework 2 Level 7 Body SIte.png",
     "01_homework/homework_2_Domi.md",
+    "01_homework/Picture for Homework 2 Level 7 Body SIte.png",
     "01_homework/homework_1_Domi.md",
     "Pasted image 20260227221950.png",
     "VS_code_in_obsidian.md",
