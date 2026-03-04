@@ -130,7 +130,7 @@ Not all samples contain the taxa of archaea. Archaea are primarily detected in f
 
 **Question 6**: why do we filter out sp004296775?
 
-The taxon _sp004296775_ is filtered out because it represents an unnamed genome-level classification that is likely an artifact or biologically uninformative assignment, is another kind of chloroplast, so it must also be removed. Removing this taxon improves dataset quality and prevents misleading ecological interpretation.
+The taxon sp004296775 is filtered out because it represents an unnamed genome-level classification that is likely an artifact or biologically uninformative assignment, is another kind of chloroplast, so it must also be removed. Removing this taxon improves dataset quality and prevents misleading ecological interpretation.
 
 **Question 7**: what is the difference between these two flags? 
 --p-exclude mitochondria,chloroplast,sp004296775 \
