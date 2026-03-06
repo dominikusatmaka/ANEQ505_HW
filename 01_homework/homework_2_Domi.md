@@ -136,7 +136,7 @@ The taxon sp004296775 is filtered out because it represents an unnamed genome-le
 --p-exclude mitochondria,chloroplast,sp004296775 \
 --p-include c__ \
 
-The parameter `--p-exclude mitochondria,chloroplast,sp004296775` removes sequences matching these taxa, which are typically contaminants or non-target sequences. The parameter of `--p-include c__` retains only sequences classified at least to the class taxonomic level. Together, these filters remove unwanted taxa while ensuring that only well-classified bacterial sequences are analyzed.
+The parameter `--p-exclude mitochondria,chloroplast,sp004296775` removes sequences matching these taxa, which are typically contaminants or non-target sequences (mitochondria and chloroplast). The parameter of `--p-include c__` retains only sequences classified at least to the class taxonomic level. Together, these filters remove unwanted taxa while ensuring that only well-classified bacterial sequences are analyzed.
 
 **Question 8**: do the positive controls look the same as each other? Yes or No?
 
