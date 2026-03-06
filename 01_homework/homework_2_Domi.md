@@ -114,7 +114,7 @@ The taxa bar plot organized by cow sampling location (body_site) at taxonomic le
 d__Bacteria;p__Bacillota_A_368345;c__Clostridia_258483;o__Oscillospirales;f__Oscillospiraceae_88309;g__Faecousia;s__Faecousia sp000434635
 d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__UBA932;g__Cryptobacteroides;s__Cryptobacteroides sp902787255
 
-The two most abundant bacterial classes observed in fecal samples are Clostridia and Bacteroidia.
+The two most abundant bacterial classes observed in fecal samples are Clostridia 258483 and Bacteroidia.
 
 **_Question 3**: What highly abundant ASV is shared between both the udder and skin samples?
 
