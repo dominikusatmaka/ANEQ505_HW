@@ -111,10 +111,10 @@ The taxa bar plot organized by cow sampling location (body_site) at taxonomic le
 
 **_Question 2**: What are the top 2 most abundant bacterial **classes** in the fecal samples? 
 
+The two most abundant bacterial classes observed in fecal samples are Clostridia 258483 and Bacteroidia.
+
 d__Bacteria;p__Bacillota_A_368345;c__Clostridia_258483;o__Oscillospirales;f__Oscillospiraceae_88309;g__Faecousia;s__Faecousia sp000434635
 d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Bacteroidales;f__UBA932;g__Cryptobacteroides;s__Cryptobacteroides sp902787255
-
-The two most abundant bacterial classes observed in fecal samples are Clostridia 258483 and Bacteroidia.
 
 **_Question 3**: What highly abundant ASV is shared between both the udder and skin samples?
 
@@ -128,11 +128,11 @@ Alpha diversity measured using observed features indicates that fecal samples ha
 
 **Question 5**: do all samples contain archaea as well?
 
-Not all samples contain the taxa of archaea. Archaea are primarily detected in fecal samples, where methanogenic archaea commonly occur, while some samples and controls lack detectable archaeal sequences. Other samples that contain archaea is nasal and oral sample.
+Not all samples contain the taxa of archaea. Archaea are primarily detected in fecal samples, where methanogenic archaea commonly occur, while some samples and controls lack detectable archaeal sequences. Other samples that contain archaea is skin, nasal and oral sample.
 
 **Question 6**: why do we filter out sp004296775?
 
-The taxon sp004296775 is filtered out because it represents an unnamed genome-level classification that is likely an artifact or biologically uninformative assignment, is another kind of chloroplast, so it must also be removed. Removing this taxon improves dataset quality and prevents misleading ecological interpretation.
+The taxon sp004296775 is filtered out because it represents an unnamed genome-level classification that is likely an artifact or biologically uninformative assignment, is another kind of other genome chloroplast, so it must also be removed. Removing this taxon improves dataset quality and prevents misleading ecological interpretation.
 
 **Question 7**: what is the difference between these two flags? 
 --p-exclude mitochondria,chloroplast,sp004296775 \
