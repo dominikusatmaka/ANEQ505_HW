@@ -120,13 +120,15 @@ The two most abundant bacterial classes observed in fecal samples are Clostridia
 
 A highly abundant amplicon sequence variant (ASV) shared between both udder and skin samples is _Faecousia sp000434635_. This taxon belongs to the family of Oscillospiraceae.
 
+d__Bacteria;p__Bacillota_A_368345;c__Clostridia_258483;o__Oscillospirales;f__Oscillospiraceae_88309;g__Faecousia;s__Faecousia sp000434635
+
 **_Question 4**: Which samples (still sorted by body_site) have higher alpha diversity in terms of observed features?
 
-Alpha diversity measured using observed features indicates that fecal samples have the highest microbial diversity compared with other body sites. Skin and udder samples showed moderate diversity, while control samples showed the lowest diversity. This pattern reflects the greater ecological complexity of the gastrointestinal environment.
+Alpha diversity measured using observed features indicates that fecal samples have the highest alpha diversity compared with other body sites.
 
 **Question 5**: do all samples contain archaea as well?
 
-Not all samples contain the taxa of archaea. Archaea are primarily detected in fecal samples, where methanogenic archaea commonly occur, while some samples and controls lack detectable archaeal sequences.
+Not all samples contain the taxa of archaea. Archaea are primarily detected in fecal samples, where methanogenic archaea commonly occur, while some samples and controls lack detectable archaeal sequences. Other samples that contain archaea is nasal and oral sample.
 
 **Question 6**: why do we filter out sp004296775?
 
