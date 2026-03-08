@@ -39,23 +39,23 @@ module load qiime2/2024.10_amplicon
 qiime diversity alpha-rarefaction \
 --i-table dada2/cow_table_dada2_filtered300.qza \
 --m-metadata-file metadata/cow_metadata.txt \
+--p-max-depth 20000 \
 --o-visualization alpha_rarefaction_curves_16S.qzv \
---p-min-depth ADD MIN RAREFACTION DEPTH \
---p-max-depth ADD MAX RAREFACTION DEPTH
 ```
 
 
 ### Run Core Metrics ~={red}(1 point)=~
 
 ```
+cd ../
+
 qiime diversity core-metrics-phylogenetic \
---i-table INSERT FILTERED TABLE HERE \
---i-phylogeny INSERT FILE HERE \
---m-metadata-file INSERT FILE HERE \
---p-sampling-depth INSERT SEQ DEPTH HERE \
+--i-table dada2/cow_table_dada2_filtered300.qza \
+--i-phylogeny tree/tree_gg2.qza \
+--m-metadata-file etadata/cow_metadata.txt \
+--p-sampling-depth 1500 \
 --output-dir core_metrics_results
 ```
-
 
 ### Visualize alpha diversity plots
 - generate a plot to visualize the observed features ~={red}(1 point)=~
