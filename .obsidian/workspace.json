@@ -89,7 +89,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "fab81acff64ddca6",
@@ -197,11 +197,11 @@
   },
   "active": "b43ccc1f38ebdb5b",
   "lastOpenFiles": [
-    "01_homework/homework_2_Domi.md",
+    "01_homework/homework_1_Domi.md",
     "01_homework/homework_3_Domi.md",
+    "01_homework/homework_2_Domi.md",
     "01_homework/Picture for Homework 2 Level 7 Body SIte.png",
     "VS_code_in_obsidian.md",
-    "01_homework/homework_1_Domi.md",
     "Pasted image 20260227221950.png",
     "Untitled.md",
     "New Note.md",
