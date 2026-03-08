@@ -74,15 +74,10 @@ qiime diversity alpha-group-significance \
 --m-metadata-file metadata/cow_metadata.txt \
 --o-visualization core_metrics_results/shannon_statistics.qzv  
   
-qiime diversity alpha-group-significance \  
---i-alpha-diversity core-metrics-results/faith_pd_vector.qza \  
---m-metadata-file metadata/cow_metadata.txt \  
---o-visualization core-metrics-results/faiths_pd_statistics.qzv
-
-qiime diversity alpha-correlation \  
---i-alpha-diversity core-metrics-results/faith_pd_vector.qza \  
---m-metadata-file metadata/cow_metadata.txt \  
---o-visualization core-metrics-results/faith_pd_correlation_statistics.qzv
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core_metrics_results/faith_pd_vector.qza \
+--m-metadata-file metadata/cow_metadata.txt \
+--o-visualization core_metrics_results/faiths_pd_statistics.qzv
 
 ```
 
