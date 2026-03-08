@@ -52,7 +52,7 @@ cd ../
 qiime diversity core-metrics-phylogenetic \
 --i-table dada2/cow_table_dada2_filtered300.qza \
 --i-phylogeny tree/tree_gg2.qza \
---m-metadata-file etadata/cow_metadata.txt \
+--m-metadata-file metadata/cow_metadata.txt \
 --p-sampling-depth 1500 \
 --output-dir core_metrics_results
 ```
@@ -69,19 +69,19 @@ qiime diversity alpha-group-significance \
 - generate a plot to visualize faith's PD ~={red}(2 points)=~
 ```
 ## insert the entire code chunk for generating this visualization 
-qiime diversity alpha-group-significance \  
---i-alpha-diversity core-metrics-results/shannon_vector.qza \  
---m-metadata-file metadata/metadata.txt \  
---o-visualization core-metrics-results/shannon_statistics.qzv  
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core_metrics_results/shannon_vector.qza \
+--m-metadata-file metadata/cow_metadata.txt \
+--o-visualization core_metrics_results/shannon_statistics.qzv  
   
 qiime diversity alpha-group-significance \  
 --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \  
---m-metadata-file metadata/metadata.txt \  
+--m-metadata-file metadata/cow_metadata.txt \  
 --o-visualization core-metrics-results/faiths_pd_statistics.qzv
 
 qiime diversity alpha-correlation \  
 --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \  
---m-metadata-file metadata/metadata.txt \  
+--m-metadata-file metadata/cow_metadata.txt \  
 --o-visualization core-metrics-results/faith_pd_correlation_statistics.qzv
 
 ```
