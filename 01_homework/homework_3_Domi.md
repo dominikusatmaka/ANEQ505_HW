@@ -90,17 +90,30 @@ qiime diversity alpha-group-significance \
 2. what did you choose for the rarefaction depth (the input for core metrics -p-sampling-depth flag)? why? 
 	I chose a rarefaction depth that retains most of the samples while removing samples with very low sequencing depth. This ensures fair comparison across samples while keeping as much sequencing data as possible. I use 10,000 reads sequences per sample because most samples had sequencing depths higher than this value.
 3. Which cow body location had more observed features? Which has the lowest?
+	The rumen had the highest number of observed features, while milk had the lowest observed features.
 4. What is the main difference between Faiths PD and Shannons alpha diversity metrics?  
+	Faith’s PD (Phylogenetic Diversity) measures diversity based on phylogenetic relationships between organisms. Shannon diversity measures diversity based on species richness and evenness, but does not use phylogenetic relationships.
 5. Which diversity metrics produced by the core-metrics pipeline require phylogenetic information?
+	The metrics that require phylogenetic information are: Faith’s Phylogenetic Diversity (Faith’s PD), Unweighted UniFrac, and Weighted UniFrac. These metrics use a phylogenetic tree of the taxa.
 6. Which two body sites have the highest Faiths PD alpha diversity?  Are the groups significantly different?
+	The two body sites with the highest Faith’s PD are rumen and feces. Yes, the groups appear significantly different based on the statistical test shown in the visualization.
 7. Does it seem like there are any groupings in the beta diversity? What are the groupings? 
+	Yes, there are groupings in the beta diversity plots.  
+Samples tend to cluster based on cow body location (for example: rumen, feces, milk, and skin).
 8. Why do you think these samples are grouping together? 
+	These samples group together because different body sites host distinct microbial communities due to differences in environment, nutrients, oxygen levels, and biological function.
 9. What test can you run to determine if the groups are significantly different?
+	The test commonly used is PERMANOVA (Permutational Multivariate Analysis of Variance).
 10. What command would you use to run that test?
 
 ```
 #insert command for running the test you suggest from question 7
 
-
+qiime diversity beta-group-significance \  
+--i-distance-matrix weighted_unifrac_distance_matrix.qza \  
+--m-metadata-file sample-metadata.tsv \  
+--m-metadata-column body-site \  
+--p-method permanova \  
+--o-visualization permanova-body-site.qzv
 
 ```
