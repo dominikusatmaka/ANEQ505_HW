@@ -101,7 +101,7 @@ qiime diversity alpha-group-significance \
 7. Does it seem like there are any groupings in the beta diversity? What are the groupings? 
 	Yes, there are groupings in the beta diversity plots based on the unweighted and weighted unifrac data. Samples tend to cluster based on cow body location. The fecal sample are group tightly together and forming a cluster separate from other body site. The skin and udder are more close one to another, while nasal and oral are also close together even the cluster is not that tight and more spread out.
 8. Why do you think these samples are grouping together? 
-	These samples group together because different body sites host distinct microbial communities due to differences in environment, nutrients, oxygen levels, and biological function. Like example the nasal and oral are grouping together because they were included in the respiratory system, so they share the same microbes. Also skin and udder are f
+	These samples group together because different body sites host distinct microbial communities due to differences in environment, nutrients, oxygen levels, and biological function. Like example the nasal and oral are grouping together because they were included in the respiratory system, so they share the same microbes. Also skin and udder are grouping together because they were included in body surfaces. Meanwhile fecal sample are cluster together because these sample are in spesific different environment than other sample from other body site. 
 9. What test can you run to determine if the groups are significantly different?
 	The test commonly used is a PERMANOVA test (Permutational Multivariate Analysis of Variance).
 10. What command would you use to run that test?
@@ -109,18 +109,20 @@ qiime diversity alpha-group-significance \
 ```
 #insert command for running the test you suggest from question 7
 
-# unweighted unifrac significance
+# permanova test
 qiime diversity beta-group-significance \
---i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+--i-distance-matrix core_metrics_results/unweighted_unifrac_distance_matrix.qza \
 --m-metadata-file metadata/cow_metadata.txt \
 --m-metadata-column body_site \
---o-visualization core-metrics-results/unweighted_unifrac_body_site_metric.qzv
+--p-method permanova \
+--o-visualization core_metrics_results/unweighted_unifrac_body_site_metric.qzv
 
 # bray curtis significance  
 qiime diversity beta-group-significance \  
 --i-distance-matrix core-metrics-results/bray_curtis_distance_matrix.qza \  
 --m-metadata-file metadata/cow_metadata.txt \  
 --m-metadata-column body_site \  
+--p-method permanova \
 --o-visualization core-metrics-results/bray_curtis_body_site_metric.qzv
 
 ```
