@@ -88,22 +88,22 @@ qiime diversity alpha-group-significance \
 1. what is the name of the file you needed to use to figure out what min and max depths to use to generate the alpha rarefaction plot? (Hint: which file contains the sequencing depths for each sample)
 	The file is cow_table_dada2_filtered300.qzv. This file contains the sequencing depth (frequency) for each sample, which is used to determine the minimum and maximum depths.
 2. what did you choose for the rarefaction depth (the input for core metrics -p-sampling-depth flag)? why? 
-	I chose a rarefaction depth that retains most of the samples while removing samples with very low sequencing depth. This ensures fair comparison across samples while keeping as much sequencing data as possible. I use 1500 reads sequences per sample because most samples had sequencing depths higher than 1000 reads, but there are also sample that had sequencing lower than 2000 reads (very low sequencing depth). So I think to reduce the sample that may leads to bias because of the very low reads, I put 1500 reads sequences per sample  as my rarefaction depth to make sure no sample below that read are included.
+	I chose a rarefaction depth that retains most of the samples while removing samples with very low sequencing depth. This ensures fair comparison across samples while keeping as much sequencing data as possible. I use 1500 reads sequences per sample because most samples had sequencing depths higher than 1000 reads, but there are also sample that had sequencing lower than 2000 reads (very low sequencing depth). So I think to reduce the sample that may leads to bias because of the very low reads, I put 1500 reads sequences per sample  (midpoint between 1000 and 2000) as my rarefaction depth to make sure no sample below that read are included.
 3. Which cow body location had more observed features? Which has the lowest?
-	Based on the alpha_rarefaction_curves_16S.qzv, we can see that the fecal sample had the highest observed featured and nasal sample had the lowest observed featured.
+	Based on the alpha_rarefaction_curves_16S.qzv on the body location, we can see that the fecal sample had the highest observed featured and nasal sample had the lowest observed featured.
 4. What is the main difference between Faiths PD and Shannons alpha diversity metrics?  
 	Faith’s PD (Phylogenetic Diversity) measures diversity based on phylogenetic relationships between organisms. Shannon diversity measures diversity based on species richness and evenness, but does not use phylogenetic relationships.
 5. Which diversity metrics produced by the core-metrics pipeline require phylogenetic information?
-	The metrics that require phylogenetic information are: Faith’s Phylogenetic Diversity (Faith’s PD), Unweighted UniFrac, and Weighted UniFrac. These metrics use a phylogenetic tree of the taxa.
+	The metrics that require phylogenetic information are: Faith’s Phylogenetic Diversity (Faith’s PD) for alpha diversity, Unweighted UniFrac, and Weighted UniFrac for beta diversity. These metrics use a phylogenetic tree of the taxa.
 6. Which two body sites have the highest Faiths PD alpha diversity?  Are the groups significantly different?
-	The two body sites with the highest Faith’s PD are rumen and feces. Yes, the groups appear significantly different based on the statistical test shown in the visualization.
+	The two body sites with the highest Faith’s PD are rfecal, skin, and udder sample compare to the nasal and oral sample. 
+	For the second question, yes, the groups appear significantly different based on the statistical test shown in the visualization.
 7. Does it seem like there are any groupings in the beta diversity? What are the groupings? 
-	Yes, there are groupings in the beta diversity plots.  
-Samples tend to cluster based on cow body location (for example: rumen, feces, milk, and skin).
+	Yes, there are groupings in the beta diversity plots. Samples tend to cluster based on cow body location. Like in example the skin and udder are more close, while nasal and oral are also close. So we can see these body location are determine the grouping.
 8. Why do you think these samples are grouping together? 
 	These samples group together because different body sites host distinct microbial communities due to differences in environment, nutrients, oxygen levels, and biological function.
 9. What test can you run to determine if the groups are significantly different?
-	The test commonly used is PERMANOVA (Permutational Multivariate Analysis of Variance).
+	The test commonly used is a PERMANOVA test (Permutational Multivariate Analysis of Variance).
 10. What command would you use to run that test?
 
 ```
