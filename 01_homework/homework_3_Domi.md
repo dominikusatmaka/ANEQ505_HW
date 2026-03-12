@@ -109,7 +109,7 @@ qiime diversity alpha-group-significance \
 ```
 #insert command for running the test you suggest from question 7
 
-# permanova test
+## permanova test
 qiime diversity beta-group-significance \
 --i-distance-matrix core_metrics_results/unweighted_unifrac_distance_matrix.qza \
 --m-metadata-file metadata/cow_metadata.txt \
@@ -117,12 +117,12 @@ qiime diversity beta-group-significance \
 --p-method permanova \
 --o-visualization core_metrics_results/unweighted_unifrac_body_site_metric.qzv
 
-# bray curtis significance  
+## bray curtis  
 qiime diversity beta-group-significance \
---i-distance-matrix core-metrics-results/bray_curtis_distance_matrix.qza \
+--i-distance-matrix core_metrics_results/bray_curtis_distance_matrix.qza \
 --m-metadata-file metadata/cow_metadata.txt \
 --m-metadata-column body_site \
 --p-method permanova \
---o-visualization core-metrics-results/bray_curtis_body_site_metric.qzv
+--o-visualization core_metrics_results/bray_curtis_body_site_metric.qzv
 
 ```
