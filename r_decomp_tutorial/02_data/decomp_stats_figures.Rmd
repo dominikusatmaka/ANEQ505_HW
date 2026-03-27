@@ -55,7 +55,7 @@ library(scales)
 
 # Import and clean metadata if needed
 ```{r}
-metadata <- read_tsv("../03_metadata/metadata.txt")
+metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/03_metadata/metadata.txt")
 ```
 
 
@@ -66,10 +66,10 @@ metadata <- read_tsv("../03_metadata/metadata.txt")
 # Import alpha diversity data from QIIME2 output
 ```{r}
 # Alpha diversity metrics
-shannon <- read_tsv("alpha_div/shannon.tsv")
-evenness <- read_tsv("alpha_div/evenness.tsv")
-observed_features <- read_tsv("alpha_div/observed_features.tsv")
-faiths_pd <- read_tsv("alpha_div/faith_pd.tsv")
+shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/shannon.tsv")
+evenness <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/evenness.tsv")
+observed_features <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/observed_features.tsv")
+faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/faith_pd.tsv")
 ```
 # Tidy metrics and add to metadata
 ```{r}
