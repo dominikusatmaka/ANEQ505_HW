@@ -195,8 +195,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "b43ccc1f38ebdb5b",
+  "active": "54990f9c470bb792",
   "lastOpenFiles": [
+    "r_decomp_tutorial/05_figures",
+    "r_decomp_tutorial/05_figure",
+    "r_decomp_tutorial/untitled folder",
+    "r_decomp_tutorial/04_code",
+    "r_decomp_tutorial/03_metadata",
+    "r_decomp_tutorial/02_data",
+    "r_decomp_tutorial/01_notes",
+    "r_decomp_tutorial",
+    "untitled folder",
     "01_homework/homework_1_Domi.md",
     "01_homework/homework_3_Domi.md",
     "01_homework/homework_2_Domi.md",
@@ -210,7 +219,6 @@
     "Untitled",
     "01_homework",
     "Ujicoba.md",
-    "Untitled.base",
     "Welcome.md"
   ]
 }
