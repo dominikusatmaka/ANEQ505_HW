@@ -39,10 +39,12 @@ module load qiime2/2024.10_amplicon
 qiime diversity alpha-rarefaction \
 --i-table ../dada2/cow_table_dada2_filtered300.qza \
 --m-metadata-file ../metadata/cow_metadata.txt \
---p-max-depth 10000 \
+--p-min-depth 10 \
+--p-max-depth 33000 \
 --o-visualization alpha_rarefaction_curves_16S.qzv \
 ```
 
+kalau lihat di tabel nya, rentangnya antara 10 sampai 33700 an. Jadi bisa dibuat jadi 10 di min dan 33000 di max nya
 
 ### Run Core Metrics ~={red}(1 point)=~
 
@@ -56,6 +58,8 @@ qiime diversity core-metrics-phylogenetic \
 --p-sampling-depth 1500 \
 --output-dir core_metrics_results
 ```
+
+kalo lihat datanya bisa pakai 4500 sebenernya karena ketika angka itu datanya mulai plateau. Jadi datanya akan mulai stabil. --> coba rarefy pakai 4500 nanti
 
 ### Visualize alpha diversity plots
 - generate a plot to visualize the observed features ~={red}(1 point)=~
