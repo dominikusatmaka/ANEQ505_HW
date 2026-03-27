@@ -44,6 +44,7 @@ qiime diversity alpha-rarefaction \
 --o-visualization alpha_rarefaction_curves_16S.qzv \
 ```
 
+Aslinya aku pakai 10 - 10000
 kalau lihat di tabel nya, rentangnya antara 10 sampai 33700 an. Jadi bisa dibuat jadi 10 di min dan 33000 di max nya
 
 ### Run Core Metrics ~={red}(1 point)=~
@@ -55,11 +56,13 @@ qiime diversity core-metrics-phylogenetic \
 --i-table dada2/cow_table_dada2_filtered300.qza \
 --i-phylogeny tree/tree_gg2.qza \
 --m-metadata-file metadata/cow_metadata.txt \
---p-sampling-depth 1500 \
---output-dir core_metrics_results
+--p-sampling-depth 5000 \
+--output-dir core_metrics_results_5k
 ```
 
-kalo lihat datanya bisa pakai 4500 sebenernya karena ketika angka itu datanya mulai plateau. Jadi datanya akan mulai stabil. --> coba rarefy pakai 4500 nanti
+Aslinya aku pakai 1500
+kalo lihat datanya bisa pakai 4500 sebenernya karena ketika angka itu datanya mulai plateau. Jadi datanya akan mulai stabil. --> coba rarefy pakai 4500 nanti --> ganti pakai core_metrics_results_5k
+tapi biasanya semakin tinggi angka rarefy nya maka kita akan kehilangan lebih banyak sampel. Nah di 4500 ini kita akan kehilangan 40% data. Biasanya tergantung berapa banyak yang mau kita preserve dari data yang kita punya. Kaau kita mau preserve lebih banyak data maka rarefy nya bisa pakai angka yang rendah.
 
 ### Visualize alpha diversity plots
 - generate a plot to visualize the observed features ~={red}(1 point)=~
@@ -120,6 +123,8 @@ qiime diversity beta-group-significance \
 --m-metadata-column body_site \
 --p-method permanova \
 --o-visualization core_metrics_results/unweighted_unifrac_body_site_metric.qzv
+
+Biasanya akan ditambahkan  -p pairwise untuk melakukan tes pairwise
 
 ## bray curtis  
 qiime diversity beta-group-significance \
