@@ -90,11 +90,43 @@ qiime feature-table summarize \
 --o-visualization pempek_table_dada2_filtered300.qzv
     
 ```
-
+cd /scratch/alpine/$USER/pempek/taxonomy
 ```
 qiime feature-classifier classify-sklearn \
---i-reads ../dada2/pempek_seqs_dada2_filtered300.qza \)|
+--i-reads ../dada2/pempek_seqs_dada2_filtered300.qza \
 --i-classifier 2024.09.backbone.v4.nb.qza \
 --o-classification taxonomy_gg2_filtered.qza
 ```
 
+```
+qiime metadata tabulate \
+--m-input-file taxonomy_gg2_filtered.qza \
+--o-visualization taxonomy_gg2_filtered.qzv
+```
+
+```
+qiime taxa filter-table \
+--i-table ../dada2/pempek_table_dada2_filtered300.qza \
+--i-taxonomy taxonomy_gg2_filtered.qza \
+--p-exclude mitochondria,chloroplast,sp004296775 \
+--p-include c__ \
+--o-filtered-table ../dada2/table_nomitochloro_gg2_filtered300.qza
+```
+
+```
+qiime taxa barplot \
+--i-table ../dada2/table_nomitochloro_gg2_filtered300.qza \
+--i-taxonomy taxonomy_gg2_filtered.qza \
+--m-metadata-file ../metadata/metadata.txt \
+--o-visualization ../taxaplots/taxa_barplot_nomitochloro_gg2_filtered300.qzv
+```
+sbatch
+
+```
+qiime diversity alpha-rarefaction \
+--i-table ../dada2/pempek_table_dada2_filtered300.qza \
+--m-metadata-file ../metadata/metadata.txt \
+--p-min-depth 10 \
+--p-max-depth 33000 \
+--o-visualization alpha_rarefaction_curves_16S.qzv \
+```
