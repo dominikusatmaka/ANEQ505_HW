@@ -37,12 +37,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01_homework/homework_1_Domi.md",
+                "file": "Project/Project Pempek.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "homework_1_Domi"
+              "title": "Project Pempek"
             }
           }
         ],
@@ -211,8 +211,8 @@
   },
   "active": "d6c3588dd5082e30",
   "lastOpenFiles": [
-    "Project/Project Pempek.md",
     "01_homework/homework_1_Domi.md",
+    "Project/Project Pempek.md",
     "01_homework/homework_2_Domi.md",
     "VS_code_in_obsidian.md",
     "Project",
