@@ -60,7 +60,7 @@ qiime metadata tabulate \
 
 qiime feature-table summarize \
 --i-table pempek_table_dada2.qza \
---m-sample-metadata-file ../metadata/cow_metadata.txt \
+--m-sample-metadata-file ../metadata/metadata.txt \
 --o-visualization dada2_table.qzv
 
 qiime feature-table tabulate-seqs \
