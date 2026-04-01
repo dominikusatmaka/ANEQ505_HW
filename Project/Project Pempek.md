@@ -93,7 +93,8 @@ qiime feature-table summarize \
 
 ```
 qiime feature-classifier classify-sklearn \
---i-reads ../dada2/pempek_seqs_dada2_filtered300.qza \
+--i-reads ../dada2/pempek_seqs_dada2_filtered300.qza \)|
 --i-classifier 2024.09.backbone.v4.nb.qza \
 --o-classification taxonomy_gg2_filtered.qza
 ```
+
