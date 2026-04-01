@@ -37,12 +37,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project/Project Pempek.md",
+                "file": "01_homework/homework_2_Domi.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Project Pempek"
+              "title": "homework_2_Domi"
             }
           }
         ],
@@ -211,14 +211,14 @@
   },
   "active": "d6c3588dd5082e30",
   "lastOpenFiles": [
-    "01_homework/homework_1_Domi.md",
+    "01_homework/homework_3_Domi.md",
     "Project/Project Pempek.md",
+    "01_homework/homework_1_Domi.md",
     "01_homework/homework_2_Domi.md",
     "VS_code_in_obsidian.md",
     "Project",
     "r_decomp_tutorial/05_figures/beta_div_sample_type.jpeg",
     "01_homework/Picture for Homework 2 Level 7 Body SIte.png",
-    "01_homework/homework_3_Domi.md",
     "r_decomp_tutorial/05_figures/taxa_genus_sample_type_arf.jpeg",
     "r_decomp_tutorial/05_figures/taxa_genus_add.jpeg",
     "r_decomp_tutorial/02_data/taxonomy/rel_abundance_taxa_genus.RDS",
