@@ -67,3 +67,33 @@ qiime feature-table tabulate-seqs \
 --i-data pempek_seqs_dada2.qza \
 --o-visualization dada2_seqs.qzv
 ```
+
+```
+qiime feature-table filter-seqs \
+--i-data pempek_seqs_dada2.qza \
+--m-metadata-file pempek_seqs_dada2.qza \
+--p-where 'length(sequence) < 300' \
+--o-filtered-data pempek_seqs_dada2_filtered300.qza
+
+qiime feature-table tabulate-seqs \
+--i-data pempek_seqs_dada2_filtered300.qza \
+--o-visualization pempek_seqs_dada2_filtered300.qzv
+
+qiime feature-table filter-features \
+--i-table pempek_table_dada2.qza \
+--m-metadata-file pempek_seqs_dada2_filtered300.qza \
+--o-filtered-table pempek_table_dada2_filtered300.qza
+  
+qiime feature-table summarize \
+--i-table pempek_table_dada2_filtered300.qza \
+--m-sample-metadata-file ../metadata/metadata.txt \
+--o-visualization pempek_table_dada2_filtered300.qzv
+    
+```
+
+```
+qiime feature-classifier classify-sklearn \
+--i-reads ../dada2/pempek_seqs_dada2_filtered300.qza \
+--i-classifier 2024.09.backbone.v4.nb.qza \
+--o-classification taxonomy_gg2_filtered.qza
+```
