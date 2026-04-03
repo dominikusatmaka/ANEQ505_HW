@@ -2,6 +2,9 @@
 title: "decomp_stats_figures"
 output: pdf_document
 date: "2026-03-10"
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r setup, include=FALSE}
@@ -10,22 +13,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # This script is a general guide for making publication-quality visualizations using QIIME2-generated outputs
 
-################################################################################
+################################################################################ 
+
 # Research Questions
-1. Does microbial community composition change over accumulated degree days?
-2. Does facility influence microbial diversity or community composition?
-3. Do soil and skin samples differ in their microbial diversity and community composition?
 
-- Your research question doesn’t need to be included in your R Markdown, but you should have a data analysis plan. It’s easy to go down rabbit holes if you don’t stick to analyses that directly address your questions.
-################################################################################
+1.  Does microbial community composition change over accumulated degree days?
+2.  Does facility influence microbial diversity or community composition?
+3.  Do soil and skin samples differ in their microbial diversity and community composition?
 
+-   Your research question doesn’t need to be included in your R Markdown, but you should have a data analysis plan. It’s easy to go down rabbit holes if you don’t stick to analyses that directly address your questions. \################################################################################
 
-################################################################################
+################################################################################ 
+
 # Installing and loading packages
-################################################################################
+
+################################################################################ 
 
 # Install packages
-- If you have already installed the packages then you don't need to rerun this. 
+
+-   If you have already installed the packages then you don't need to rerun this.
+
 ```{r}
 # Each of the packages we will use are CRAN packages
 packages_to_install <- c("tidyverse", "ggplot2","readr","ggpubr","vegan","scales","lme4", "lmerTest","pbkrtest","emmeans", "rstatix", "forcats", "scales")
@@ -34,6 +41,7 @@ install.packages(packages_to_install)
 ```
 
 # Load packages
+
 ```{r}
 library(tidyverse)
 library(ggplot2)
@@ -49,21 +57,27 @@ library(rstatix)
 library(forcats)
 library(scales) 
 ```
-################################################################################
+
+################################################################################ 
+
 # Metadata
-################################################################################
+
+################################################################################ 
 
 # Import and clean metadata if needed
+
 ```{r}
 metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/03_metadata/metadata.txt")
 ```
 
+################################################################################ 
 
-################################################################################
 # Alpha diversity
-################################################################################
+
+################################################################################ 
 
 # Import alpha diversity data from QIIME2 output
+
 ```{r}
 # Alpha diversity metrics
 shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/shannon.tsv")
@@ -71,7 +85,9 @@ evenness <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tuto
 observed_features <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/observed_features.tsv")
 faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/faith_pd.tsv")
 ```
+
 # Tidy metrics and add to metadata
+
 ```{r}
 # Shannon 
 shannon <- shannon %>%
@@ -99,29 +115,32 @@ metadata <- metadata %>%
 
 ```
 
-* If you look at your metadata you will see that 4 columns (variables) were added this is the metrics from the alpha diversity added as columns to the end of your metadata. 
+-   If you look at your metadata you will see that 4 columns (variables) were added this is the metrics from the alpha diversity added as columns to the end of your metadata.
 
-* You'll also notice there are some samples that have NA's for the metrics, these samples could have been filtered out during our Qiime2 analysis and thus did not generate an alpha diversity metrics during the core-metrics command (because rarefaction will filter out samples less than the read depth you give it!). 
+-   You'll also notice there are some samples that have NA's for the metrics, these samples could have been filtered out during our Qiime2 analysis and thus did not generate an alpha diversity metrics during the core-metrics command (because rarefaction will filter out samples less than the read depth you give it!).
 
-It is good practice to check these NA's to make sure you aren't missing data. Then you can filter the NAs out. 
+It is good practice to check these NA's to make sure you aren't missing data.
+Then you can filter the NAs out.
 
-# Tidy metadata with metrics 
+# Tidy metadata with metrics
+
 ```{r}
 metadata <- metadata %>% 
   drop_na(shannon_entropy, pielou_evenness, observed_features, faith_pd)
 ```
 
-* Now you'll notice that we lost some columns, but there are no NA's in our metrics columns, now we are ready to do statistical analysis. 
+-   Now you'll notice that we lost some columns, but there are no NA's in our metrics columns, now we are ready to do statistical analysis.
 
 # Linear Mixed Effects Models
-* When building linear mixed-effects models, it’s best to start with the simplest model that adequately fits your data. I usually begin by including the variable that I expect to have the largest effect—or the one that might obscure the treatment signal—so we can account for it before testing our main hypothesis. In this case we will start with add_0 since it is our time factor. 
 
+-   When building linear mixed-effects models, it’s best to start with the simplest model that adequately fits your data. I usually begin by including the variable that I expect to have the largest effect—or the one that might obscure the treatment signal—so we can account for it before testing our main hypothesis. In this case we will start with add_0 since it is our time factor.
 
 ## Body Site (body_site) (question x)
 
 ## Time (add_0c) (question 1)
 
 Shannon
+
 ```{r}
 # Build model
 model_add0_shannon <- lmer(shannon_entropy ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
@@ -135,31 +154,37 @@ anova(model_add0_shannon)
 # pairwise comparisons, there are a lot of time points for this data set so this line doesn't work yet, I'll show you how to use it a little later
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
-For this first metric we are going to walk through each command, what they do, and what you should look for. 
 
-Model: model_add0_shannon <- lmer(shannon_entropy ~ add_0c + (1|host_subject_id), data = metadata)
-  - Model type: We are fitting a linear mixed-effects model using the lmer() function from the lme4 package. Mixed-effects models are useful when data points are not independent, such as repeated measurements from the same subject.
-  - Response variable: shannon_entropy — the dependent variable we want to explain (Shannon diversity in this case).
-  - Fixed effect: add_0c — the predictor we are testing, treated as a fixed effect. The model estimates how changes in add_0c influence Shannon diversity across all subjects.
-  - Random effect:
-(1|host_subject_id) — a random intercept for each subject. This accounts for repeated measurements between subjects.
-  - Data: data = metadata
+For this first metric we are going to walk through each command, what they do, and what you should look for.
 
-1. plot(model_add0_shannon) Purpose: Checks for non-linearity and heteroscedasticity (unequal variance).
-  - What to look for:Residuals should be roughly randomly scattered around 0.No obvious patterns, trends, or funnels.
-  - Red flag:Curved or fan-shaped pattern, the model may not fit well, or variance may not be constant. You may need to consider a different model for your data. 
+Model: model_add0_shannon \<- lmer(shannon_entropy \~ add_0c + (1\|host_subject_id), data = metadata) - Model type: We are fitting a linear mixed-effects model using the lmer() function from the lme4 package.
+Mixed-effects models are useful when data points are not independent, such as repeated measurements from the same subject.
+- Response variable: shannon_entropy — the dependent variable we want to explain (Shannon diversity in this case).
+- Fixed effect: add_0c — the predictor we are testing, treated as a fixed effect.
+The model estimates how changes in add_0c influence Shannon diversity across all subjects.
+- Random effect: (1\|host_subject_id) — a random intercept for each subject.
+This accounts for repeated measurements between subjects.
+- Data: data = metadata
 
-2. summary(model_add0_shannon)
-  - This tells us how Shannon diversity changes with add_0c, while accounting for differences between individual hosts. The fixed effects tell us the average effect across all hosts, and the random effects tell us how much subjects differ from each other.
-  - Look for: Fixed effect estimates make sense (sign, magnitude), standard errors are reasonable, and random effects show meaningful variation between subjects.
-  - Red flags: Very large or tiny standard errors, fixed effect estimates that don’t align with expectations, random effects variance near zero, or unusually high residual variance suggesting poor model fit.
+1.  plot(model_add0_shannon) Purpose: Checks for non-linearity and heteroscedasticity (unequal variance).
 
-3. anova(model_add0_shannon)
-  - Performs a Type III or sequential ANOVA on the model, testing the significance of fixed effects (e.g., add_0c) in explaining the response.
-  - Look for: F-values and p-values indicate whether each fixed effect contributes significantly to explaining variation in shannon_entropy.
-  - Red flags: Very high or very low F-values with inconsistent p-values, or effects that don’t match biological expectations; may indicate model misspecification, collinearity, or insufficient data.
+-   What to look for:Residuals should be roughly randomly scattered around 0.No obvious patterns, trends, or funnels.
+-   Red flag:Curved or fan-shaped pattern, the model may not fit well, or variance may not be constant. You may need to consider a different model for your data.
+
+2.  summary(model_add0_shannon)
+
+-   This tells us how Shannon diversity changes with add_0c, while accounting for differences between individual hosts. The fixed effects tell us the average effect across all hosts, and the random effects tell us how much subjects differ from each other.
+-   Look for: Fixed effect estimates make sense (sign, magnitude), standard errors are reasonable, and random effects show meaningful variation between subjects.
+-   Red flags: Very large or tiny standard errors, fixed effect estimates that don’t align with expectations, random effects variance near zero, or unusually high residual variance suggesting poor model fit.
+
+3.  anova(model_add0_shannon)
+
+-   Performs a Type III or sequential ANOVA on the model, testing the significance of fixed effects (e.g., add_0c) in explaining the response.
+-   Look for: F-values and p-values indicate whether each fixed effect contributes significantly to explaining variation in shannon_entropy.
+-   Red flags: Very high or very low F-values with inconsistent p-values, or effects that don’t match biological expectations; may indicate model misspecification, collinearity, or insufficient data.
 
 Evenness
+
 ```{r}
 # Build model
 model_add0_evenness <- lmer(pielou_evenness ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
@@ -174,8 +199,8 @@ anova(model_add0_evenness)
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
 
-
 Observed Features
+
 ```{r}
 # Build model
 model_add0_obfeatures <- lmer(observed_features ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
@@ -190,8 +215,8 @@ anova(model_add0_obfeatures)
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
 
-
 Faiths PD
+
 ```{r}
 # Build model
 model_add0_faithpd <- lmer(faith_pd ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
@@ -206,11 +231,12 @@ anova(model_add0_faithpd)
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
 
-* If you remember when we were looking at our qiime2 outputs we could see that something was going at at the begining of the study vs the end of the study so lets add a metadata column that splits the metadata into 3 sections. When looking at the metadata we can see the highest add_0c was 450. (This is just to see what is going on, once you take a look then you can decided based on your data a more appropriate way to look at time)
+-   If you remember when we were looking at our qiime2 outputs we could see that something was going at at the begining of the study vs the end of the study so lets add a metadata column that splits the metadata into 3 sections. When looking at the metadata we can see the highest add_0c was 450. (This is just to see what is going on, once you take a look then you can decided based on your data a more appropriate way to look at time)
 
 ## add_0c split into 3
 
-Shannon 
+Shannon
+
 ```{r}
 # Add metadata column 
 metadata <- metadata %>%
@@ -234,9 +260,11 @@ anova(model_add0split_shannon)
 # pairwise comparisons
 emmeans(model_add0split_shannon, pairwise ~ add0c_split)
 ```
-* From our emmeans we aren't seeing anything in shannon diversity specifically. 
 
-On your own you can try splitting add_0c in two groups. 
+-   From our emmeans we aren't seeing anything in shannon diversity specifically.
+
+On your own you can try splitting add_0c in two groups.
+
 ```{r}
 metadata <- metadata %>%
   mutate(add0c_split2 = cut(
@@ -361,8 +389,6 @@ ggsave(alpha_div_addOc, filename = "../05_figures/alpha_div_addOc.jpeg", device 
 
 ```
 
-
-
 # add_0c 3 group figure
 
 ```{r}
@@ -396,12 +422,15 @@ add_split_shannon
 ggsave(add_split_shannon, filename = "../05_figures/add_split_shannon.jpeg", device = "jpeg", dpi = 300, width = 8, height = 9)
 ```
 
-
-
 ## add0c + facility (question 2)
-To make it easier to demonstrate time I am going to continue the analysis with the 3 group add_0c split. 
-In this section, we will test whether microbial community composition changes differently across facilities over accumulated degree days (add_0c). To do this, we included facility as an interaction with add_0c in the model. This allows us to evaluate whether the trajectory of microbial community change over time differs between facilities, rather than simply testing for overall differences between facilities. By modeling the interaction, we can determine whether microbial communities diverge from their baseline at different rates depending on the facility where the samples were collected.
+
+To make it easier to demonstrate time I am going to continue the analysis with the 3 group add_0c split.
+In this section, we will test whether microbial community composition changes differently across facilities over accumulated degree days (add_0c).
+To do this, we included facility as an interaction with add_0c in the model.
+This allows us to evaluate whether the trajectory of microbial community change over time differs between facilities, rather than simply testing for overall differences between facilities.
+By modeling the interaction, we can determine whether microbial communities diverge from their baseline at different rates depending on the facility where the samples were collected.
 Shannon
+
 ```{r}
 # Build model
 model_add0_facility_shannon <- lmer(shannon_entropy ~ facility*add0c_split + (1|host_subject_id), data = metadata)  
@@ -415,7 +444,9 @@ anova(model_add0_facility_shannon)
 # pairwise comparisons
 emmeans(model_add0_facility_shannon, pairwise ~ facility|add0c_split)
 ```
+
 Really quick lets just look when we don't split add_0c
+
 ```{r}
 # Build model
 model_add0_facility_shannon2 <- lmer(shannon_entropy ~ facility*add_0c + (1|host_subject_id), data = metadata)  
@@ -431,6 +462,7 @@ emmeans(model_add0_facility_shannon2, pairwise ~ facility)
 ```
 
 Evenness
+
 ```{r}
 # Build model
 model_add0_facility_evenness <- lmer(pielou_evenness ~ facility*add0c_split + (1|host_subject_id), data = metadata)  
@@ -446,6 +478,7 @@ emmeans(model_add0_facility_evenness, pairwise ~ facility|add0c_split)
 ```
 
 Observed Features
+
 ```{r}
 # Build model
 model_add0_facility_obfeatures <- lmer(observed_features ~ facility*add0c_split + (1|host_subject_id), data = metadata)  
@@ -461,6 +494,7 @@ emmeans(model_add0_facility_obfeatures, pairwise ~ facility|add0c_split)
 ```
 
 Faith's PD
+
 ```{r}
 # Build model
 model_add0_facility_faithpd <- lmer(faith_pd ~ facility*add0c_split + (1|host_subject_id), data = metadata)  
@@ -474,9 +508,11 @@ anova(model_add0_facility_faithpd)
 # pairwise comparisons
 emmeans(model_add0_facility_faithpd, pairwise ~ facility|add0c_split)
 ```
-- We can see that facility is significant at earlier timepoints so when we look at sample_type we will include it in our model. 
+
+-   We can see that facility is significant at earlier timepoints so when we look at sample_type we will include it in our model.
 
 # Facilty figure ajusted for time (box plot) (3 timepoint box plot)
+
 ```{r}
 model_add0_facility_faithpd <- lmer(faith_pd ~ facility*add0c_split + (1|host_subject_id), data = metadata)  
 pvals <- pairs(
@@ -546,11 +582,17 @@ ggsave(add_split_faithpd_facility, filename = "../05_figures/add_split_faiths_fa
 
 ```
 
-
 ## add_0c + facility + sample_type (question 3)
-We know that facility varies across accumulated degree days (add_0c), but it is not the primary variable addressing our research question in this section. Therefore, we include facility in the model as an additive term rather than as an interaction term. Instead, we include sample_type as an interaction with add_0c, because we want to test whether microbial communities from soil and skin change differently over time. We previously examined the effect of facility in an earlier section, so here it is included only as a covariate to account for background variation. Specifically, we are testing whether the time trajectories differ between soil and skin samples. If we instead wanted to compare soil versus skin while simply accounting for time, rather than testing different time trajectories, add_0c would be included as an additive term rather than in an interaction.
 
-Shannon 
+We know that facility varies across accumulated degree days (add_0c), but it is not the primary variable addressing our research question in this section.
+Therefore, we include facility in the model as an additive term rather than as an interaction term.
+Instead, we include sample_type as an interaction with add_0c, because we want to test whether microbial communities from soil and skin change differently over time.
+We previously examined the effect of facility in an earlier section, so here it is included only as a covariate to account for background variation.
+Specifically, we are testing whether the time trajectories differ between soil and skin samples.
+If we instead wanted to compare soil versus skin while simply accounting for time, rather than testing different time trajectories, add_0c would be included as an additive term rather than in an interaction.
+
+Shannon
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_shannon <- lmer(shannon_entropy ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata)  
@@ -566,6 +608,7 @@ emmeans(model_add0_facility_sampletype_shannon, pairwise ~ sample_type|add0c_spl
 ```
 
 Evenness
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_evenness <- lmer(pielou_evenness ~ add0c_split*sample_type + facility + (1|host_subject_id), data = metadata)  
@@ -581,6 +624,7 @@ emmeans(model_add0_facility_sampletype_evenness, pairwise ~ sample_type|add0c_sp
 ```
 
 Observed features
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_obfeatures <- lmer(observed_features ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata)  
@@ -596,6 +640,7 @@ emmeans(model_add0_facility_sampletype_obfeatures, pairwise ~ sample_type|add0c_
 ```
 
 Faith's PD
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_faithpd <- lmer(faith_pd ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata)  
@@ -611,6 +656,7 @@ emmeans(model_add0_facility_sampletype_faithpd, pairwise ~ sample_type|add0c_spl
 ```
 
 ## Sample type figure
+
 ```{r}
 model_add0_facility_sampletype_obfeatures <- lmer(observed_features ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata)  
 
@@ -679,15 +725,21 @@ add_split_obsFeats_sampleType
 ggsave(add_split_obsFeats_sampleType, filename = "../05_figures/add_split_obsFeats_sampleType.jpeg", device = "jpeg", dpi = 300, width = 8, height = 9)
 ```
 
+################################################################################ 
 
-
-
-################################################################################
 # Beta diversity
-################################################################################
+
+################################################################################ 
 
 # Load in beta diversity metrics and tidy to add to metadata
-(remember this is already our PCOA results so this is already our ordinations). I make separate metadata's for each beta diversity metric, another option would be to rename each PC ex. PC1J for jaccard and add PC1-PC3 for each metric to the metadata. I find it easier to keep everything separate when the metrics have different metadata. The variances extracted from the unzipped PCoA files will not match what you see in the Emperor plot, because Emperor adjusts the variance for plotting. To obtain variances that match the Emperor plot, you need to use qiime2R.
+
+(remember this is already our PCOA results so this is already our ordinations).
+I make separate metadata's for each beta diversity metric, another option would be to rename each PC ex.
+PC1J for jaccard and add PC1-PC3 for each metric to the metadata.
+I find it easier to keep everything separate when the metrics have different metadata.
+The variances extracted from the unzipped PCoA files will not match what you see in the Emperor plot, because Emperor adjusts the variance for plotting.
+To obtain variances that match the Emperor plot, you need to use qiime2R.
+
 ```{r}
 # Read in beta div metrics 
 bray_curtis <- read_tsv("beta_div/bray_curtis.txt")
@@ -778,17 +830,28 @@ metadata_wunifrac <- w_unifrac %>%
   mutate(across(c(PC1, PC2, PC3), as.numeric))
 
 ```
-- Now that we've done some data tidying we can finally get to stats for beta diversity, I am going to keep using the add0c split for demonstration purposes. 
 
-- There are two common approaches for performing statistical analyses on beta diversity. One approach is first distances, which we discussed last week. If you want to run a linear mixed-effects model (LME) in R using the first-distances output, you can unzip the first-distances.qza artifact and extract the data file. After importing this file into R, you can use it in your model. In this case, instead of using a PCoA axis (e.g., PC1) as the dependent variable, you would use Distance as the dependent variable in the LME.
+-   Now that we've done some data tidying we can finally get to stats for beta diversity, I am going to keep using the add0c split for demonstration purposes.
 
--  For the sake of time, we will skip ahead to question 3 and build a model examining sample type. In this model, we account for facility as a covariate and evaluate how beta diversity changes over time. Specifically, we include an interaction between accumulated degree days (add_0c) and sample type to test whether the trajectory of beta diversity over time differs between soil and skin samples. 
-## add0c_split + facility + sample_type (question 3)
-- If you think back to the PCoA plots we visualized in Emperor, we saw three axes: PC1, PC2, and PC3. We will test each of these axes to determine whether the variance along that axis is explained by our variables. In many microbiome datasets, time often explains a large portion of the variance on PC1, although this is not always the case. 
+-   There are two common approaches for performing statistical analyses on beta diversity.
+    One approach is first distances, which we discussed last week.
+    If you want to run a linear mixed-effects model (LME) in R using the first-distances output, you can unzip the first-distances.qza artifact and extract the data file.
+    After importing this file into R, you can use it in your model.
+    In this case, instead of using a PCoA axis (e.g., PC1) as the dependent variable, you would use Distance as the dependent variable in the LME.
+
+-   For the sake of time, we will skip ahead to question 3 and build a model examining sample type.
+    In this model, we account for facility as a covariate and evaluate how beta diversity changes over time.
+    Specifically, we include an interaction between accumulated degree days (add_0c) and sample type to test whether the trajectory of beta diversity over time differs between soil and skin samples.
+    ## add0c_split + facility + sample_type (question 3)
+
+-   If you think back to the PCoA plots we visualized in Emperor, we saw three axes: PC1, PC2, and PC3.
+    We will test each of these axes to determine whether the variance along that axis is explained by our variables.
+    In many microbiome datasets, time often explains a large portion of the variance on PC1, although this is not always the case.
 
 # Bray Curtis
 
 #PC1
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_bc1 <- lmer(PC1 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_bc)  
@@ -805,6 +868,7 @@ emmeans(model_add0_facility_sampletype_bc1, pairwise ~ sample_type|add0c_split)
 ```
 
 #PC2
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_bc2 <- lmer(PC2 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_bc)  
@@ -820,8 +884,8 @@ anova(model_add0_facility_sampletype_bc2)
 emmeans(model_add0_facility_sampletype_bc2, pairwise ~ sample_type|add0c_split)
 ```
 
-
 #PC3
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_bc3 <- lmer(PC3 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_bc)  
@@ -840,6 +904,7 @@ emmeans(model_add0_facility_sampletype_bc3, pairwise ~ sample_type|add0c_split)
 # Jaccard
 
 PC1
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_j1 <- lmer(PC1 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_jaccard)  
@@ -855,8 +920,8 @@ anova(model_add0_facility_sampletype_j1)
 emmeans(model_add0_facility_sampletype_j1, pairwise ~ sample_type|add0c_split)
 ```
 
-
 PC2
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_j2 <- lmer(PC2 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_jaccard)  
@@ -872,8 +937,8 @@ anova(model_add0_facility_sampletype_j2)
 emmeans(model_add0_facility_sampletype_j2, pairwise ~ sample_type|add0c_split)
 ```
 
-
 PC3
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_j3 <- lmer(PC3 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_jaccard)  
@@ -888,9 +953,11 @@ anova(model_add0_facility_sampletype_j3)
 # pairwise comparisons
 emmeans(model_add0_facility_sampletype_j3, pairwise ~ sample_type|add0c_split)
 ```
+
 # Unweighted Unifrac
 
 PC1
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_uwunifrac1 <- lmer(PC1 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_uwunifrac)  
@@ -905,7 +972,9 @@ anova(model_add0_facility_sampletype_uwunifrac1)
 # pairwise comparisons
 emmeans(model_add0_facility_sampletype_uwunifrac1, pairwise ~ sample_type|add0c_split)
 ```
+
 PC2
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_uwunifrac2 <- lmer(PC2 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_uwunifrac)  
@@ -920,7 +989,9 @@ anova(model_add0_facility_sampletype_uwunifrac2)
 # pairwise comparisons
 emmeans(model_add0_facility_sampletype_uwunifrac2, pairwise ~ sample_type|add0c_split)
 ```
+
 PC3
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_uwunifrac3 <- lmer(PC3 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_uwunifrac)  
@@ -935,9 +1006,11 @@ anova(model_add0_facility_sampletype_uwunifrac3)
 # pairwise comparisons
 emmeans(model_add0_facility_sampletype_uwunifrac3, pairwise ~ sample_type|add0c_split)
 ```
+
 # Weighted Unifrac
 
 PC1
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_wunifrac1 <- lmer(PC1 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_wunifrac)  
@@ -952,7 +1025,9 @@ anova(model_add0_facility_sampletype_wunifrac1)
 # pairwise comparisons
 emmeans(model_add0_facility_sampletype_wunifrac1, pairwise ~ sample_type|add0c_split)
 ```
+
 PC2
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_wunifrac2 <- lmer(PC2 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_wunifrac)  
@@ -967,7 +1042,9 @@ anova(model_add0_facility_sampletype_wunifrac2)
 # pairwise comparisons
 emmeans(model_add0_facility_sampletype_wunifrac2, pairwise ~ sample_type|add0c_split)
 ```
+
 PC3
+
 ```{r}
 # Build model
 model_add0_facility_sampletype_wunifrac3 <- lmer(PC3 ~ sample_type*add0c_split + facility + (1|host_subject_id), data = metadata_wunifrac)  
@@ -1103,16 +1180,20 @@ beta_div_sample_type
 ggsave(beta_div_sample_type, filename = "../05_figures/beta_div_sample_type.jpeg", device = "jpeg", dpi = 300, width = 10, height = 9)
 ```
 
-################################################################################
+################################################################################ 
+
 # Taxa bar plots
-################################################################################
+
+################################################################################ 
 
 # Import feature table and taxonomy data from QIIME2 output
+
 ```{r}
 tabulated_results <- read_tsv("taxonomy/tabulated_results.tsv")
 ```
 
 # Format, convert taxonomy to relative abundance, and group at taxonomic levels
+
 ```{r}
 # format data for making a taxa plot
 # get rid of #q2:types row
@@ -1195,6 +1276,7 @@ saveRDS(rel_abundance_taxa_family, "taxonomy/rel_abundance_taxa_family.RDS")
 ```
 
 # Taxa bar plot for STAFS samples
+
 ```{r}
 # graph at the family level for STAFS samples
 # convert to long format
@@ -1278,8 +1360,8 @@ taxa_family_sample_type
 ggsave(taxa_family_sample_type, filename = "../05_figures/taxa_family_sample_type.jpeg", device = "jpeg", dpi = 300, width = 12, height = 8)
 ```
 
-
 # Taxa bar plot for ARF samples at Genus level
+
 ```{r}
 # group at level 6/Genus level
 rel_abundance_taxa_genus <- rel_abundance_taxa_split %>%
@@ -1371,11 +1453,3 @@ taxa_genus_sample_type_arf
 
 ggsave(taxa_genus_sample_type_arf, filename = "../05_figures/taxa_genus_sample_type_arf.jpeg", device = "jpeg", dpi = 300, width = 12, height = 8)
 ```
-
-
-
-
-
-
-
-
