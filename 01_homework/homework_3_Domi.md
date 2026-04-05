@@ -139,3 +139,19 @@ qiime diversity beta-group-significance \
 --o-visualization core_metrics_results_5k/bray_curtis_body_site_metric.qzv
 
 ```
+
+```
+
+
+cd dada2
+
+qiime feature-table transpose \
+--i-table table_nomitochloro_gg2_filtered300.qza \
+--o-transposed-feature-table table_nomitochloro_transposed.qza
+
+qiime metadata tabulate \
+--m-input-file table_nomitochloro_transposed.qza \
+--m-input-file seqs.qza \
+--m-input-file ../taxonomy/taxonomy_gg2.qza \
+--o-visualization tabulated_results.qzv
+```
