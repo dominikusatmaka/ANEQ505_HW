@@ -93,7 +93,7 @@ module load qiime2/2026.1_amplicon
 
 **Filter controls out of our table
 ```
-# Get matadata with no controls
+# Get metadata with no controls
 cp /pl/active/courses/2025_summer/CSU_2025/cow_hw/cow_metadata_nocontrols.txt .
 
 qiime feature-table filter-samples \

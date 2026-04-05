@@ -155,3 +155,10 @@ qiime metadata tabulate \
 --m-input-file ../taxonomy/taxonomy_gg2_filtered.qza \
 --o-visualization tabulated_results.qzv
 ```
+
+```
+qiime feature-table filter-samples \
+  --i-table table_nomitochloro_gg2_filtered300.qza \
+  --m-metadata-file cow_metadata_nocontrols.txt \
+  --o-filtered-table table_nomitochlorocontrols_gg2_filtered300.qza
+```
