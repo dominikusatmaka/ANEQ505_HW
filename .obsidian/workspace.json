@@ -49,12 +49,14 @@
             "id": "4bdfd221d605dd27",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.12.7"
+                "file": "01_homework/homework_3_Domi.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.12.7"
+              "icon": "lucide-file",
+              "title": "homework_3_Domi"
             }
           }
         ],
@@ -225,8 +227,9 @@
   "lastOpenFiles": [
     "01_homework/homework_1_Domi.md",
     "01_homework/homework_2_Domi.md",
-    "Project/Project Pempek.md",
     "01_homework/homework_3_Domi.md",
+    "01_homework/homework_4_mac.md",
+    "Project/Project Pempek.md",
     "VS_code_in_obsidian.md",
     "Project",
     "r_decomp_tutorial/05_figures/beta_div_sample_type.jpeg",

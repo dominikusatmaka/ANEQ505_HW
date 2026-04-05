@@ -41,7 +41,7 @@ qiime diversity alpha-rarefaction \
 --m-metadata-file ../metadata/cow_metadata.txt \
 --p-min-depth 10 \
 --p-max-depth 33000 \
---o-visualization alpha_rarefaction_curves_16S.qzv \
+--o-visualization alpha_rarefaction_curves_16S_1.qzv \
 ```
 
 Aslinya aku pakai 10 - 10000
