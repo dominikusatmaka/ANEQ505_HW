@@ -742,10 +742,10 @@ To obtain variances that match the Emperor plot, you need to use qiime2R.
 
 ```{r}
 # Read in beta div metrics 
-bray_curtis <- read_tsv("beta_div/bray_curtis.txt")
-jaccard <- read_tsv("beta_div/jaccard.txt")
-uw_unifrac <- read_tsv("beta_div/unweighted_unifrac.txt")
-w_unifrac <- read_tsv("beta_div/weighted_unifrac.txt")
+bray_curtis <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/beta_div/bray_curtis.txt")
+jaccard <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/beta_div/jaccard.txt")
+uw_unifrac <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/beta_div/unweighted_unifrac.txt")
+w_unifrac <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/beta_div/weighted_unifrac.txt")
 
 # Clean metrics
 # bray curtis

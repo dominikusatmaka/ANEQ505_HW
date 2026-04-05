@@ -44,9 +44,21 @@
               "icon": "lucide-file",
               "title": "homework_3_Domi"
             }
+          },
+          {
+            "id": "4bdfd221d605dd27",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.12.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.12.7"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -209,7 +221,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "d6c3588dd5082e30",
+  "active": "4bdfd221d605dd27",
   "lastOpenFiles": [
     "01_homework/homework_1_Domi.md",
     "01_homework/homework_2_Domi.md",
