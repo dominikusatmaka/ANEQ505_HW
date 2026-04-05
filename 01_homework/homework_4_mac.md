@@ -45,7 +45,7 @@ cow_r
 
 **What directory should the cow_HW4_r.Rmd file go in? ~={red}(1 point)=~**
 
-- *Write the directory here:*
+- *Write the directory here:* 02_data
 #### Statistical analysis and figure generation in R 
 
 - Now that we have set up the correct file structure and put our files in the correct directories, we can start our cow R analysis. 
@@ -109,7 +109,7 @@ qiime feature-table filter-samples \
 ```
 qiime feature-table filter-samples \
 --i-table table_nomitochlorocontrols_gg2_filtered300.qza \
---p-min-frequency YOUR NUMBER HERE \
+--p-min-frequency 4500 \
 --o-filtered-table table_5k.qza
 ```
 

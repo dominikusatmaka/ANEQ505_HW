@@ -151,7 +151,7 @@ qiime feature-table transpose \
 
 qiime metadata tabulate \
 --m-input-file table_nomitochloro_transposed.qza \
---m-input-file seqs.qza \
---m-input-file ../taxonomy/taxonomy_gg2.qza \
+--m-input-file cow_seqs_dada2.qza \
+--m-input-file ../taxonomy/taxonomy_gg2_filtered.qza \
 --o-visualization tabulated_results.qzv
 ```
