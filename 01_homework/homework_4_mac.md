@@ -179,14 +179,14 @@ cd ml
 
 #remove controls
 qiime feature-table filter-samples \
---i-table ../core_metrics_results/rarefied_table.qza \
+--i-table ../core_metrics_results_5k/rarefied_table.qza \
 --m-metadata-file ../metadata/cow_metadata.txt \
 --p-where "[body_site] != 'control'" \
 --o-filtered-table rarefied_table_no_controls.qza
 
 qiime taxa collapse \
 --i-table rarefied_table_no_controls.qza \
---i-taxonomy ../taxonomy/taxonomy_gg2.qza \
+--i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
 --p-level 7 \
 --o-collapsed-table rarefied_table_no_controls_L7.qza
 ```
@@ -195,7 +195,7 @@ qiime taxa collapse \
 qiime sample-classifier classify-samples \
 --i-table rarefied_table_no_controls_L7.qza \
 --m-metadata-file ../metadata/cow_metadata_nocontrols.txt \
---m-metadata-column WHAT TO TEST \
+--m-metadata-column body_site \
 --p-random-state 123 \
 --p-n-jobs 1 \
 --output-dir sample_classifier_results_bodysite
