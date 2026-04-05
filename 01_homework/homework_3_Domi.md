@@ -162,3 +162,10 @@ qiime feature-table filter-samples \
   --m-metadata-file cow_metadata_nocontrols.txt \
   --o-filtered-table table_nomitochlorocontrols_gg2_filtered300.qza
 ```
+
+```
+qiime feature-table filter-samples \
+--i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
+--p-min-frequency 4500 \
+--o-filtered-table table_5k.qza
+```

@@ -117,7 +117,7 @@ qiime feature-table filter-samples \
 
 ```
 qiime feature-table filter-features \
---i-table INPUT TABLE \
+--i-table table_5k.qza \
 --p-min-frequency 50 \
 --p-min-samples 20 \
 --o-filtered-table table_5k_abund.qza
@@ -129,9 +129,9 @@ qiime feature-table filter-features \
 ```
 qiime taxa collapse \
 --i-table table_5k_abund.qza \
---i-taxonomy ../taxonomy/taxonomy_gg2.qza \
---p-level GENUS NUMBER \
---o-collapsed-table table_5k_abund_GENUS NUMBER.qza
+--i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
+--p-level 7 \
+--o-collapsed-table table_5k_abund_L7.qza
 ```
 
 
@@ -139,7 +139,7 @@ qiime taxa collapse \
 
 ```
 qiime composition ancombc2 \
---i-table table_5k_abund_GENUS NUMBER.qza \
+--i-table table_5k_abund_L7.qza \
 --m-metadata-file cow_metadata_nocontrols.txt \
 --p-fixed-effects-formula body_site \
 --o-ancombc2-output ancombc2_results_bodysite_genus.qza
@@ -150,11 +150,11 @@ qiime composition ancombc2 \
 - Generate a barplot to visualize the differentially abundant features. 
 ```
 qiime composition tabulate \
---i-data INPUT FILE \
+--i-data ancombc2_results_bodysite_genus.qza \
 --o-visualization ancombc2_bodysite_genus.qzv
   
 qiime composition ancombc2-visualizer \
-  --i-data INPUT FILE \
+  --i-data ancombc2_results_bodysite_genus.qza \
   --o-visualization ancombc2_barplot_bodysite_genus.qzv
 ```
 
