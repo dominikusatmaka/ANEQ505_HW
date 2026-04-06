@@ -152,22 +152,22 @@ qiime fragment-insertion sepp \
 ```
 
 ```
+qiime feature-table filter-samples \
+--i-table dada2/table_nomitochloro.qza \
+--m-metadata-file metadata/metadata.txt \
+--p-where "NOT [sample_type] IN ('control') " \
+--o-filtered-table dada2/table_nomitochloro_nocontrol.qza
+```
+```
 qiime diversity alpha-rarefaction \
 --i-table ../dada2/pempek_table_dada2_filtered300.qza \
 --m-metadata-file ../metadata/metadata.txt \
---p-min-depth 10 \
---p-max-depth 33000 \
+--p-min-depth 50 \
+--p-max-depth 66000 \
 --o-visualization alpha_rarefaction_curves_16S.qzv \
 ```
 
-```
-qiime diversity alpha-rarefaction \
---i-table ../dada2/pempek_table_dada2_filtered300.qza \
---m-metadata-file ../metadata/metadata.txt \
---p-min-depth 10 \
---p-max-depth 33000 \
---o-visualization alpha_rarefaction_curves_16S_1.qzv \
-```
+BELOM
 
 ```
 cd ../
@@ -178,4 +178,54 @@ qiime diversity core-metrics-phylogenetic \
 --m-metadata-file metadata/metadata.txt \
 --p-sampling-depth 5000 \
 --output-dir core_metrics_results_5k
+```
+
+```
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core_metrics_results_5k/observed_features_vector.qza \
+--m-metadata-file metadata/metadata.txt \
+--o-visualization core_metrics_results_5k/observed_features_statistics.qzv
+```
+
+- generate a plot to visualize faith's PD ~={red}(2 points)=~
+```
+## insert the entire code chunk for generating this visualization 
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core_metrics_results_5k/shannon_vector.qza \
+--m-metadata-file metadata/metadata.txt \
+--o-visualization core_metrics_results_5k/shannon_statistics.qzv  
+  
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core_metrics_results_5k/faith_pd_vector.qza \
+--m-metadata-file metadata/metadata.txt \
+--o-visualization core_metrics_results_5k/faiths_pd_statistics.qzv
+
+qiime diversity alpha-correlation \
+--i-alpha-diversity core_metrics_results_5k/faith_pd_vector.qza \
+--m-metadata-file metadata/metadata.txt \
+--o-visualization core_metrics_results_5k/faith_pd_correlation_statistics.qzv
+
+```
+
+```
+qiime diversity beta-group-significance \
+--i-distance-matrix core_metrics_results_5k/unweighted_unifrac_distance_matrix.qza \
+--m-metadata-file metadata/metadata.txt \
+--m-metadata-column body_site \
+--p-method permanova \
+--o-visualization core_metrics_results_5k/unweighted_unifrac_body_site_metric.qzv
+```
+
+```
+qiime diversity beta-group-significance \
+--i-distance-matrix core_metrics_results_5k/bray_curtis_distance_matrix.qza \
+--m-metadata-file metadata/metadata.txt \
+--m-metadata-column body_site \
+--p-method permanova \
+--o-visualization core_metrics_results_5k/bray_curtis_body_site_metric.qzv
+
+```
+
+  
+
 ```
