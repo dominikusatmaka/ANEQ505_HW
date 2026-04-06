@@ -159,3 +159,23 @@ qiime diversity alpha-rarefaction \
 --p-max-depth 33000 \
 --o-visualization alpha_rarefaction_curves_16S.qzv \
 ```
+
+```
+qiime diversity alpha-rarefaction \
+--i-table ../dada2/pempek_table_dada2_filtered300.qza \
+--m-metadata-file ../metadata/metadata.txt \
+--p-min-depth 10 \
+--p-max-depth 33000 \
+--o-visualization alpha_rarefaction_curves_16S_1.qzv \
+```
+
+```
+cd ../
+
+qiime diversity core-metrics-phylogenetic \
+--i-table dada2/pempek_table_dada2_filtered300.qza \
+--i-phylogeny tree/tree_gg2.qza \
+--m-metadata-file metadata/metadata.txt \
+--p-sampling-depth 5000 \
+--output-dir core_metrics_results_5k
+```
