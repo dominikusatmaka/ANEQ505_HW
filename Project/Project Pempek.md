@@ -151,23 +151,35 @@ qiime fragment-insertion sepp \
 --o-placements ../tree/tree_placements_gg2.qza
 ```
 
+
 ```
 qiime feature-table filter-samples \
---i-table dada2/table_nomitochloro.qza \
+--i-table dada2/table_nomitochloro_gg2_filtered300.qza \
 --m-metadata-file metadata/metadata.txt \
 --p-where "NOT [sample_type] IN ('control') " \
 --o-filtered-table dada2/table_nomitochloro_nocontrol.qza
 ```
+
+
+BELOM
+
+```
+mkdir alpha_rarefaction
+
+cd alpha_rarefaction
+
+```
+
 ```
 qiime diversity alpha-rarefaction \
---i-table ../dada2/pempek_table_dada2_filtered300.qza \
+--i-table ../dada2/table_nomitochloro_nocontrol.qza \
 --m-metadata-file ../metadata/metadata.txt \
 --p-min-depth 50 \
 --p-max-depth 66000 \
---o-visualization alpha_rarefaction_curves_16S.qzv \
+--o-visualization alpha_rarefaction_curves_16S_1.qzv \
 ```
 
-BELOM
+
 
 ```
 cd ../
