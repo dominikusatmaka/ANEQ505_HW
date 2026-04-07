@@ -163,13 +163,14 @@ qiime composition ancombc2-visualizer \
 	QIIME2 visualization files (.qzv) can be unzipped and the underlying data files (like TSV or CSV files) can be extracted and loaded into R.
 
 2. Which body site appeared most distinct in the taxa bar plot, meaning it was not similar to at least one of the other body sites? Explain why that site looks different.
-	The nasal body site appeared most distinct. Unlike fecal, skin, udder, and oral samples, which share several common families, the nasal samples are dominated by very different taxa, including large proportions of Moraxellaceae, Flavobacteriaceae, and other families that are largely absent or rare in other body sites. This likely reflects the unique environment of the nasal cavity, which is exposed to the external environment and has distinct oxygen levels, moisture, and host immune interactions compared to gut or skin environments.
+	The fecal appeared most distinct. Unlike nasal and oral, or skin and udder samples, which share several common families, the fecal samples are dominated by very different taxa, including large proportions of Acutalibacteraceae, Oscillospiraceae, Lachnospiraceae, Rikenellaceae, Muribaculaceae, and CAG-138, and other families that are largely absent or rare in other body sites. These are classic gut microbiome taxa associated with fermentation and digestion in the bovine gastrointestinal tract. In contrast, the nasal, oral, skin, and udder samples all share more overlap with each other in terms of the families present (like Carnobacteriaceae, Moraxellaceae, Streptococcaceae, Microbacteriaceae, etc.).
 
-4. When generating the filtered table for ANCOM-BC2, what value did you choose for `--p-min-frequency`? Which core metrics parameter should this match, and why do these values need to be the same? (Report your core metrics value here:     ___) 
+3. When generating the filtered table for ANCOM-BC2, what value did you choose for `--p-min-frequency`? Which core metrics parameter should this match, and why do these values need to be the same? (Report your core metrics value here:     ___) 
 
-5. Why do we filter out samples with low frequency and low abundance ASVs?
-
-6. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
+	The value chosen was `--p-min-frequency 4500`. This should match the sampling depth used in the core metrics analysis. These values need to be the same because the core metrics analysis rarefies all samples to that sampling depth, discarding samples below it. If you then run ANCOM-BC2 on samples that include those lower-depth samples, you'd be introducing bias — some samples would have been excluded from diversity analyses but included in differential abundance testing, making comparisons inconsistent.
+	
+4. Why do we filter out samples with low frequency and low abundance ASVs?
+5. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
 	
 
 ## Extra credit~={orange} (3 points)=~ generate a classification model to see how well we can predict cow body site
