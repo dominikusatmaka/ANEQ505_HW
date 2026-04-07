@@ -109,7 +109,7 @@ qiime feature-table filter-samples \
 ```
 qiime feature-table filter-samples \
 --i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
---p-min-frequency 4500 \
+--p-min-frequency 5000 \
 --o-filtered-table table_5k.qza
 ```
 
@@ -167,7 +167,7 @@ qiime composition ancombc2-visualizer \
 
 3. When generating the filtered table for ANCOM-BC2, what value did you choose for `--p-min-frequency`? Which core metrics parameter should this match, and why do these values need to be the same? (Report your core metrics value here: 5000) 
 
-	The value chosen was `--p-min-frequency 4500`. This should match the sampling depth used in the core metrics analysis. These values need to be the same because the core metrics analysis rarefies all samples to that sampling depth, discarding samples below it. If you then run ANCOM-BC2 on samples that include those lower-depth samples, you'd be introducing bias — some samples would have been excluded from diversity analyses but included in differential abundance testing, making comparisons inconsistent.
+	The value chosen was `--p-min-frequency 5000`. This should match the sampling depth used in the core metrics analysis. These values need to be the same because the core metrics analysis rarefies all samples to that sampling depth, discarding samples below it. If we then run ANCOM-BC2 on samples that include those lower-depth samples, we will be introducing bias, some samples would have been excluded from diversity analyses but included in differential abundance testing, making comparisons inconsistent.
 	
 4. Why do we filter out samples with low frequency and low abundance ASVs?
 	Low-frequency ASVs (rare across samples) and low-abundance ASVs are more likely to represent sequencing errors, contaminants, or noise rather than true biological signal. Including them inflates the number of features being tested, increases the multiple testing burden, and reduces statistical power. Filtering them out makes the analysis more conservative and reliable, ensuring that only ASVs with consistent, meaningful presence across samples are used in downstream statistics like ANCOM-BC2.
