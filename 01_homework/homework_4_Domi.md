@@ -160,14 +160,16 @@ qiime composition ancombc2-visualizer \
 
 ## Homework questions: (~={red}5 POINTS=~)
 1. Describe one way to get data from your qiime2 outputs into a format that can be used for R. 
+	QIIME2 visualization files (.qzv) can be unzipped and the underlying data files (like TSV or CSV files) can be extracted and loaded into R.
 
-2. Which body site appeared most distinct in the taxa bar plot, meaning it was not similar to at least one of the other body sites? Explain why that site looks different. 
+2. Which body site appeared most distinct in the taxa bar plot, meaning it was not similar to at least one of the other body sites? Explain why that site looks different.
+	The nasal body site appeared most distinct. Unlike fecal, skin, udder, and oral samples, which share several common families, the nasal samples are dominated by very different taxa, including large proportions of Moraxellaceae, Flavobacteriaceae, and other families that are largely absent or rare in other body sites. This likely reflects the unique environment of the nasal cavity, which is exposed to the external environment and has distinct oxygen levels, moisture, and host immune interactions compared to gut or skin environments.
 
-3. When generating the filtered table for ANCOM-BC2, what value did you choose for `--p-min-frequency`? Which core metrics parameter should this match, and why do these values need to be the same? (Report your core metrics value here:     ___) 
+4. When generating the filtered table for ANCOM-BC2, what value did you choose for `--p-min-frequency`? Which core metrics parameter should this match, and why do these values need to be the same? (Report your core metrics value here:     ___) 
 
-4. Why do we filter out samples with low frequency and low abundance ASVs?
+5. Why do we filter out samples with low frequency and low abundance ASVs?
 
-5. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
+6. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
 	
 
 ## Extra credit~={orange} (3 points)=~ generate a classification model to see how well we can predict cow body site
