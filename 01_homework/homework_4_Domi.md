@@ -215,6 +215,7 @@ qiime sample-classifier classify-samples \
 	Looking to the heatmap.qzv, the features with the brightest/highest abundance in the fecal column are from genus Cryptobacteroides (species Crypyobacteroides sp 902787255) and Faecousia (Faecousia sp 000434635), both are gut-associated genera, which makes biological sense as they are known inhabitants of the bovine gastrointestinal tract.
 	
 3. what are 2 features that are low in nasal?
-	Features that appear darkest (lowest abundance) in the nasal column include **g__RF16** and **g__Romboutsia_B** — these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
+	Features that appear darkest (lowest abundance) in the nasal column are genus Cryptobacteroides and genus Sporosarcina and genus Alistipes A 871400 (I am not so sure which between these 3 is the darkest since as I see these 3 looks the same), these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
 	
 4. what is the accuracy of your model, and if the accuracy of the classifier is high, what does that suggest about the microbial compositions of each site?
+	This model achieved an overall accuracy of 71.4% (compared to a baseline of 28.6%, giving an accuracy ratio of 2.5×). Looking at the confusion matrix from the TSV: fecal and nasal samples were classified with 100% accuracy, while oral was split 50:50 between oral and nasal, skin was 75% correct with 25% misclassified as udder, and udder was 0% correct (all misclassified as skin).

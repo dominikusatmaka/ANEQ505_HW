@@ -29,7 +29,7 @@ library(scales)
 # Read in metadata
 - Fill in the correct file path to the cow metadata and copy your answer to your obsidian document. 
 ```{r}
-metadata <- read_tsv("ADD YOUR FILE PATH HERE")
+metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/cow_r/03_metadata/cow_metadata.txt")
 ```
 ################################################################################
 # Alpha Diversity
@@ -39,7 +39,7 @@ metadata <- read_tsv("ADD YOUR FILE PATH HERE")
 - Fill in the correct file path to the shannon diversity data and copy your answer to your obsidian document.
 ```{r}
 # Alpha diversity metrics
-shannon <- read_tsv("ADD YOUR FILE PATH HERE")
+shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/cow_r/02_data/alpha_div/shannon.tsv")
 ```
 
 
@@ -157,7 +157,7 @@ ggsave(bodysite_shannon_plot, filename = "../05_figures/shannon_bodysite.jpeg", 
 - - Fill in the correct file path to the beta diversity data and copy your answer to your obsidian document.
 ```{r}
 # Read in beta div metrics 
-uw_unifrac <- read_tsv("ADD YOUR FILE PATH HERE")
+uw_unifrac <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/cow_r/02_data/beta_div/unweighted_unifrac.txt")
 ```
 
 # Tidy beta diversity data and make a unweighted unifrac metadata
@@ -294,7 +294,7 @@ ggsave(bodysite_uwunifrac_pcoa, filename = "../05_figures/unweighted_unifrac_bod
 
 # Load in tabulated_results.tsv
 ```{r}
-tabulated_results <- read_tsv("ADD YOUR FILE PATH HERE")
+tabulated_results <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/cow_r/02_data/taxonomy/tabulated_results.tsv")
 ```
 
 
