@@ -172,10 +172,8 @@ qiime composition ancombc2-visualizer \
 	Low-frequency ASVs (rare across samples) and low-abundance ASVs are more likely to represent sequencing errors, contaminants, or noise rather than true biological signal. Including them will increases the number of features being tested, increases the multiple testing burden, and reduces statistical power. Filtering them out makes the analysis more conservative and reliable, ensuring that only ASVs with consistent, meaningful presence across samples are used in downstream statistics like ANCOM-BC2.
 	
 5. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
-	_Atopostipes_ is the most enriched genus in skin relative to fecal, with an LFC of +4.819** and an adjusted q-value of **< 0.0001**. _Atopostipes_ (family Carnobacteriaceae) is a known skin-associated bacterium commonly found on animal skin surfaces, so its strong enrichment in skin over fecal is biologically consistent. 
+	_Atopostipes_ is the most enriched genus in skin relative to fecal, with an LFC of +4.819 and an adjusted q-value of < 0.0001. _Atopostipes_ (family Carnobacteriaceae) is a known skin-associated bacterium commonly found on animal skin surfaces, so its strong enrichment in skin over fecal is biologically consistent. 
 	_Streptococcus_ is the most depleted genus in skin relative to fecal, with a log-fold change (LFC) of −2.023 and an adjusted q-value of 0.0188. The negative LFC means it is significantly less abundant in skin than in fecal samples. _Streptococcus_ is a well-known gut commensal, so it makes biological sense that it would be much more prevalent in fecal samples than on skin.
-	
-![[Pasted image 20260407212806.png]]
 
 ## Extra credit~={orange} (3 points)=~ generate a classification model to see how well we can predict cow body site
 
