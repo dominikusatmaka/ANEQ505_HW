@@ -166,15 +166,15 @@ qiime composition ancombc2-visualizer \
 	The fecal appeared most distinct. Unlike nasal and oral, or skin and udder samples, which share several common families, the fecal samples are dominated by very different taxa, including large proportions of Acutalibacteraceae, Oscillospiraceae, Lachnospiraceae, Rikenellaceae, Muribaculaceae, and CAG-138, and other families that are largely absent or rare in other body sites. These are classic gut microbiome taxa associated with fermentation and digestion in the bovine gastrointestinal tract. In contrast, the nasal, oral, skin, and udder samples all share more overlap with each other in terms of the families present (like Carnobacteriaceae, Moraxellaceae, Streptococcaceae, Microbacteriaceae, etc.).
 
 3. When generating the filtered table for ANCOM-BC2, what value did you choose for `--p-min-frequency`? Which core metrics parameter should this match, and why do these values need to be the same? (Report your core metrics value here: 5000) 
-
 	The value chosen was `--p-min-frequency 5000`. This should match the sampling depth used in the core metrics analysis. These values need to be the same because the core metrics analysis rarefies all samples to that sampling depth, discarding samples below it. If we then run ANCOM-BC2 on samples that include those lower-depth samples, we will be introducing bias, some samples would have been excluded from diversity analyses but included in differential abundance testing, making comparisons inconsistent.
 	
 4. Why do we filter out samples with low frequency and low abundance ASVs?
-	Low-frequency ASVs (rare across samples) and low-abundance ASVs are more likely to represent sequencing errors, contaminants, or noise rather than true biological signal. Including them inflates the number of features being tested, increases the multiple testing burden, and reduces statistical power. Filtering them out makes the analysis more conservative and reliable, ensuring that only ASVs with consistent, meaningful presence across samples are used in downstream statistics like ANCOM-BC2.
+	Low-frequency ASVs (rare across samples) and low-abundance ASVs are more likely to represent sequencing errors, contaminants, or noise rather than true biological signal. Including them will increases the number of features being tested, increases the multiple testing burden, and reduces statistical power. Filtering them out makes the analysis more conservative and reliable, ensuring that only ASVs with consistent, meaningful presence across samples are used in downstream statistics like ANCOM-BC2.
 	
 5. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
 	_Streptococcus_ is the most depleted genus in skin relative to fecal, with a log-fold change (LFC) of −2.023 and an adjusted q-value of 0.0188. The negative LFC means it is significantly less abundant in skin than in fecal samples. _Streptococcus_ is a well-known gut commensal, so it makes biological sense that it would be much more prevalent in fecal samples than on skin.
 	
+![[Pasted image 20260407212806.png]]
 
 ## Extra credit~={orange} (3 points)=~ generate a classification model to see how well we can predict cow body site
 
@@ -209,6 +209,12 @@ qiime sample-classifier classify-samples \
 
 ### **Questions:**
 1. Why might removing controls be important before downstream analysis? 
+	Controls are not real biological samples, they are either negative controls (blank/mock communities used to detect contamination) or positive controls used to check sequencing performance. Including them would artificially inflate or distort the classifier's training data, since they don't represent any true body site microbiome. The machine learning model needs to learn patterns from real biological samples only, otherwise it would be trained on noise. So that we need to remove the control before downstream analysis.
+	
 2. what 2 features that are high in fecal samples? 
+	Looking to the heatmap.qzv, the features with the brightest/highest abundance in the fecal column are from genus Cryptobacteroides (species Crypyobacteroides sp 902787255) and Faecousia (Faecousia sp 000434635), both are gut-associated genera, which makes biological sense as they are known inhabitants of the bovine gastrointestinal tract.
+	
 3. what are 2 features that are low in nasal?
+	Features that appear darkest (lowest abundance) in the nasal column include **g__RF16** and **g__Romboutsia_B** — these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
+	
 4. what is the accuracy of your model, and if the accuracy of the classifier is high, what does that suggest about the microbial compositions of each site?
