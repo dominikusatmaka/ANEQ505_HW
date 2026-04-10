@@ -173,7 +173,7 @@ qiime composition ancombc2-visualizer \
 	
 5. What was the most enriched genus in skin compared to fecal, and what was the most depleted genus in skin compared to fecal (make sure adjusted p is set to less than 0.05)?
 	_Atopostipes_ is the most enriched genus in skin relative to fecal, with an LFC of +4.819 and an adjusted q-value of < 0.0001. 
-	_Streptococcus_ is the most depleted genus in skin relative to fecal, with a log-fold change (LFC) of −2.023 and an adjusted q-value of 0.0188.
+	_Streptococcus_ is the most depleted genus in skin relative to fecal, with a log-fold change (LFC) of −2.265 and an adjusted q-value of 0.00005.
 
 ## Extra credit~={orange} (3 points)=~ generate a classification model to see how well we can predict cow body site
 
@@ -217,4 +217,4 @@ qiime sample-classifier classify-samples \
 	Features that appear darkest (lowest abundance) in the nasal column are genus Parabacteroides_B_862066 and Ruoffia, these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
 	
 4. what is the accuracy of your model, and if the accuracy of the classifier is high, what does that suggest about the microbial compositions of each site?
-	The classifier achieved a baseline accuracy of 88%, indicating a high classifier.  Fecal, nasal, and oral samples were correctly classified 100% of the time. This pattern suggests that microbial communities differ substantially across body sites, making them relatively easy to distinguish based on their composition.
+	The classifier achieved a baseline accuracy of 88%, indicating a high classifier. Fecal, nasal, and oral samples were correctly classified 100% of the time. This pattern suggests that microbial communities differ substantially across body sites, making them relatively easy to distinguish based on their composition.
