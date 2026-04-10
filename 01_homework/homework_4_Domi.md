@@ -184,7 +184,7 @@ cd ml
 
 #remove controls
 qiime feature-table filter-samples \
---i-table ../core_metrics_results_5k/rarefied_table.qza \
+--i-table ../core_metrics_results/rarefied_table.qza \
 --m-metadata-file ../metadata/cow_metadata.txt \
 --p-where "[body_site] != 'control'" \
 --o-filtered-table rarefied_table_no_controls.qza
@@ -214,7 +214,10 @@ qiime sample-classifier classify-samples \
 	Looking to the heatmap.qzv, the features with the brightest/highest abundance in the fecal column are from genus Cryptobacteroides (species Crypyobacteroides sp 902787255) and Faecousia (Faecousia sp 000434635), both are gut-associated genera, which makes biological sense as they are known inhabitants of the bovine gastrointestinal tract.
 	
 3. what are 2 features that are low in nasal?
-	Features that appear darkest (lowest abundance) in the nasal column are genus Parabacteroides_B_862066 and Ruoffia, these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
+	Features that appear darkest purple but not black (lowest abundance but not zero) in the nasal column are genus Parabacteroides_B_862066, cellulosyliticum and Ruoffia, these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
 	
 4. what is the accuracy of your model, and if the accuracy of the classifier is high, what does that suggest about the microbial compositions of each site?
-	The classifier achieved a baseline accuracy of 88%, indicating a high classifier. Fecal, nasal, and oral samples were correctly classified 100% of the time. This pattern suggests that microbial communities differ substantially across body sites, making them relatively easy to distinguish based on their composition.
+	The classifier achieved a baseline accuracy of 88,23% (0.8823), indicating a high classifier. Fecal, nasal, and oral samples were correctly classified 100% of the time. This pattern suggests that microbial communities differ substantially across body sites, making them relatively easy to distinguish based on their composition.
+	(compared to a baseline of 28.6%, giving an accuracy ratio of 2.5×). Looking at the confusion matrix from the TSV: fecal and nasal samples were classified with **100% accuracy**, while oral was split 50/50 between oral and nasal, skin was 75% correct with 25% misclassified as udder, and udder was 0% correct (all misclassified as skin).
+
+The high overall accuracy — especially the perfect scores for fecal and nasal — suggests that **those body sites have highly distinct and consistent microbial compositions** that the model can reliably distinguish. The confusion between skin and udder makes biological sense, since those two surface sites share similar microbial communities and environmental exposures, making them harder to tell apart.
