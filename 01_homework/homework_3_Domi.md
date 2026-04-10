@@ -140,6 +140,17 @@ qiime diversity beta-group-significance \
 
 ```
 
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 
@@ -221,3 +232,12 @@ qiime composition tabulate \
 qiime composition ancombc2-visualizer \
   --i-data ancombc2_results_bodysite_genus_4k.qza \
   --o-visualization ancombc2_barplot_bodysite_genus_4k.qzv
+
+
+```qiime diversity alpha-rarefaction \
+--i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
+--m-metadata-file ../metadata/cow_metadata.txt \
+--p-min-depth 10 \
+--p-max-depth 33000 \
+--o-visualization alpha_rarefaction_curves_16S_2.qzv \
+```
