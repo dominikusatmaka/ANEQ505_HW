@@ -130,8 +130,8 @@ qiime feature-table filter-features \
 qiime taxa collapse \
 --i-table table_5k_abund.qza \
 --i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
---p-level 7 \
---o-collapsed-table table_5k_abund_L7.qza
+--p-level 6 \
+--o-collapsed-table table_5k_abund_L6.qza
 ```
 
 
@@ -139,10 +139,10 @@ qiime taxa collapse \
 
 ```
 qiime composition ancombc2 \
---i-table table_5k_abund_L7.qza \
+--i-table table_5k_abund_L6.qza \
 --m-metadata-file cow_metadata_nocontrols.txt \
 --p-fixed-effects-formula body_site \
---o-ancombc2-output ancombc2_results_bodysite_genus.qza
+--o-ancombc2-output ancombc2_results_bodysite_genus_L6.qza
 ```
 
 
@@ -150,12 +150,12 @@ qiime composition ancombc2 \
 - Generate a barplot to visualize the differentially abundant features. 
 ```
 qiime composition tabulate \
---i-data ancombc2_results_bodysite_genus.qza \
---o-visualization ancombc2_bodysite_genus.qzv
+--i-data ancombc2_results_bodysite_genus_L6.qza \
+--o-visualization ancombc2_bodysite_genus_L6.qzv
   
 qiime composition ancombc2-visualizer \
-  --i-data ancombc2_results_bodysite_genus.qza \
-  --o-visualization ancombc2_barplot_bodysite_genus.qzv
+  --i-data ancombc2_results_bodysite_genus_L6.qza \
+  --o-visualization ancombc2_barplot_bodysite_genus_L6.qzv
 ```
 
 ## Homework questions: (~={red}5 POINTS=~)
@@ -214,7 +214,7 @@ qiime sample-classifier classify-samples \
 	Looking to the heatmap.qzv, the features with the brightest/highest abundance in the fecal column are from genus Cryptobacteroides (species Crypyobacteroides sp 902787255) and Faecousia (Faecousia sp 000434635), both are gut-associated genera, which makes biological sense as they are known inhabitants of the bovine gastrointestinal tract.
 	
 3. what are 2 features that are low in nasal?
-	Features that appear darkest (lowest abundance) in the nasal column are genus Cryptobacteroides and genus Sporosarcina and genus Alistipes A 871400 (I am not so sure which between these 3 is the darkest since as I see these 3 looks the same), these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
+	Features that appear darkest (lowest abundance) in the nasal column are genus Parabacteroides_B_862066 and Ruoffia, these are gut-associated taxa that are largely absent from the nasal cavity, which has a very different microbial environment.
 	
 4. what is the accuracy of your model, and if the accuracy of the classifier is high, what does that suggest about the microbial compositions of each site?
-	The classifier achieved a baseline accuracy of 88%, indicating a high classifier. However, such high performance raises the possibility of overfitting, meaning the model may have learned the specific patterns of this dataset too closely and might not perform as well when applied to new data. The only instances of misclassification occur between skin and udder samples, which is understandable given their similar compositions observed in prior analyses. In contrast, fecal, nasal, and oral samples were correctly classified 100% of the time. This pattern suggests that microbial communities differ substantially across body sites, making them relatively easy to distinguish based on their composition.
+	The classifier achieved a baseline accuracy of 88%, indicating a high classifier.  Fecal, nasal, and oral samples were correctly classified 100% of the time. This pattern suggests that microbial communities differ substantially across body sites, making them relatively easy to distinguish based on their composition.
