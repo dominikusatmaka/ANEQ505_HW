@@ -49,14 +49,12 @@
             "id": "4bdfd221d605dd27",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "01_homework/homework_4_Domi.md",
-                "mode": "source",
-                "source": false
+                "file": "01_homework/Picture for Homework 2 Level 7 Body SIte.png"
               },
-              "icon": "lucide-file",
-              "title": "homework_4_Domi"
+              "icon": "lucide-image",
+              "title": "Picture for Homework 2 Level 7 Body SIte"
             }
           }
         ],
@@ -225,9 +223,10 @@
   },
   "active": "4bdfd221d605dd27",
   "lastOpenFiles": [
-    "01_homework/homework_2_Domi.md",
     "01_homework/homework_4_Domi.md",
+    "01_homework/HW 4 BCANCOM Q4.png",
     "01_homework/Picture for Homework 2 Level 7 Body SIte.png",
+    "01_homework/homework_2_Domi.md",
     "Pasted image 20260407212806.png",
     "Pasted image 20260407115835.png",
     "01_homework/homework_3_Domi.md",
@@ -250,7 +249,6 @@
     "r_decomp_tutorial/05_figures/taxa_family_sample_type.jpeg",
     "r_decomp_tutorial/05_figures/taxa_family_add.jpeg",
     "r_decomp_tutorial/05_figures/add_split_obsFeats_sampleType.jpeg",
-    "r_decomp_tutorial/05_figures/add_split_faiths_facility.jpeg",
     "New Note.md",
     "test.md",
     "Cow Homework Domi.md",
