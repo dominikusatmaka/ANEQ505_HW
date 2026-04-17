@@ -5,7 +5,21 @@ mkdir pempek
 cd pempek
 ```
 
+
+launch an interactive session: 
+```
+ainteractive --ntasks=6 --time=02:00:00
+```
+
+activate qiime.
+```
+module purge  
+  
+module load qiime2/2024.10_amplicon
+```
+
 make sub directory
+```
 `mkdir slurm`
 
 `mkdir taxonomy`
@@ -21,11 +35,13 @@ make sub directory
 `mkdir metadata`
 
 `mkdir core_metrics`
+```
 
 change to metadata directory
 ```
 cd metadata
 ```
+
 
 insert the pempek_metadata_3_26.txt to the folder
 
@@ -54,19 +70,12 @@ qiime demux summarize \
 --o-visualization demux_pempek.qzv
 ```
 
+change directory to dada2
+```
 cd ../dada2
-
-``` 
-qiime dada2 denoise-paired \
---i-demultiplexed-seqs ../demux/demux_pempek.qza \  
---p-trunc-len-f 150 \  
---p-trunc-len-r 150 \  
---p-n-threads 8 \  
---o-table table_run2.qza \  
---o-representative-sequences seqs_run2.qza \  
---o-denoising-stats dada2_stats_run2.qza
 ```
 
+run the dada2 (denoising)
 ```
 qiime dada2 denoise-paired \
 --i-demultiplexed-seqs ../demux/demux_pempek.qza \
@@ -80,6 +89,7 @@ qiime dada2 denoise-paired \
 --o-table pempek_table_dada2.qza
 ```
 
+Visualize the dada2
 ```
 #Visualize the denoising results:
 qiime metadata tabulate \
@@ -96,6 +106,7 @@ qiime feature-table tabulate-seqs \
 --o-visualization dada2_seqs.qzv
 ```
 
+Filter sequence longer than 300
 ```
 qiime feature-table filter-seqs \
 --i-data pempek_seqs_dada2.qza \
@@ -118,7 +129,10 @@ qiime feature-table summarize \
 --o-visualization pempek_table_dada2_filtered300.qzv
     
 ```
-cd /scratch/alpine/$USER/pempek/taxonomy
+
+Change to taxonomy directory
+cd taxonomy
+run the taxonomy
 ```
 qiime feature-classifier classify-sklearn \
 --i-reads ../dada2/pempek_seqs_dada2_filtered300.qza \
@@ -126,12 +140,14 @@ qiime feature-classifier classify-sklearn \
 --o-classification taxonomy_gg2_filtered.qza
 ```
 
+Visualize the taxonomy
 ```
 qiime metadata tabulate \
 --m-input-file taxonomy_gg2_filtered.qza \
 --o-visualization taxonomy_gg2_filtered.qzv
 ```
 
+Filter the chloroplast and mitochondria
 ```
 qiime taxa filter-table \
 --i-table ../dada2/pempek_table_dada2_filtered300.qza \
@@ -141,6 +157,7 @@ qiime taxa filter-table \
 --o-filtered-table ../dada2/table_nomitochloro_gg2_filtered300.qza
 ```
 
+
 ```
 qiime taxa barplot \
 --i-table ../dada2/table_nomitochloro_gg2_filtered300.qza \
@@ -148,6 +165,7 @@ qiime taxa barplot \
 --m-metadata-file ../metadata/metadata.txt \
 --o-visualization ../taxaplots/taxa_barplot_nomitochloro_gg2_filtered300.qzv
 ```
+
 sbatch
 ```
 #!/bin/bash
