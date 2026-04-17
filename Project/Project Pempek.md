@@ -1,25 +1,53 @@
+
+Try to make directory first. I name it pempek
+```
+mkdir pempek
+cd pempek
+```
+
+make sub directory
+`mkdir slurm`
+
+`mkdir taxonomy`
+
+`mkdir tree`
+
+`mkdir taxaplots`
+
+`mkdir dada2`
+
+`mkdir demux`
+
+`mkdir metadata`
+
+`mkdir core_metrics`
+
+change to metadata directory
+```
+cd metadata
+```
+
+insert the pempek_metadata_3_26.txt to the folder
+
+rename the metadata
 ```
 mv pempek_metadata_3_26.txt metadata.txt
 ```
 
+visualize the metadata file
 ```
 qiime metadata tabulate \
 --m-input-file metadata.txt \
 --o-visualization metadata.qzv
 ```
 
+Insert the demux_sr49_pempek_nonasal.qza in the demux directory and rename the file
 ```
-qiime metadata tabulate \
---m-input-file metadata.txt \
---o-visualization metadata.qzv
-```
-
-```
+cd demux
 mv demux_sr49_pempek_nonasal.qza demux_pempek.qza
 ```
 
-cd demux
-
+visualize the demux 
 ```
 qiime demux summarize \
 --i-data demux_pempek.qza \
