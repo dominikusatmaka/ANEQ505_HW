@@ -157,7 +157,7 @@ qiime taxa filter-table \
 --o-filtered-table ../dada2/table_nomitochloro_gg2_filtered300.qza
 ```
 
-
+Generate Taxa Barplot
 ```
 qiime taxa barplot \
 --i-table ../dada2/table_nomitochloro_gg2_filtered300.qza \
@@ -166,7 +166,7 @@ qiime taxa barplot \
 --o-visualization ../taxaplots/taxa_barplot_nomitochloro_gg2_filtered300.qzv
 ```
 
-sbatch
+sbatch for phylogenetic tree --> make a pempek.sh at slurm directory
 ```
 #!/bin/bash
 #SBATCH --job-name=tree
@@ -197,7 +197,7 @@ qiime fragment-insertion sepp \
 --o-placements ../tree/tree_placements_gg2.qza
 ```
 
-
+remove the controls
 ```
 qiime feature-table filter-samples \
 --i-table dada2/table_nomitochloro_gg2_filtered300.qza \
@@ -205,6 +205,28 @@ qiime feature-table filter-samples \
 --p-where "NOT [sample_type] IN ('control') " \
 --o-filtered-table dada2/table_nomitochloro_nocontrol.qza
 ```
+
+```
+sbatch pempek.sh
+```
+
+visualise without control
+```
+qiime taxa barplot \
+--i-table ../dada2/table_nomitochloro_nocontrol.qza \
+--i-taxonomy ../taxonomy/taxonomy_gg2.qza \
+--m-metadata-file ../metadata/metadata.txt \
+--o-visualization table_nomitochloro_nocontrol.qzv
+```
+
+
+
+
+
+
+
+
+
 
 
 BELOM
