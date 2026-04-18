@@ -229,8 +229,9 @@ qiime taxa barplot \
 
 
 
-BELOM
 
+
+Make directiory rarefaction
 ```
 mkdir alpha_rarefaction
 
@@ -238,6 +239,7 @@ cd alpha_rarefaction
 
 ```
 
+Run rarefaction (check for depth)
 ```
 qiime diversity alpha-rarefaction \
 --i-table ../dada2/table_nomitochloro_nocontrol.qza \
@@ -248,7 +250,7 @@ qiime diversity alpha-rarefaction \
 ```
 
 
-
+Run core metric (check depth)
 ```
 cd ../
 
@@ -257,55 +259,61 @@ qiime diversity core-metrics-phylogenetic \
 --i-phylogeny tree/tree_gg2.qza \
 --m-metadata-file metadata/metadata.txt \
 --p-sampling-depth 5000 \
---output-dir core_metrics_results_5k
+--output-dir core_metrics_results
 ```
 
+Visualize observe features
 ```
 qiime diversity alpha-group-significance \
---i-alpha-diversity core_metrics_results_5k/observed_features_vector.qza \
+--i-alpha-diversity core_metrics_results/observed_features_vector.qza \
 --m-metadata-file metadata/metadata.txt \
---o-visualization core_metrics_results_5k/observed_features_statistics.qzv
+--o-visualization core_metrics_results/observed_features_statistics.qzv
 ```
 
-- generate a plot to visualize faith's PD ~={red}(2 points)=~
+generate a plot to visualize
 ```
 ## insert the entire code chunk for generating this visualization 
 qiime diversity alpha-group-significance \
---i-alpha-diversity core_metrics_results_5k/shannon_vector.qza \
+--i-alpha-diversity core_metrics_results/shannon_vector.qza \
 --m-metadata-file metadata/metadata.txt \
---o-visualization core_metrics_results_5k/shannon_statistics.qzv  
+--o-visualization core_metrics_results/shannon_statistics.qzv  
   
 qiime diversity alpha-group-significance \
---i-alpha-diversity core_metrics_results_5k/faith_pd_vector.qza \
+--i-alpha-diversity core_metrics_results/faith_pd_vector.qza \
 --m-metadata-file metadata/metadata.txt \
---o-visualization core_metrics_results_5k/faiths_pd_statistics.qzv
+--o-visualization core_metrics_results/faiths_pd_statistics.qzv
 
 qiime diversity alpha-correlation \
---i-alpha-diversity core_metrics_results_5k/faith_pd_vector.qza \
+--i-alpha-diversity core_metrics_results/faith_pd_vector.qza \
 --m-metadata-file metadata/metadata.txt \
---o-visualization core_metrics_results_5k/faith_pd_correlation_statistics.qzv
+--o-visualization core_metrics_results/faith_pd_correlation_statistics.qzv
 
+```
+
+
+
+
+
+
+
+
+
+
+```
+qiime diversity beta-group-significance \
+--i-distance-matrix core_metrics_results/unweighted_unifrac_distance_matrix.qza \
+--m-metadata-file metadata/metadata.txt \
+--m-metadata-column body_site \
+--p-method permanova \
+--o-visualization core_metrics_results/unweighted_unifrac_body_site_metric.qzv
 ```
 
 ```
 qiime diversity beta-group-significance \
---i-distance-matrix core_metrics_results_5k/unweighted_unifrac_distance_matrix.qza \
+--i-distance-matrix core_metrics_results/bray_curtis_distance_matrix.qza \
 --m-metadata-file metadata/metadata.txt \
 --m-metadata-column body_site \
 --p-method permanova \
---o-visualization core_metrics_results_5k/unweighted_unifrac_body_site_metric.qzv
-```
-
-```
-qiime diversity beta-group-significance \
---i-distance-matrix core_metrics_results_5k/bray_curtis_distance_matrix.qza \
---m-metadata-file metadata/metadata.txt \
---m-metadata-column body_site \
---p-method permanova \
---o-visualization core_metrics_results_5k/bray_curtis_body_site_metric.qzv
-
-```
-
-  
+--o-visualization core_metrics_results/bray_curtis_body_site_metric.qzv
 
 ```
