@@ -243,7 +243,7 @@ cd ../
 
 qiime diversity core-metrics-phylogenetic \
 --i-table dada2/table_nomitochloro_nocontrol.qza \
---i-phylogeny tree/tree_gg2_filtered.qza \
+--i-phylogeny tree/tree_gg2.qza \
 --m-metadata-file metadata/metadata.txt \
 --p-sampling-depth 7000 \
 --output-dir core_metrics_results
@@ -258,8 +258,7 @@ qiime diversity alpha-group-significance \
 ```
 
 generate a plot to visualize
-```
-## insert the entire code chunk for generating this visualization 
+``` 
 qiime diversity alpha-group-significance \
 --i-alpha-diversity core_metrics_results/shannon_vector.qza \
 --m-metadata-file metadata/metadata.txt \
