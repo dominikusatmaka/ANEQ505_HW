@@ -330,6 +330,21 @@ unzip core_metrics_results/evenness_vector.qza -d export/evenness
 
 ```
 
+Export transpose
+```
+cd dada2
+
+qiime feature-table transpose \
+--i-table table_nomitochloro_gg2_filtered300.qza \
+--o-transposed-feature-table table_nomitochloro_transposed.qza
+
+qiime metadata tabulate \
+--m-input-file table_nomitochloro_transposed.qza \
+--m-input-file pempek_seqs_dada2.qza \
+--m-input-file ../taxonomy/taxonomy_gg2_filtered.qza \
+--o-visualization tabulated_results.qzv
+```
+
 Beta Metrics
 ```
 # Bray Curtis
@@ -408,6 +423,26 @@ qiime feature-table filter-samples \
 ```
 
 ```
+qiime feature-table filter-samples \
+  --i-table table_nomitochloro_gg2_filtered300.qza \
+  --m-metadata-file cow_metadata_nocontrols.txt \
+  --o-filtered-table table_nomitochlorocontrols_gg2_filtered300.qza
+```
+
+```
+qiime feature-table filter-samples \
+--i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
+--p-min-frequency 5000 \
+--o-filtered-table table_5k.qza
+```
+
+
+```
+qiime feature-table filter-samples \
+--i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
+--p-min-frequency 4500 \
+--o-filtered-table table_4k.qza
+```
 qiime feature-table filter-features \
   --i-table table_nomitochloro_7000.qza \
   --p-min-frequency 50 \
@@ -484,4 +519,63 @@ qiime sample-classifier heatmap \
 --p-feature-count 100 \
 --o-heatmap sample_classifier_results_facility/heatmap_100_features.qzv \
 --o-filtered-table sample_classifier_results_facility/filtered_table_100_features.qza
+```
+
+
+
+
+
+```
+
+**Filter out low abundance and low prevalence ASVs ~={red}(1 point)=~**
+
+```
+qiime feature-table filter-features \
+--i-table table_4k.qza \
+--p-min-frequency 50 \
+--p-min-samples 20 \
+--o-filtered-table table_4k_abund.qza
+```
+
+**Collapse features to genus level ~={red}(1 point)=~**
+- We will collapse to the genus level to make it easier to interpret the results. (Hint: We used 7 for species, so think about which number you would use for genus.)
+
+```
+qiime taxa collapse \
+--i-table table_4k_abund.qza \
+--i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
+--p-level 7 \
+--o-collapsed-table table_4k_abund_L7.qza
+```
+
+
+**Run ANCOM-BC2 ~={red}(1 point)=~**
+
+```
+qiime composition ancombc2 \
+--i-table table_4k_abund_L7.qza \
+--m-metadata-file cow_metadata_nocontrols.txt \
+--p-fixed-effects-formula body_site \
+--o-ancombc2-output ancombc2_results_bodysite_genus_4k.qza
+```
+
+
+**Visualize the ANCOM-BC2 results ~={red}(1 point)=~**
+- Generate a barplot to visualize the differentially abundant features. 
+```
+qiime composition tabulate \
+--i-data ancombc2_results_bodysite_genus_4k.qza \
+--o-visualization ancombc2_bodysite_genus_4k.qzv
+  
+qiime composition ancombc2-visualizer \
+  --i-data ancombc2_results_bodysite_genus_4k.qza \
+  --o-visualization ancombc2_barplot_bodysite_genus_4k.qzv
+
+
+```qiime diversity alpha-rarefaction \
+--i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
+--m-metadata-file ../metadata/cow_metadata.txt \
+--p-min-depth 10 \
+--p-max-depth 33000 \
+--o-visualization alpha_rarefaction_curves_16S_2.qzv \
 ```
