@@ -361,6 +361,7 @@ metrics=("shannon" "evenness" "faith_pd" "observed_features")
 # copy their tsv files into alpha_div/
 
 for metric in "${metrics[@]}"; do
+
  cp $metric/*/data/alpha-diversity.tsv alpha_div/${metric}.tsv
 
 done
@@ -376,7 +377,112 @@ metrics=("bray_curtis" "jaccard" "unweighted_unifrac" "weighted_unifrac")
 # copy their txt files into beta_div/
 
 for metric in "${metrics[@]}"; do
+
  cp $metric/*/data/ordination.txt beta_div/${metric}.txt
 
 done
+```
+
+
+BELOM DILAKUKAN
+
+ANCOM BC2
+```
+cd ../
+
+module purge
+
+module load qiime2/2026.1_amplicon
+
+```
+
+```
+mkdir ancombc2
+
+cd ancombc2
+
+qiime feature-table filter-samples \
+  --i-table ../dada2/table_nomitochloro_nocontrol.qza \
+  --p-min-frequency 7000 \
+  --o-filtered-table table_nomitochloro_7000.qza
+```
+
+```
+qiime feature-table filter-features \
+  --i-table table_nomitochloro_7000.qza \
+  --p-min-frequency 50 \
+  --p-min-samples 4 \
+  --o-filtered-table table_nomitochloro_7000_abund.qza
+```
+
+```
+qiime taxa collapse \
+--i-table table_nomitochloro_7000_abund.qza \
+--i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
+--p-level 7 \
+--o-collapsed-table table_nomitochloro_7000_abund_L7.qza
+```
+
+```
+cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_workshop_noECs.txt .
+```
+
+```
+qiime composition ancombc2 \
+--i-table table_nomitochloro_7000_abund_L7.qza \
+--m-metadata-file metadata_q2_workshop_noECs.txt \
+
+--p-fixed-effects-formula 'sample_type + facility + add_0c' \
+--p-reference-levels sample_type::soil facility::STAFS \
+--p-random-effects-formula '(1 | host_subject_id)' \
+--o-ancombc2-output ancombc2_sampletype_facility_add_L7.qza
+
+qiime composition tabulate \
+--i-data ancombc2_sampletype_facility_add_L7.qza \
+--o-visualization ancombc2_sampletype_facility_add_L7.qzv
+
+qiime composition ancombc2-visualizer \
+--i-data ancombc2_sampletype_facility_add_L7.qza \
+--o-visualization ancombc2_barplot_sampletype_facility_add_L7.qzv
+```
+
+
+ML
+```
+cd pempek
+
+mkdir ml
+
+cd ml
+
+qiime taxa collapse \
+--i-table ../core_metrics_results/rarefied_table.qza \
+--i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
+--p-level 7 \
+--o-collapsed-table rare_table_L7.qza
+```
+
+```
+qiime sample-classifier classify-samples \
+--i-table rare_table_L7.qza \
+--m-metadata-file ../metadata/metadata.txt \
+--m-metadata-column facility \
+--p-random-state 123 \
+--p-n-jobs 1 \
+
+--output-dir sample_classifier_results_facility
+```
+
+
+Heatmap
+```
+qiime sample-classifier heatmap \
+--i-table rare_table_L7.qza \
+--i-importance sample_classifier_results_facility/feature_importance.qza \
+--m-sample-metadata-file ../metadata/metadata.txt \
+--m-sample-metadata-column facility \
+--p-group-samples \
+--p-feature-count 100 \
+--o-heatmap sample_classifier_results_facility/heatmap_100_features.qzv \
+--o-filtered-table sample_classifier_results_facility/filtered_table_100_features.qza
 ```
