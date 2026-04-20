@@ -276,30 +276,20 @@ qiime diversity alpha-correlation \
 
 ```
 
-
-
-
-
-
-
-
-
-
+Longitudinal
 ```
-qiime diversity beta-group-significance \
---i-distance-matrix core_metrics_results/unweighted_unifrac_distance_matrix.qza \
---m-metadata-file metadata/metadata.txt \
---m-metadata-column body_site \
---p-method permanova \
---o-visualization core_metrics_results/unweighted_unifrac_body_site_metric.qzv
-```
+mkdir longitudinal
 
+cd longitudinal
+
+qiime longitudinal volatility \
+--m-metadata-file ../metadata/metadata.txt \
+--m-metadata-file ../core-metrics-results/weighted_unifrac_pcoa_results.qza \
+--p-state-column add_0c \
+--p-individual-id-column host_subject_id \
+--p-default-group-column 'sample_type' \
+--p-default-metric 'Axis 2' \
+--o-visualization pc_vol_sample_type.qzv
 ```
-qiime diversity beta-group-significance \
---i-distance-matrix core_metrics_results/bray_curtis_distance_matrix.qza \
---m-metadata-file metadata/metadata.txt \
---m-metadata-column body_site \
---p-method permanova \
---o-visualization core_metrics_results/bray_curtis_body_site_metric.qzv
 
 ```
