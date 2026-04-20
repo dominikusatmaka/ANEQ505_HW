@@ -417,37 +417,17 @@ mkdir ancombc2
 cd ancombc2
 
 qiime feature-table filter-samples \
-  --i-table ../dada2/table_nomitochloro_nocontrol.qza \
-  --p-min-frequency 7000 \
-  --o-filtered-table table_nomitochloro_7000.qza
+--i-table ../dada2/table_nomitochloro_nocontrol.qza \
+--p-min-frequency 7000 \
+--o-filtered-table table_nomitochloro_7000.qza
 ```
 
-```
-qiime feature-table filter-samples \
-  --i-table table_nomitochloro_gg2_filtered300.qza \
-  --m-metadata-file cow_metadata_nocontrols.txt \
-  --o-filtered-table table_nomitochlorocontrols_gg2_filtered300.qza
-```
-
-```
-qiime feature-table filter-samples \
---i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
---p-min-frequency 5000 \
---o-filtered-table table_5k.qza
-```
-
-
-```
-qiime feature-table filter-samples \
---i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
---p-min-frequency 4500 \
---o-filtered-table table_4k.qza
 ```
 qiime feature-table filter-features \
-  --i-table table_nomitochloro_7000.qza \
-  --p-min-frequency 50 \
-  --p-min-samples 4 \
-  --o-filtered-table table_nomitochloro_7000_abund.qza
+--i-table table_nomitochloro_7000.qza \
+--p-min-frequency 50 \
+--p-min-samples 4 \
+--o-filtered-table table_nomitochloro_7000_abund.qza
 ```
 
 ```
@@ -466,7 +446,7 @@ cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file metadata_q2_workshop_noECs.txt \
---p-fixed-effects-formula 'sample_type + facility + add_0c' \
+--p-fixed-effects-formula 'sample_type + facility + day' \
 --p-reference-levels sample_type::soil facility::STAFS \
 --p-random-effects-formula '(1 | host_subject_id)' \
 --o-ancombc2-output ancombc2_sampletype_facility_add_L7.qza
