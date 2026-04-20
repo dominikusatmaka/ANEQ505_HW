@@ -219,18 +219,6 @@ qiime taxa barplot \
 --o-visualization table_nomitochloro_nocontrol.qzv
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 Make directiory rarefaction
 ```
 mkdir alpha_rarefaction
@@ -246,9 +234,8 @@ qiime diversity alpha-rarefaction \
 --m-metadata-file ../metadata/metadata.txt \
 --p-min-depth 50 \
 --p-max-depth 66000 \
---o-visualization alpha_rarefaction_curves_16S_1.qzv \
+--o-visualization alpha_rarefaction_curves_16S.qzv \
 ```
-
 
 Run core metric (check depth)
 ```
