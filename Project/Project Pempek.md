@@ -242,10 +242,10 @@ Run core metric (check depth)
 cd ../
 
 qiime diversity core-metrics-phylogenetic \
---i-table dada2/pempek_table_dada2_filtered300.qza \
---i-phylogeny tree/tree_gg2.qza \
+--i-table dada2/table_nomitochloro_nocontrol.qza \
+--i-phylogeny tree/tree_gg2_filtered.qza \
 --m-metadata-file metadata/metadata.txt \
---p-sampling-depth 5000 \
+--p-sampling-depth 7000 \
 --output-dir core_metrics_results
 ```
 
