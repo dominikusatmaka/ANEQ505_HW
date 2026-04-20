@@ -446,7 +446,7 @@ cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file pempek_metadata_noEC.txt \
---p-fixed-effects-formula 'sample_type + day + treatment' \
+--p-fixed-effects-formula 'sample_type + treatment + day' \
 --p-reference-levels sample_type::fecal \
 --p-random-effects-formula '(1 | calf_id)' \
 --o-ancombc2-output ancombc2_sampletype_day_treatment_L7.qza
@@ -460,7 +460,7 @@ qiime composition ancombc2-visualizer \
 --o-visualization ancombc2_barplot_sampletype_day_L7.qzv
 ```
 
-ML
+ML treatment
 ```
 cd pempek
 
@@ -479,81 +479,19 @@ qiime taxa collapse \
 qiime sample-classifier classify-samples \
 --i-table rare_table_L7.qza \
 --m-metadata-file ../metadata/metadata.txt \
---m-metadata-column facility \
+--m-metadata-column treatment \
 --p-random-state 123 \
 --p-n-jobs 1 \
---output-dir sample_classifier_results_facility
+--output-dir sample_classifier_results_treatment
 ```
 
+ML age (days)
 
-Heatmap
 ```
-qiime sample-classifier heatmap \
+qiime sample-classifier classify-samples \
 --i-table rare_table_L7.qza \
---i-importance sample_classifier_results_facility/feature_importance.qza \
---m-sample-metadata-file ../metadata/metadata.txt \
---m-sample-metadata-column facility \
---p-group-samples \
---p-feature-count 100 \
---o-heatmap sample_classifier_results_facility/heatmap_100_features.qzv \
---o-filtered-table sample_classifier_results_facility/filtered_table_100_features.qza
-```
-
-
-
-
-
-```
-
-**Filter out low abundance and low prevalence ASVs ~={red}(1 point)=~**
-
-```
-qiime feature-table filter-features \
---i-table table_4k.qza \
---p-min-frequency 50 \
---p-min-samples 20 \
---o-filtered-table table_4k_abund.qza
-```
-
-**Collapse features to genus level ~={red}(1 point)=~**
-- We will collapse to the genus level to make it easier to interpret the results. (Hint: We used 7 for species, so think about which number you would use for genus.)
-
-```
-qiime taxa collapse \
---i-table table_4k_abund.qza \
---i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
---p-level 7 \
---o-collapsed-table table_4k_abund_L7.qza
-```
-
-
-**Run ANCOM-BC2 ~={red}(1 point)=~**
-
-```
-qiime composition ancombc2 \
---i-table table_4k_abund_L7.qza \
---m-metadata-file cow_metadata_nocontrols.txt \
---p-fixed-effects-formula body_site \
---o-ancombc2-output ancombc2_results_bodysite_genus_4k.qza
-```
-
-
-**Visualize the ANCOM-BC2 results ~={red}(1 point)=~**
-- Generate a barplot to visualize the differentially abundant features. 
-```
-qiime composition tabulate \
---i-data ancombc2_results_bodysite_genus_4k.qza \
---o-visualization ancombc2_bodysite_genus_4k.qzv
-  
-qiime composition ancombc2-visualizer \
-  --i-data ancombc2_results_bodysite_genus_4k.qza \
-  --o-visualization ancombc2_barplot_bodysite_genus_4k.qzv
-
-
-```qiime diversity alpha-rarefaction \
---i-table ../dada2/table_nomitochlorocontrols_gg2_filtered300.qza \
---m-metadata-file ../metadata/cow_metadata.txt \
---p-min-depth 10 \
---p-max-depth 33000 \
---o-visualization alpha_rarefaction_curves_16S_2.qzv \
-```
+--m-metadata-file ../metadata/metadata.txt \
+--m-metadata-column age_d \
+--p-random-state 123 \
+--p-n-jobs 1 \
+--output-dir sample_classifier_results_age
