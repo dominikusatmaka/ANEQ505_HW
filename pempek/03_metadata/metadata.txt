@@ -104,21 +104,3 @@ sampleid	sample	calf_number	calf_id	sample_type	date	day	age_d	age_w	week	sex	tr
 108604	fecal.calf33.day5.Pempek	33	947	fecal	8/31/23	5	day 5	week1	1	male	pair	amplification	healthy	2	two	16	yes	male_pair	scours
 108605	fecal.calf33.day35.Pempek	33	947	fecal	9/28/23	35	day 35	week5	5	male	pair	amplification	c_pneumonia	4	four	16	yes	male_pair	scours
 108606	fecal.calf33.day63.Pempek	33	947	fecal	10/26/23	63	day 63	week9	9	male	pair	amplification	healthy	5	five	16	yes	male_pair	normal
-A121				control															
-A129				control															
-EC1_2_SR49				control															
-EC1_3_SR49				control															
-EC2_2_SR49				control															
-EC2_3_SR49				control															
-EC3_1_SR49				control															
-EC3_2_SR49				control															
-EC4_1_SR49				control															
-EC4_2_SR49				control															
-EC5_2_SR49				control															
-EC6_2_SR49				control															
-PC1_1_SR49				control															
-PC1_2_SR49				control															
-PC1_3_SR49				control															
-PC2_1_SR49				control															
-PC2_2_SR49				control															
-PC2_3_SR49				control															
