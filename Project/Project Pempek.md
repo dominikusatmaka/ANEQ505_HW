@@ -214,7 +214,7 @@ visualise without control
 ```
 qiime taxa barplot \
 --i-table ../dada2/table_nomitochloro_nocontrol.qza \
---i-taxonomy ../taxonomy/taxonomy_gg2.qza \
+--i-taxonomy ../taxonomy/taxonomy_gg2_filtered.qza \
 --m-metadata-file ../metadata/metadata.txt \
 --o-visualization table_nomitochloro_nocontrol.qzv
 ```
