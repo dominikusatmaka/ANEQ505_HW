@@ -312,7 +312,9 @@ cd */data
 
 ls
 
-cd ../../../../
+cd ../ # back to pempek
+```
+```
 
 # Observed Features
 
@@ -325,6 +327,7 @@ unzip core_metrics_results/faith_pd_vector.qza -d export/faith_pd
 # Pielou's evenness
 
 unzip core_metrics_results/evenness_vector.qza -d export/evenness
+
 ```
 
 Beta Metrics
@@ -366,5 +369,14 @@ done
 ```
 mkdir beta_div
 
+# define beta metrics
 
+metrics=("bray_curtis" "jaccard" "unweighted_unifrac" "weighted_unifrac")
+
+# copy their txt files into beta_div/
+
+for metric in "${metrics[@]}"; do
+ cp $metric/*/data/ordination.txt beta_div/${metric}.txt
+
+done
 ```
