@@ -445,11 +445,11 @@ cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_
 ```
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
---m-metadata-file metadata_q2_workshop_noECs.txt \
---p-fixed-effects-formula 'sample_type + day' \
+--m-metadata-file pempek_metadata_noEC.txt \
+--p-fixed-effects-formula 'sample_type + day + treatment' \
 --p-reference-levels sample_type::fecal \
---p-random-effects-formula '(1 | SampleID)' \
---o-ancombc2-output ancombc2_sampletype_day_L7.qza
+--p-random-effects-formula '(1 | calf_id)' \
+--o-ancombc2-output ancombc2_sampletype_day_treatment_L7.qza
 
 qiime composition tabulate \
 --i-data ancombc2_sampletype_day_L7.qza \
