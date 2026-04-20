@@ -276,7 +276,7 @@ qiime diversity alpha-correlation \
 
 ```
 
-Longitudinal
+Longitudinal (Volatility)
 ```
 mkdir longitudinal
 
@@ -285,11 +285,21 @@ cd longitudinal
 qiime longitudinal volatility \
 --m-metadata-file ../metadata/metadata.txt \
 --m-metadata-file ../core_metrics_results/weighted_unifrac_pcoa_results.qza \
---p-state-column age_w \
+--p-state-column day \
 --p-individual-id-column calf_id \
 --p-default-group-column 'sample_type' \
 --p-default-metric 'Axis 2' \
 --o-visualization pc_vol_sample_type.qzv
 ```
 
+Export
+```
+cd ../
+
+mkdir export
+
+unzip core_metrics_results/shannon_vector.qza -d export/shannon
+
+
+```
 ```
