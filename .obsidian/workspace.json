@@ -197,6 +197,7 @@
   },
   "active": "4bdfd221d605dd27",
   "lastOpenFiles": [
+    "pempek/05_figures/day_split_shannon.jpeg",
     "pempek/03_metadata/metadata.txt",
     "pempek/03_metadata/pempek_metadata_noEC.txt",
     "pempek/04_code/beta_div/weighted_unifrac.txt",
@@ -207,7 +208,6 @@
     "pempek/04_code/alpha_div/observed_features.tsv",
     "pempek/04_code/alpha_div/faith_pd.tsv",
     "pempek/04_code/alpha_div/evenness.tsv",
-    "pempek/04_code/alpha_div/shannon.tsv",
     "pempek/05_figures/taxa_genus_sample_type_arf.jpeg",
     "pempek/05_figures/taxa_genus_add.jpeg",
     "pempek/05_figures/taxa_family_sample_type.jpeg",
