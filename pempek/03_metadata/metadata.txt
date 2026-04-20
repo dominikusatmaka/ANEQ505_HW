@@ -1,0 +1,124 @@
+sampleid	sample	calf_number	calf_id	sample_type	date	day	age_d	age_w	week	sex	treatment	gel_results	resp_health	weekly_fecal_counts	weekly_fecal_counts2	pen	male_pair	sex_treatment	scours
+108136	fecal.calf1.day1.Pempek	1	920	fecal	5/19/23	1	day 1	birth	0	male	individual	amplification	healthy	0	zero	1	no	male_individual	scours
+108137	fecal.calf1.day5.Pempek	1	920	fecal	5/25/23	5	day 5	week1	1	male	individual	amplification	healthy	1	one	1	no	male_individual	normal
+108148	fecal.calf3.day1.Pempek	3	6454	fecal	5/31/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	3	no	female_pair	normal
+108149	fecal.calf3.day5.Pempek	3	6454	fecal	6/6/23	5	day 5	week1	1	female	pair	amplification	healthy	0	zero	3	no	female_pair	normal
+108150	fecal.calf3.day35.Pempek	3	6454	fecal	7/4/23	35	day 35	week5	5	female	pair	amplification	healthy	3	three	3	no	female_pair	normal
+108151	fecal.calf3.day63.Pempek	3	6454	fecal	8/1/23	63	day 63	week9	9	female	pair	amplification	healthy	6	six	3	no	female_pair	scours
+108154	fecal.calf4.day1.Pempek	4	6455	fecal	6/5/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	3	no	female_pair	normal
+108155	fecal.calf4.day5.Pempek	4	6455	fecal	6/11/23	5	day 5	week1	1	female	pair	amplification	healthy	0	zero	3	no	female_pair	normal
+108156	fecal.calf4.day35.Pempek	4	6455	fecal	7/9/23	35	day 35	week5	5	female	pair	amplification	healthy	1	one	3	no	female_pair	scours
+108157	fecal.calf4.day63.Pempek	4	6455	fecal	8/6/23	63	day 63	week9	9	female	pair	amplification	healthy	5	five	3	no	female_pair	normal
+108160	fecal.calf5.day1.Pempek	5	922	fecal	6/12/23	1	day 1	birth	0	male	pair	amplification	healthy	0	zero	2	yes	male_pair	normal
+108161	fecal.calf5.day5.Pempek	5	922	fecal	6/18/23	5	day 5	week1	1	male	pair	amplification	healthy	1	one	2	yes	male_pair	normal
+108162	fecal.calf5.day35.Pempek	5	922	fecal	7/16/23	35	day 35	week5	5	male	pair	amplification	healthy	4	four	2	yes	male_pair	scours
+108163	fecal.calf5.day63.Pempek	5	922	fecal	8/13/23	63	day 63	week9	9	male	pair	amplification	healthy	6	six	2	yes	male_pair	scours
+108166	fecal.calf6.day1.Pempek	6	923	fecal	6/16/23	1	day 1	birth	0	male	pair	amplification	healthy	0	zero	2	yes	male_pair	normal
+108167	fecal.calf6.day5.Pempek	6	923	fecal	6/22/23	5	day 5	week1	1	male	pair	amplification	healthy	1	one	2	yes	male_pair	normal
+108168	fecal.calf6.day35.Pempek	6	923	fecal	7/20/23	35	day 35	week5	5	male	pair	amplification	healthy	5	five	2	yes	male_pair	normal
+108169	fecal.calf6.day63.Pempek	6	923	fecal	8/17/23	63	day 63	week9	9	male	pair	amplification	healthy	6	six	2	yes	male_pair	scours
+108173	fecal.calf7.day5.Pempek	7	924	fecal	6/23/23	5	day 5	week1	1	male	pair	amplification	healthy	1	one	5	yes	male_pair	scours
+108174	fecal.calf7.day35.Pempek	7	924	fecal	7/21/23	35	day 35	week5	5	male	pair	amplification	healthy	3	three	5	yes	male_pair	normal
+108175	fecal.calf7.day63.Pempek	7	924	fecal	8/18/23	63	day 63	week9	9	male	pair	amplification	healthy	6	six	5	yes	male_pair	scours
+108180	fecal.calf8.day35.Pempek	8	6456	fecal	7/22/23	35	day 35	week5	5	female	individual	amplification	healthy	2	two	4	no	female_individual	normal
+108181	fecal.calf8.day63.Pempek	8	6456	fecal	8/19/23	63	day 63	week9	9	female	individual	amplification	healthy	5	five	4	no	female_individual	scours
+108184	fecal.calf9.day1.Pempek	9	6457	fecal	6/20/23	1	day 1	birth	0	female	individual	amplification	healthy	0	zero	7	no	female_individual	normal
+108185	fecal.calf9.day5.Pempek	9	6457	fecal	6/26/23	5	day 5	week1	1	female	individual	amplification	healthy	1	one	7	no	female_individual	normal
+108186	fecal.calf9.day35.Pempek	9	6457	fecal	7/24/23	35	day 35	week5	5	female	individual	amplification	healthy	2	two	7	no	female_individual	scours
+108187	fecal.calf9.day63.Pempek	9	6457	fecal	8/21/23	63	day 63	week9	9	female	individual	amplification	upp_resp	5	five	7	no	female_individual	scours
+108190	fecal.calf10.day1.Pempek	10	925	fecal	6/20/23	1	day 1	birth	0	male	pair	amplification	healthy	0	zero	5	yes	male_pair	scours
+108191	fecal.calf10.day5.Pempek	10	925	fecal	6/26/23	5	day 5	week1	1	male	pair	amplification	healthy	2	two	5	yes	male_pair	normal
+108192	fecal.calf10.day35.Pempek	10	925	fecal	7/24/23	35	day 35	week5	5	male	pair	amplification	healthy	3	three	5	yes	male_pair	scours
+108193	fecal.calf10.day63.Pempek	10	925	fecal	8/21/23	63	day 63	week9	9	male	pair	amplification	healthy	5	five	5	yes	male_pair	scours
+108196	fecal.calf11.day1.Pempek	11	6461	fecal	6/23/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	8	no	female_pair	normal
+108197	fecal.calf11.day5.Pempek	11	6461	fecal	6/29/23	5	day 5	week1	1	female	pair	amplification	healthy	2	two	8	no	female_pair	normal
+108198	fecal.calf11.day35.Pempek	11	6461	fecal	7/27/23	35	day 35	week5	5	female	pair	amplification	healthy	7	seven	8	no	female_pair	scours
+108199	fecal.calf11.day63.Pempek	11	6461	fecal	8/24/23	63	day 63	week9	9	female	pair	amplification	healthy	3	three	8	no	female_pair	scours
+108203	fecal.calf12.day5.Pempek	12	6462	fecal	6/29/23	5	day 5	week1	1	female	pair	amplification	healthy	1	one	8	no	female_pair	normal
+108204	fecal.calf12.day35.Pempek	12	6462	fecal	7/27/23	35	day 35	week5	5	female	pair	amplification	healthy	7	seven	8	no	female_pair	scours
+108205	fecal.calf12.day63.Pempek	12	6462	fecal	8/24/23	63	day 63	week9	9	female	pair	amplification	healthy	3	three	8	no	female_pair	scours
+108209	fecal.calf13.day5.Pempek	13	927	fecal	7/1/23	5	day 5	week1	1	male	individual	amplification	healthy	2	two	6	no	male_individual	normal
+108210	fecal.calf13.day35.Pempek	13	927	fecal	7/29/23	35	day 35	week5	5	male	individual	amplification	healthy	5	five	6	no	male_individual	scours
+108211	fecal.calf13.day63.Pempek	13	927	fecal	8/26/23	63	day 63	week9	9	male	individual	amplification	healthy	3	three	6	no	male_individual	normal
+108215	fecal.calf14.day5.Pempek	14	928	fecal	7/1/23	5	day 5	week1	1	male	individual	amplification	healthy	3	three	9	no	male_individual	scours
+108216	fecal.calf14.day35.Pempek	14	928	fecal	7/29/23	35	day 35	week5	5	male	individual	amplification	healthy	3	three	9	no	male_individual	scours
+108217	fecal.calf14.day63.Pempek	14	928	fecal	8/26/23	63	day 63	week9	9	male	individual	amplification	healthy	3	three	9	no	male_individual	normal
+108220	fecal.calf15.day1.Pempek	15	6465	fecal	6/26/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	11	no	female_pair	normal
+108221	fecal.calf15.day5.Pempek	15	6465	fecal	7/2/23	5	day 5	week1	1	female	pair	amplification	healthy	3	three	11	no	female_pair	scours
+108222	fecal.calf15.day35.Pempek	15	6465	fecal	7/30/23	35	day 35	week5	5	female	pair	amplification	healthy	4	four	11	no	female_pair	normal
+108223	fecal.calf15.day63.Pempek	15	6465	fecal	8/27/23	63	day 63	week9	9	female	pair	amplification	healthy	1	one	11	no	female_pair	normal
+108233	fecal.calf17.day5.Pempek	17	6468	fecal	7/7/23	5	day 5	week1	1	female	pair	amplification	healthy	3	three	11	no	female_pair	normal
+108234	fecal.calf17.day35.Pempek	17	6468	fecal	8/4/23	35	day 35	week5	5	female	pair	amplification	healthy	6	six	11	no	female_pair	scours
+108235	fecal.calf17.day63.Pempek	17	6468	fecal	9/1/23	63	day 63	week9	9	female	pair	amplification	upp_resp	2	two	11	no	female_pair	scours
+108238	fecal.calf18.day1.Pempek	18	6469	fecal	7/5/23	1	day 1	birth	0	female	individual	amplification	healthy	0	zero	12	no	female_individual	normal
+108239	fecal.calf18.day5.Pempek	18	6469	fecal	7/11/23	5	day 5	week1	1	female	individual	amplification	healthy	1	one	12	no	female_individual	normal
+108240	fecal.calf18.day35.Pempek	18	6469	fecal	8/8/23	35	day 35	week5	5	female	individual	amplification	healthy	6	six	12	no	female_individual	scours
+108241	fecal.calf18.day63.Pempek	18	6469	fecal	9/5/23	63	day 63	week9	9	female	individual	amplification	healthy	4	four	12	no	female_individual	scours
+108244	fecal.calf19.day1.Pempek	19	933	fecal	7/8/23	1	day 1	birth	0	male	pair	amplification	healthy	0	zero	10	yes	male_pair	normal
+108245	fecal.calf19.day5.Pempek	19	933	fecal	7/14/23	5	day 5	week1	1	male	pair	amplification	healthy	5	five	10	yes	male_pair	scours
+108246	fecal.calf19.day35.Pempek	19	933	fecal	8/11/23	35	day 35	week5	5	male	pair	amplification	healthy	6	six	10	yes	male_pair	scours
+108247	fecal.calf19.day63.Pempek	19	933	fecal	9/8/23	63	day 63	week9	9	male	pair	amplification	healthy	1	one	10	yes	male_pair	scours
+108250	fecal.calf20.day1.Pempek	20	937	fecal	7/12/23	1	day 1	birth	0	male	pair	amplification	healthy	0	zero	10	yes	male_pair	scours
+108251	fecal.calf20.day5.Pempek	20	937	fecal	7/18/23	5	day 5	week1	1	male	pair	amplification	healthy	6	six	10	yes	male_pair	scours
+108252	fecal.calf20.day35.Pempek	20	937	fecal	8/15/23	35	day 35	week5	5	male	pair	amplification	healthy	4	four	10	yes	male_pair	normal
+108253	fecal.calf20.day63.Pempek	20	937	fecal	9/12/23	63	day 63	week9	9	male	pair	amplification	healthy	3	three	10	yes	male_pair	scours
+108256	fecal.calf21.day1.Pempek	21	6470	fecal	7/20/23	1	day 1	birth	0	female	individual	amplification	healthy	0	zero	13	no	female_individual	normal
+108257	fecal.calf21.day5.Pempek	21	6470	fecal	7/27/23	5	day 5	week1	1	female	individual	amplification	healthy	0	zero	13	no	female_individual	normal
+108258	fecal.calf21.day35.Pempek	21	6470	fecal	8/23/23	35	day 35	week5	5	female	individual	amplification	healthy	1	one	13	no	female_individual	scours
+108259	fecal.calf21.day63.Pempek	21	6470	fecal	9/20/23	63	day 63	week9	9	female	individual	amplification	healthy	1	one	13	no	female_individual	normal
+108263	fecal.calf22.day5.Pempek	22	939	fecal	7/29/23	5	day 5	week1	1	male	individual	amplification	healthy	0	zero	15	no	male_individual	normal
+108264	fecal.calf22.day35.Pempek	22	939	fecal	8/26/23	35	day 35	week5	5	male	individual	amplification	healthy	6	six	15	no	male_individual	normal
+108265	fecal.calf22.day63.Pempek	22	939	fecal	9/23/23	63	day 63	week9	9	male	individual	amplification	healthy	4	four	15	no	male_individual	scours
+108274	fecal.calf24.day1.Pempek	24	6471	fecal	7/24/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	14	no	female_pair	normal
+108275	fecal.calf24.day5.Pempek	24	6471	fecal	7/30/23	5	day 5	week1	1	female	pair	amplification	healthy	0	zero	14	no	female_pair	normal
+108276	fecal.calf24.day35.Pempek	24	6471	fecal	8/27/23	35	day 35	week5	5	female	pair	amplification	healthy	3	three	14	no	female_pair	normal
+108277	fecal.calf24.day63.Pempek	24	6471	fecal	9/24/23	63	day 63	week9	9	female	pair	amplification	healthy	6	six	14	no	female_pair	scours
+108280	fecal.calf25.day1.Pempek	25	6473	fecal	7/28/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	14	no	female_pair	normal
+108281	fecal.calf25.day5.Pempek	25	6473	fecal	8/3/23	5	day 5	week1	1	female	pair	amplification	healthy	1	one	14	no	female_pair	scours
+108282	fecal.calf25.day35.Pempek	25	6473	fecal	8/31/23	35	day 35	week5	5	female	pair	amplification	healthy	3	three	14	no	female_pair	scours
+108283	fecal.calf25.day63.Pempek	25	6473	fecal	9/28/23	63	day 63	week9	9	female	pair	amplification	healthy	6	six	14	no	female_pair	scours
+108286	fecal.calf26.day1.Pempek	26	6474	fecal	7/30/23	1	day 1	birth	0	female	individual	amplification	healthy	0	zero	17	no	female_individual	normal
+108287	fecal.calf26.day5.Pempek	26	6474	fecal	8/6/23	5	day 5	week1	1	female	individual	amplification	healthy	2	two	17	no	female_individual	normal
+108288	fecal.calf26.day35.Pempek	26	6474	fecal	9/2/23	35	day 35	week5	5	female	individual	amplification	healthy	2	two	17	no	female_individual	normal
+108289	fecal.calf26.day63.Pempek	26	6474	fecal	9/30/23	63	day 63	week9	9	female	individual	amplification	healthy	5	five	17	no	female_individual	scours
+108292	fecal.calf27.day1.Pempek	27	6479	fecal	8/12/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	18	no	female_pair	normal
+108293	fecal.calf27.day5.Pempek	27	6479	fecal	8/18/23	5	day 5	week1	1	female	pair	amplification	healthy	3	three	18	no	female_pair	scours
+108294	fecal.calf27.day35.Pempek	27	6479	fecal	9/15/23	35	day 35	week5	5	female	pair	amplification	healthy	7	seven	18	no	female_pair	scours
+108295	fecal.calf27.day63.Pempek	27	6479	fecal	10/13/23	63	day 63	week9	9	female	pair	amplification	healthy	4	four	18	no	female_pair	scours
+108298	fecal.calf28.day1.Pempek	28	6480	fecal	8/14/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	18	no	female_pair	normal
+108299	fecal.calf28.day5.Pempek	28	6480	fecal	8/20/23	5	day 5	week1	1	female	pair	amplification	healthy	3	three	18	no	female_pair	scours
+108300	fecal.calf28.day35.Pempek	28	6480	fecal	9/17/23	35	day 35	week5	5	female	pair	amplification	healthy	6	six	18	no	female_pair	scours
+108301	fecal.calf28.day63.Pempek	28	6480	fecal	10/15/23	63	day 63	week9	9	female	pair	amplification	healthy	4	four	18	no	female_pair	normal
+108304	fecal.calf29.day1.Pempek	29	6481	fecal	8/15/23	1	day 1	birth	0	female	individual	amplification	healthy	0	zero	19	no	female_individual	normal
+108305	fecal.calf29.day5.Pempek	29	6481	fecal	8/21/23	5	day 5	week1	1	female	individual	amplification	healthy	2	two	19	no	female_individual	scours
+108306	fecal.calf29.day35.Pempek	29	6481	fecal	9/18/23	35	day 35	week5	5	female	individual	amplification	healthy	6	six	19	no	female_individual	scours
+108307	fecal.calf29.day63.Pempek	29	6481	fecal	10/16/23	63	day 63	week9	9	female	individual	amplification	healthy	4	four	19	no	female_individual	scours
+108310	fecal.calf30.day1.Pempek	30	6484	fecal	8/18/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	20	no	female_pair	normal
+108312	fecal.calf30.day35.Pempek	30	6484	fecal	9/21/23	35	day 35	week5	5	female	pair	amplification	healthy	3	three	20	no	female_pair	scours
+108313	fecal.calf30.day63.Pempek	30	6484	fecal	10/19/23	63	day 63	week9	9	female	pair	amplification	healthy	5	five	20	no	female_pair	scours
+108592	fecal.calf31.day5.Pempek	31	944	fecal	8/27/23	5	day 5	week1	1	male	pair	amplification	sub_pneumonia	2	two	16	yes	male_pair	scours
+108594	fecal.calf31.day63.Pempek	31	944	fecal	10/22/23	63	day 63	week9	9	male	pair	amplification	healthy	6	six	16	yes	male_pair	scours
+108597	fecal.calf32.day1.Pempek	32	6486	fecal	8/23/23	1	day 1	birth	0	female	pair	amplification	healthy	0	zero	20	no	female_pair	normal
+108598	fecal.calf32.day5.Pempek	32	6486	fecal	8/29/23	5	day 5	week1	1	female	pair	amplification	healthy	3	three	20	no	female_pair	scours
+108600	fecal.calf32.day63.Pempek	32	6486	fecal	10/24/23	63	day 63	week9	9	female	pair	amplification	healthy	6	six	20	no	female_pair	normal
+108604	fecal.calf33.day5.Pempek	33	947	fecal	8/31/23	5	day 5	week1	1	male	pair	amplification	healthy	2	two	16	yes	male_pair	scours
+108605	fecal.calf33.day35.Pempek	33	947	fecal	9/28/23	35	day 35	week5	5	male	pair	amplification	c_pneumonia	4	four	16	yes	male_pair	scours
+108606	fecal.calf33.day63.Pempek	33	947	fecal	10/26/23	63	day 63	week9	9	male	pair	amplification	healthy	5	five	16	yes	male_pair	normal
+A121				control															
+A129				control															
+EC1_2_SR49				control															
+EC1_3_SR49				control															
+EC2_2_SR49				control															
+EC2_3_SR49				control															
+EC3_1_SR49				control															
+EC3_2_SR49				control															
+EC4_1_SR49				control															
+EC4_2_SR49				control															
+EC5_2_SR49				control															
+EC6_2_SR49				control															
+PC1_1_SR49				control															
+PC1_2_SR49				control															
+PC1_3_SR49				control															
+PC2_1_SR49				control															
+PC2_2_SR49				control															
+PC2_3_SR49				control															
