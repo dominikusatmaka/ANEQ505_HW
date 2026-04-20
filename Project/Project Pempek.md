@@ -431,7 +431,6 @@ cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file metadata_q2_workshop_noECs.txt \
-
 --p-fixed-effects-formula 'sample_type + facility + add_0c' \
 --p-reference-levels sample_type::soil facility::STAFS \
 --p-random-effects-formula '(1 | host_subject_id)' \
