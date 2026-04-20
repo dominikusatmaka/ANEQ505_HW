@@ -300,6 +300,71 @@ mkdir export
 
 unzip core_metrics_results/shannon_vector.qza -d export/shannon
 
+cd export 
+
+ls
+
+cd shannon
+
+ls
+
+cd */data
+
+ls
+
+cd ../../../../
+
+# Observed Features
+
+unzip core_metrics_results/observed_features_vector.qza -d export/observed_features
+
+# Faith's PD
+
+unzip core_metrics_results/faith_pd_vector.qza -d export/faith_pd
+
+# Pielou's evenness
+
+unzip core_metrics_results/evenness_vector.qza -d export/evenness
+```
+
+Beta Metrics
+```
+# Bray Curtis
+
+unzip core_metrics_results/bray_curtis_pcoa_results.qza -d export/bray_curtis
+
+# Jaccard
+
+unzip core_metrics_results/jaccard_pcoa_results.qza -d export/jaccard
+
+# Unweighted Unifrac
+
+unzip core_metrics_results/unweighted_unifrac_pcoa_results.qza -d export/unweighted_unifrac
+
+# Weighted Unifrac
+
+unzip core_metrics_results/weighted_unifrac_pcoa_results.qza -d export/weighted_unifrac
+```
 
 ```
+cd export
+
+mkdir alpha_div
+
+# define alpha metrics
+
+metrics=("shannon" "evenness" "faith_pd" "observed_features")
+
+# copy their tsv files into alpha_div/
+
+for metric in "${metrics[@]}"; do
+ cp $metric/*/data/alpha-diversity.tsv alpha_div/${metric}.tsv
+
+done
+```
+
+```
+mkdir beta_div
+
+
 ```
