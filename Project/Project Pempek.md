@@ -398,9 +398,6 @@ for metric in "${metrics[@]}"; do
 done
 ```
 
-
-BELOM DILAKUKAN
-
 ANCOM BC2
 ```
 cd ../
@@ -438,7 +435,10 @@ qiime taxa collapse \
 --o-collapsed-table table_nomitochloro_7000_abund_L7.qza
 ```
 
+
+STILL FAILED. (the metadata should be have no controls.)
 ```
+# this one from the cow data but it is not working
 cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_workshop_noECs.txt .
 ```
 
@@ -446,20 +446,19 @@ cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file metadata_q2_workshop_noECs.txt \
---p-fixed-effects-formula 'sample_type + facility + day' \
---p-reference-levels sample_type::soil facility::STAFS \
---p-random-effects-formula '(1 | host_subject_id)' \
---o-ancombc2-output ancombc2_sampletype_facility_add_L7.qza
+--p-fixed-effects-formula 'sample_type + day' \
+--p-reference-levels sample_type::fecal \
+--p-random-effects-formula '(1 | SampleID)' \
+--o-ancombc2-output ancombc2_sampletype_day_L7.qza
 
 qiime composition tabulate \
---i-data ancombc2_sampletype_facility_add_L7.qza \
---o-visualization ancombc2_sampletype_facility_add_L7.qzv
+--i-data ancombc2_sampletype_day_L7.qza \
+--o-visualization ancombc2_sampletype_day_L7.qzv
 
 qiime composition ancombc2-visualizer \
---i-data ancombc2_sampletype_facility_add_L7.qza \
---o-visualization ancombc2_barplot_sampletype_facility_add_L7.qzv
+--i-data ancombc2_sampletype_day_L7.qza \
+--o-visualization ancombc2_barplot_sampletype_day_L7.qzv
 ```
-
 
 ML
 ```
@@ -483,7 +482,6 @@ qiime sample-classifier classify-samples \
 --m-metadata-column facility \
 --p-random-state 123 \
 --p-n-jobs 1 \
-
 --output-dir sample_classifier_results_facility
 ```
 
