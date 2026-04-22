@@ -398,6 +398,16 @@ for metric in "${metrics[@]}"; do
 done
 ```
 
+Change Table Using No Control
+```
+cd dada2
+
+qiime feature-table filter-samples \
+--i-table table_nomitochloro_gg2_filtered300.qza \
+--m-metadata-file ../ancombc2/pempek_metadata_noEC.txt \
+--0-filtered-table table_nomitochloro_nocontrol_new.qza
+```
+
 ANCOM BC2
 ```
 cd ../
@@ -420,11 +430,14 @@ qiime feature-table filter-samples \
 ```
 
 ```
-qiime feature-table filter-samples \
---i-table ../dada2/table_nomitochloro_nocontrol.qza \
---m-metadata-file pempek_metadata_noEC.txt \
---o-filtered-table table_nomitochloro_nocontrol_new.qza
+
 ```
+
+qiime feature-table filter-samples \
+--i-table dada2/table_nomitochloro_gg2_filtered300.qza \
+--m-metadata-file metadata/pempek_metadata_noEC.txt \
+--p-where "NOT [sample_type] IN ('control') " \
+--o-filtered-table dada2/table_nomitochloro_nocontrol_new.qza
 
 ```
 qiime feature-table filter-features \
