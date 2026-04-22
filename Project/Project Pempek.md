@@ -420,6 +420,13 @@ qiime feature-table filter-samples \
 ```
 
 ```
+qiime feature-table filter-samples \
+--i-table ../dada2/table_nomitochloro_nocontrol.qza \
+--m-metadata-file pempek_metadata_noEC.txt \
+--o-filtered-table table_nomitochloro_nocontrol_new.qza
+```
+
+```
 qiime feature-table filter-features \
 --i-table table_nomitochloro_7000.qza \
 --p-min-frequency 50 \
@@ -438,11 +445,7 @@ qiime taxa collapse \
 
 STILL FAILED. (the metadata should be have no controls.)
 ```
-# this one from the cow data but it is not working
-cp /pl/active/courses/2025_summer/CSU_2025/q2_workshop_final/QIIME2/metadata_q2_workshop_noECs.txt .
-```
-
-```
+ANCOMBC USING NEW METADATA
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file pempek_metadata_noEC.txt \
