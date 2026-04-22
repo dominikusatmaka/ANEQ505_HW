@@ -398,16 +398,6 @@ for metric in "${metrics[@]}"; do
 done
 ```
 
-Change Table Using No Control
-```
-cd dada2
-
-qiime feature-table filter-samples \
---i-table table_nomitochloro_gg2_filtered300.qza \
---m-metadata-file ../ancombc2/pempek_metadata_noEC.txt \
---0-filtered-table table_nomitochloro_nocontrol_new.qza
-```
-
 ANCOM BC2
 ```
 cd ../
@@ -428,16 +418,6 @@ qiime feature-table filter-samples \
 --p-min-frequency 7000 \
 --o-filtered-table table_nomitochloro_7000.qza
 ```
-
-```
-
-```
-
-qiime feature-table filter-samples \
---i-table dada2/table_nomitochloro_gg2_filtered300.qza \
---m-metadata-file metadata/pempek_metadata_noEC.txt \
---p-where "NOT [sample_type] IN ('control') " \
---o-filtered-table dada2/table_nomitochloro_nocontrol_new.qza
 
 ```
 qiime feature-table filter-features \
@@ -462,8 +442,8 @@ ANCOMBC USING NEW METADATA
 qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file pempek_metadata_noEC.txt \
---p-fixed-effects-formula 'sample_type + treatment + day' \
---p-reference-levels sample_type::fecal \
+--p-fixed-effects-formula 'treatment + age_w' \
+--p-reference-levels treatment::pair age_w::birth \
 --p-random-effects-formula '(1 | calf_id)' \
 --o-ancombc2-output ancombc2_sampletype_day_treatment_L7.qza
 
