@@ -444,16 +444,15 @@ qiime composition ancombc2 \
 --m-metadata-file pempek_metadata_noEC.txt \
 --p-fixed-effects-formula 'treatment + age_w' \
 --p-reference-levels treatment::individual age_w::birth \
---p-random-effects-formula '(1 | calf_id)' \
 --o-ancombc2-output ancombc2_sampletype_day_treatment_L7.qza
 
 qiime composition tabulate \
---i-data ancombc2_sampletype_day_L7.qza \
---o-visualization ancombc2_sampletype_day_L7.qzv
+--i-data ancombc2_sampletype_day_treatment_L7.qza \
+--o-visualization ancombc2_sampletype_day_treatment_L7.qzv
 
 qiime composition ancombc2-visualizer \
---i-data ancombc2_sampletype_day_L7.qza \
---o-visualization ancombc2_barplot_sampletype_day_L7.qzv
+--i-data ancombc2_sampletype_day_treatment_L7.qza \
+--o-visualization ancombc2_barplot_sampletype_day_treatment_L7.qzv
 ```
 
 ML treatment
