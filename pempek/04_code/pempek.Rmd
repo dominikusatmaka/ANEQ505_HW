@@ -67,7 +67,7 @@ library(scales)
 # Import and clean metadata if needed
 
 ```{r}
-metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/03_metadata/metadata.txt")
+metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/03_metadata/metadata.txt")
 ```
 
 ################################################################################ 
@@ -80,10 +80,10 @@ metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tuto
 
 ```{r}
 # Alpha diversity metrics
-shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/shannon.tsv")
-evenness <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/evenness.tsv")
-observed_features <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/observed_features.tsv")
-faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tutorial/02_data/alpha_div/faith_pd.tsv")
+shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/shannon.tsv")
+evenness <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/evenness.tsv")
+observed_features <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/observed_features.tsv")
+faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/faith_pd.tsv")
 ```
 
 # Tidy metrics and add to metadata
@@ -91,26 +91,26 @@ faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/r_decomp_tut
 ```{r}
 # Shannon 
 shannon <- shannon %>%
-  rename(sample_name = 1)  #rename 1st column to to match metadata
+  rename(sampleid = 1)  #rename 1st column to to match metadata
 
 # Evenness
 evenness <- evenness %>% 
-  rename(sample_name = 1)  #rename 1st column to to match metadata
+  rename(sampleid = 1)  #rename 1st column to to match metadata
 
 # Observed Features
 observed_features <- observed_features %>% 
-  rename(sample_name = 1)  #rename 1st column to to match metadata
+  rename(sampleid = 1)  #rename 1st column to to match metadata
 
 # Faiths PD
 faiths_pd <- faiths_pd %>% 
-  rename(sample_name = 1)  #rename 1st column to to match metadata
+  rename(sampleid = 1)  #rename 1st column to to match metadata
 
 # Add to metadata
 metadata <- metadata %>%
-  left_join(shannon, by = "sample_name") %>% 
-  left_join(evenness, by = "sample_name") %>% 
-  left_join(observed_features, by = "sample_name") %>% 
-  left_join(faiths_pd, by = "sample_name")
+  left_join(shannon, by = "sampleid") %>% 
+  left_join(evenness, by = "sampleid") %>% 
+  left_join(observed_features, by = "sampleid") %>% 
+  left_join(faiths_pd, by = "sampleid")
   
 
 ```
@@ -143,14 +143,14 @@ Shannon
 
 ```{r}
 # Build model
-model_add0_shannon <- lmer(shannon_entropy ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+model_age_d_shannon <- lmer(shannon_entropy ~ age_d + (1|treatment), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
 
 # Residual diagnostic plot, check assumptions
-plot(model_add0_shannon)
+plot(model_age_d_shannon)
 # look at estimated variance components
-summary(model_add0_shannon)
+summary(model_age_d_shannon)
 # residual diagnostic plot, check assumptions
-anova(model_add0_shannon)
+anova(model_age_d_shannon)
 # pairwise comparisons, there are a lot of time points for this data set so this line doesn't work yet, I'll show you how to use it a little later
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
@@ -187,14 +187,14 @@ Evenness
 
 ```{r}
 # Build model
-model_add0_evenness <- lmer(pielou_evenness ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+model_day_evenness <- lmer(pielou_evenness ~ day + (1|treatment), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
 
 # Residual diagnostic plot, check assumptions
-plot(model_add0_evenness)
+plot(model_day_evenness)
 # look at estimated variance components
-summary(model_add0_evenness)
+summary(model_day_evenness)
 # residual diagnostic plot, check assumptions
-anova(model_add0_evenness)
+anova(model_day_evenness)
 # pairwise comparisons, there are a lot of time points for this data set so this line doesn't work yet, I'll show you how to use it a little later
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
@@ -203,14 +203,14 @@ Observed Features
 
 ```{r}
 # Build model
-model_add0_obfeatures <- lmer(observed_features ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+model_day_obfeatures <- lmer(observed_features ~ day + (1|treatment), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
 
 # Residual diagnostic plot, check assumptions
-plot(model_add0_obfeatures)
+plot(model_day_obfeatures)
 # look at estimated variance components
-summary(model_add0_obfeatures)
+summary(model_day_obfeatures)
 # residual diagnostic plot, check assumptions
-anova(model_add0_obfeatures)
+anova(model_day_obfeatures)
 # pairwise comparisons, there are a lot of time points for this data set so this line doesn't work yet, I'll show you how to use it a little later
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
@@ -219,14 +219,14 @@ Faiths PD
 
 ```{r}
 # Build model
-model_add0_faithpd <- lmer(faith_pd ~ add_0c + (1|host_subject_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+model_day_faithpd <- lmer(faith_pd ~ day + (1|treatment), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
 
 # Residual diagnostic plot, check assumptions
-plot(model_add0_faithpd)
+plot(model_day_faithpd)
 # look at estimated variance components
-summary(model_add0_faithpd)
+summary(model_day_faithpd)
 # residual diagnostic plot, check assumptions
-anova(model_add0_faithpd)
+anova(model_day_faithpd)
 # pairwise comparisons, there are a lot of time points for this data set so this line doesn't work yet, I'll show you how to use it a little later
 #emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
@@ -240,25 +240,25 @@ Shannon
 ```{r}
 # Add metadata column 
 metadata <- metadata %>%
-  mutate(add0c_split = cut(
-    add_0c,
+  mutate(day_split = cut(
+    day,
     breaks = 3,
-    labels = c("0-150", "150-300", "300-450"),
+    labels = c("1-5", "5-35", "35-63"),
     include.lowest = TRUE
   ))
 
 # Stats 
 # Build model
-model_add0split_shannon <- lmer(shannon_entropy ~ add0c_split + (1|host_subject_id), data = metadata)  
+model_daysplit_shannon <- lmer(shannon_entropy ~ day_split + (1|treatment), data = metadata)  
 
 # Residual diagnostic plot, check assumptions
-plot(model_add0split_shannon)
+plot(model_daysplit_shannon)
 # look at estimated variance components
-summary(model_add0split_shannon)
+summary(model_daysplit_shannon)
 # residual diagnostic plot, check assumptions
-anova(model_add0split_shannon)
+anova(model_daysplit_shannon)
 # pairwise comparisons
-emmeans(model_add0split_shannon, pairwise ~ add0c_split)
+emmeans(model_daysplit_shannon, pairwise ~ day_split)
 ```
 
 -   From our emmeans we aren't seeing anything in shannon diversity specifically.
@@ -292,11 +292,11 @@ emmeans(model_add0split2_shannon, pairwise ~ add0c_split2)
 
 ```{r}
 # Shannon
-add0c_shannon <- ggplot(metadata, aes(x = add_0c, y = shannon_entropy, linetype = sample_type)) +
+day_shannon <- ggplot(metadata, aes(x = day, y = shannon_entropy, linetype = treatment)) +
   geom_line(linewidth = 0.7, alpha = 0.8) +
   theme_bw(base_size = 14) +
   labs(
-    x = "Accumulated Degree Days (ADD)",
+    x = "Age (Days)",
     y = "Shannon Entropy",
     linetype = "Sample Type",
     title = "Shannon"
@@ -310,14 +310,14 @@ add0c_shannon <- ggplot(metadata, aes(x = add_0c, y = shannon_entropy, linetype 
     plot.title = element_text(face = "bold")
   )
 
-add0c_shannon
+day_shannon
 
 # Evennes
-add0c_evenness <- ggplot(metadata, aes(x = add_0c, y = pielou_evenness, linetype = sample_type)) +
+day_evenness <- ggplot(metadata, aes(x = day, y = pielou_evenness, linetype = treatment)) +
   geom_line(size = 0.7, alpha = 0.8) +
   theme_bw(base_size = 14) +
   labs(
-    x = "Accumulated Degree Days (ADD)",
+    x = "Age (Days)",
     y = "Pielou's Evenness",
     linetype = "Sample Type",
     title = "Evenness"
@@ -331,14 +331,14 @@ add0c_evenness <- ggplot(metadata, aes(x = add_0c, y = pielou_evenness, linetype
     plot.title = element_text(face = "bold")
   )
 
-add0c_evenness
+day_evenness
 
 # Observed Features
-add0c_obfeatures <- ggplot(metadata, aes(x = add_0c, y = observed_features, linetype = sample_type)) +
+day_obfeatures <- ggplot(metadata, aes(x = day, y = observed_features, linetype = treatment)) +
   geom_line(size = 0.7, alpha = 0.8) +
   theme_bw(base_size = 14) +
   labs(
-    x = "Accumulated Degree Days (ADD)",
+    x = "Age (Days)",
     y = "Observed Features",
     linetype = "Sample Type",
     title = "Observed Features"
@@ -352,14 +352,14 @@ add0c_obfeatures <- ggplot(metadata, aes(x = add_0c, y = observed_features, line
     plot.title = element_text(face = "bold")
   )
 
-add0c_obfeatures
+day_obfeatures
 
 # Faith's PD
-add0c_faithpd <- ggplot(metadata, aes(x = add_0c, y = faith_pd, linetype = sample_type)) +
+day_faithpd <- ggplot(metadata, aes(x = day, y = faith_pd, linetype = treatment)) +
   geom_line(size = 0.7, alpha = 0.8) +
   theme_bw(base_size = 14) +
   labs(
-    x = "Accumulated Degree Days (ADD)",
+    x = "Age (Days)",
     y = "Faith's PD",
     linetype = "Sample Type",
     title = "Faith's PD"
@@ -373,53 +373,53 @@ add0c_faithpd <- ggplot(metadata, aes(x = add_0c, y = faith_pd, linetype = sampl
     plot.title = element_text(face = "bold")
   )
 
-add0c_faithpd
+day_faithpd
 
 # Combine the plots
-alpha_div_addOc <- ggarrange(add0c_shannon, add0c_evenness,
-                                  add0c_obfeatures, add0c_faithpd,
+alpha_div_day <- ggarrange(day_shannon, day_evenness,
+                                  day_obfeatures, day_faithpd,
                                   ncol = 2, nrow = 2,
                                   labels = c("A","B","C","D"),
                                   common.legend = TRUE,
                                   legend = "bottom")
-alpha_div_addOc
+alpha_div_day
 
 # Save the figure
-ggsave(alpha_div_addOc, filename = "../05_figures/alpha_div_addOc.jpeg", device = "jpeg", dpi = 300, width = 12, height = 9)
+ggsave(alpha_div_day, filename = "../05_figures/alpha_div_addOc.jpeg", device = "jpeg", dpi = 300, width = 12, height = 9)
 
 ```
 
 # add_0c 3 group figure
 
 ```{r}
-model_add0split_shannon <- lmer(shannon_entropy ~ add0c_split + (1|host_subject_id), data = metadata)
+model_daysplit_shannon <- lmer(shannon_entropy ~ day_split + (1|treatment), data = metadata)
 
-pvals <- pairs(emmeans(model_add0split_shannon, ~ add0c_split)) |> as.data.frame()
+pvals <- pairs(emmeans(model_daysplit_shannon, ~ day_split)) |> as.data.frame()
 
 # make table for stat_pvalue_manual with rounded p-values
 pvals_table <- data.frame(
-  group1 = c("0-150","0-150","150-300"),
-  group2 = c("150-300","300-450","300-450"),
+  group1 = c("1-5","5-35","35-63"),
+  group2 = c("5-35","35-63","1-5"),
   p = round(pvals$p.value, 3),           # round to 3 decimals
   y.position = max(metadata$shannon_entropy) + c(0.1,0.3,0.5)
 )
 
 # plot
-add_split_shannon <- ggplot(metadata, aes(x = add0c_split, y = shannon_entropy)) +
+day_split_shannon <- ggplot(metadata, aes(x = day_split, y = shannon_entropy)) +
   geom_boxplot() +
   stat_pvalue_manual(pvals_table, label = "p") +
   theme_bw() +
   theme(
     axis.title = element_text(face = "bold"),
     plot.title = element_text(face = "bold"))+
-  labs(x = "Accumulated Degree Day 3 Groups",
+  labs(x = "Age (Days)",
        y = "Shannon Entropy",
-       title = "Shannon Diversity for ADD Split into 3 Groups")
+       title = "Shannon Diversity for Age (Days) Split into 3 Groups")
 
-add_split_shannon
+day_split_shannon
 
 # Save the figure
-ggsave(add_split_shannon, filename = "../05_figures/add_split_shannon.jpeg", device = "jpeg", dpi = 300, width = 8, height = 9)
+ggsave(day_split_shannon, filename = "../05_figures/day_split_shannon.jpeg", device = "jpeg", dpi = 300, width = 8, height = 9)
 ```
 
 ## add0c + facility (question 2)
