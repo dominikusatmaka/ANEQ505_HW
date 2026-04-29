@@ -443,8 +443,8 @@ qiime composition ancombc2 \
 --i-table table_nomitochloro_7000_abund_L7.qza \
 --m-metadata-file pempek_metadata_noEC.txt \
 --p-fixed-effects-formula 'treatment + age_w' \
---p-reference-levels treatment::pair age_w::birth \
---p-random-effects-formula '(1 | calf_number)' \
+--p-reference-levels treatment::individual age_w::birth \
+--p-random-effects-formula '(1 | calf_id)' \
 --o-ancombc2-output ancombc2_sampletype_day_treatment_L7.qza
 
 qiime composition tabulate \
