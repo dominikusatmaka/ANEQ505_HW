@@ -435,8 +435,6 @@ qiime taxa collapse \
 --o-collapsed-table table_nomitochloro_7000_abund_L7.qza
 ```
 
-
-STILL FAILED. (the metadata should be have no controls.)
 ```
 ANCOMBC USING NEW METADATA
 qiime composition ancombc2 \
