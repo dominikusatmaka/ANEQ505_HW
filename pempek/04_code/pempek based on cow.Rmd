@@ -29,7 +29,7 @@ library(scales)
 # Read in metadata
 - Fill in the correct file path to the cow metadata and copy your answer to your obsidian document. 
 ```{r}
-metadata <- read_tsv("ADD YOUR FILE PATH HERE")
+metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/03_metadata/metadata.txt")
 ```
 ################################################################################
 # Alpha Diversity
@@ -39,27 +39,45 @@ metadata <- read_tsv("ADD YOUR FILE PATH HERE")
 - Fill in the correct file path to the shannon diversity data and copy your answer to your obsidian document.
 ```{r}
 # Alpha diversity metrics
-shannon <- read_tsv("ADD YOUR FILE PATH HERE")
+shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/shannon.tsv")
+evenness <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/evenness.tsv")
+observed_features <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/observed_features.tsv")
+faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/faith_pd.tsv")
 ```
 
 
 # Tidy alpha diversity metrics and add to metadata
 ```{r}
+# Add to metadata
 # Shannon 
 shannon <- shannon %>%
-  rename(sample_name = 1)  #rename 1st column to to match metadata
+  rename(sampleid = 1)  #rename 1st column to to match metadata
 
+# Evenness
+evenness <- evenness %>% 
+  rename(sampleid = 1)  #rename 1st column to to match metadata
+
+# Observed Features
+observed_features <- observed_features %>% 
+  rename(sampleid = 1)  #rename 1st column to to match metadata
+
+# Faiths PD
+faiths_pd <- faiths_pd %>% 
+  rename(sampleid = 1)  #rename 1st column to to match metadata
 
 # Add to metadata
 metadata <- metadata %>%
-  left_join(shannon, by = "sample_name") 
+  left_join(shannon, by = "sampleid") %>% 
+  left_join(evenness, by = "sampleid") %>% 
+  left_join(observed_features, by = "sampleid") %>% 
+  left_join(faiths_pd, by = "sampleid")
   
 ```
 
 # Tidy the metadata 
 ```{r}
 metadata <- metadata %>% 
-  drop_na(shannon_entropy)
+  drop_na(shannon_entropy, pielou_evenness, observed_features, faith_pd)
 ```
 
 # Linear Mixed Effects Models
@@ -67,23 +85,23 @@ metadata <- metadata %>%
 Shannon
 ```{r}
 # Build model
-model_bodysite_shannon <- lmer(shannon_entropy ~ body_site + (1|cow_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+model_age_d_shannon <- lmer(shannon_entropy ~ day + (1|calf_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
 
 # Residual diagnostic plot, check assumptions
-plot(model_bodysite_shannon)
+plot(model_age_d_shannon)
 # look at estimated variance components
-summary(model_bodysite_shannon)
+summary(model_age_d_shannon)
 # residual diagnostic plot, check assumptions
-anova(model_bodysite_shannon)
+anova(model_age_d_shannon)
 # pairwise comparisons, there are a lot of time points for this data set so this line doesn't work yet, I'll show you how to use it a little later
-emmeans(model_bodysite_shannon, pairwise ~ body_site)
+#emmeans(model_add0_shannon, pairwise ~ add_0c)
 ```
 
 # Build shannon figure with p-values 
 ```{r}
 
 # Estimated marginal means pairwise comparisons
-shannon_emmeans <- emmeans(model_bodysite_shannon, ~ body_site)
+shannon_emmeans <- emmeans(model_age_d_shannon, ~ day)
 
 pvals_shannon <- pairs(shannon_emmeans) |> 
   as.data.frame()
@@ -106,7 +124,7 @@ pvals_shannon_significant
 pvals_shannon_significant <- pvals_shannon_significant %>%
   add_y_position(
     data = metadata,
-    formula = shannon_entropy ~ body_site,
+    formula = shannon_entropy ~ day,
     fun = "max",
     step.increase = 0.12
   )
@@ -114,9 +132,9 @@ pvals_shannon_significant <- pvals_shannon_significant %>%
 pvals_shannon_significant
 
 # Plot Shannon by body site with only significant emmeans comparisons
-bodysite_shannon_plot <- ggplot(
+age_d_shannon_plot <- ggplot(
   metadata,
-  aes(x = body_site, y = shannon_entropy, fill = body_site)
+  aes(x = day, y = shannon_entropy, fill = day)
 ) +
   geom_boxplot() +
   stat_pvalue_manual(
@@ -135,12 +153,12 @@ bodysite_shannon_plot <- ggplot(
     legend.position = "none"
   ) +
   labs(
-    x = "Body Site",
+    x = "Age",
     y = "Shannon Entropy",
-    title = "Shannon Entropy Across Body Sites"
+    title = "Shannon Entropy Across Age"
   )
 
-bodysite_shannon_plot
+age_d_shannon_plot
 ```
 
 # Save the shannon body site figure

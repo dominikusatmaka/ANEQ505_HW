@@ -1,0 +1,535 @@
+---
+title: "pempek_stats_figures"
+output:
+  word_document: default
+  pdf_document: default
+date: "2026-03-10"
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This script is a general guide for making publication-quality visualizations using QIIME2-generated outputs
+
+################################################################################ 
+
+# Research Questions
+
+1.  Does microbial community composition change over accumulated degree days?
+2.  Does facility influence microbial diversity or community composition?
+3.  Do soil and skin samples differ in their microbial diversity and community composition?
+
+-   Your research question doesn’t need to be included in your R Markdown, but you should have a data analysis plan. It’s easy to go down rabbit holes if you don’t stick to analyses that directly address your questions. \################################################################################
+
+################################################################################ 
+
+# loading packages
+
+################################################################################ 
+
+# Load packages
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(ggpubr)
+library(vegan)
+library(scales)
+library(lme4)
+library(lmerTest)
+library(pbkrtest)
+library(emmeans)
+library(rstatix)
+library(forcats)
+library(scales) 
+```
+
+################################################################################ 
+
+# Metadata
+
+################################################################################ 
+
+# Import and clean metadata if needed
+
+```{r}
+metadata <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/03_metadata/metadata.txt")
+```
+
+################################################################################ 
+
+# Alpha diversity
+
+################################################################################ 
+
+# Import alpha diversity data from QIIME2 output
+
+```{r}
+# Alpha diversity metrics
+shannon <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/shannon.tsv")
+evenness <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/evenness.tsv")
+observed_features <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/observed_features.tsv")
+faiths_pd <- read_tsv("/Users/dominikusraditya/Documents/ANEQ505_HW/pempek/04_code/alpha_div/faith_pd.tsv")
+```
+
+# Tidy metrics and add to metadata
+
+```{r}
+# Shannon 
+shannon <- shannon %>%
+  rename(sampleid = 1)  #rename 1st column to to match metadata
+
+# Evenness
+evenness <- evenness %>% 
+  rename(sampleid = 1)  #rename 1st column to to match metadata
+
+# Observed Features
+observed_features <- observed_features %>% 
+  rename(sampleid = 1)  #rename 1st column to to match metadata
+
+# Faiths PD
+faiths_pd <- faiths_pd %>% 
+  rename(sampleid = 1)  #rename 1st column to to match metadata
+
+# Add to metadata
+metadata <- metadata %>%
+  left_join(shannon, by = "sampleid") %>% 
+  left_join(evenness, by = "sampleid") %>% 
+  left_join(observed_features, by = "sampleid") %>% 
+  left_join(faiths_pd, by = "sampleid")
+  
+
+```
+
+# Tidy metadata with metrics
+
+```{r}
+metadata <- metadata %>% 
+  drop_na(shannon_entropy, pielou_evenness, observed_features, faith_pd)
+```
+
+# Linear Mixed Effects Models
+
+## Time (question 1)
+
+Shannon
+
+```{r}
+# Build model
+model_age_d_shannon <- lmer(shannon_entropy ~ age_d + (1|calf_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+
+# Residual diagnostic plot, check assumptions
+plot(model_age_d_shannon)
+# look at estimated variance components
+summary(model_age_d_shannon)
+# residual diagnostic plot, check assumptions
+anova(model_age_d_shannon)
+```
+
+
+Evenness
+
+```{r}
+# Build model
+model_day_evenness <- lmer(pielou_evenness ~ day + (1|calf_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_evenness)
+# look at estimated variance components
+summary(model_day_evenness)
+# residual diagnostic plot, check assumptions
+anova(model_day_evenness)
+```
+
+
+Observed Features
+
+```{r}
+# Build model
+model_day_obfeatures <- lmer(observed_features ~ day + (1|calf_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_obfeatures)
+# look at estimated variance components
+summary(model_day_obfeatures)
+# residual diagnostic plot, check assumptions
+anova(model_day_obfeatures)
+```
+
+
+Faiths PD
+
+```{r}
+# Build model
+model_day_faithpd <- lmer(faith_pd ~ day + (1|calf_id), data = metadata) # I name all my models with the variable I am testing and the metric I am testing. 
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_faithpd)
+# look at estimated variance components
+summary(model_day_faithpd)
+# residual diagnostic plot, check assumptions
+anova(model_day_faithpd)
+```
+
+
+## day split into 3
+
+Shannon
+
+```{r}
+# Add metadata column 
+metadata <- metadata %>%
+  mutate(day_split = cut(
+    day,
+    breaks = 3,
+    labels = c("1-5", "5-35", "35-63"),
+    include.lowest = TRUE
+  ))
+
+# Stats 
+# Build model
+model_daysplit_shannon <- lmer(shannon_entropy ~ day_split + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_daysplit_shannon)
+# look at estimated variance components
+summary(model_daysplit_shannon)
+# residual diagnostic plot, check assumptions
+anova(model_daysplit_shannon)
+# pairwise comparisons
+emmeans(model_daysplit_shannon, pairwise ~ day_split)
+```
+
+
+
+# day figure (voltility plot)
+
+```{r}
+# Shannon
+day_shannon <- ggplot(metadata, aes(x = day, y = shannon_entropy, linetype = treatment)) +
+  geom_line(linewidth = 0.7, alpha = 0.8) +
+  theme_bw(base_size = 14) +
+  labs(
+    x = "Age (Days)",
+    y = "Shannon Entropy",
+    linetype = "Sample Type",
+    title = "Shannon"
+  ) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    legend.background = element_rect(fill = "transparent"),
+    plot.title = element_text(face = "bold")
+  )
+
+day_shannon
+
+# Evennes
+day_evenness <- ggplot(metadata, aes(x = day, y = pielou_evenness, linetype = treatment)) +
+  geom_line(size = 0.7, alpha = 0.8) +
+  theme_bw(base_size = 14) +
+  labs(
+    x = "Age (Days)",
+    y = "Pielou's Evenness",
+    linetype = "Sample Type",
+    title = "Evenness"
+  ) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    legend.background = element_rect(fill = "transparent"),
+    plot.title = element_text(face = "bold")
+  )
+
+day_evenness
+
+# Observed Features
+day_obfeatures <- ggplot(metadata, aes(x = day, y = observed_features, linetype = treatment)) +
+  geom_line(size = 0.7, alpha = 0.8) +
+  theme_bw(base_size = 14) +
+  labs(
+    x = "Age (Days)",
+    y = "Observed Features",
+    linetype = "Sample Type",
+    title = "Observed Features"
+  ) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    legend.background = element_rect(fill = "transparent"),
+    plot.title = element_text(face = "bold")
+  )
+
+day_obfeatures
+
+# Faith's PD
+day_faithpd <- ggplot(metadata, aes(x = day, y = faith_pd, linetype = treatment)) +
+  geom_line(size = 0.7, alpha = 0.8) +
+  theme_bw(base_size = 14) +
+  labs(
+    x = "Age (Days)",
+    y = "Faith's PD",
+    linetype = "Sample Type",
+    title = "Faith's PD"
+  ) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    legend.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    legend.background = element_rect(fill = "transparent"),
+    plot.title = element_text(face = "bold")
+  )
+
+day_faithpd
+
+# Combine the plots
+alpha_div_day <- ggarrange(day_shannon, day_evenness,
+                                  day_obfeatures, day_faithpd,
+                                  ncol = 2, nrow = 2,
+                                  labels = c("A","B","C","D"),
+                                  common.legend = TRUE,
+                                  legend = "bottom")
+alpha_div_day
+
+# Save the figure
+ggsave(alpha_div_day, filename = "../05_figures/alpha_div_addOc.jpeg", device = "jpeg", dpi = 300, width = 12, height = 9)
+
+```
+
+
+```{r}
+model_daysplit_shannon <- lmer(shannon_entropy ~ day_split + (1|treatment), data = metadata)
+
+pvals <- pairs(emmeans(model_daysplit_shannon, ~ day_split)) |> as.data.frame()
+
+# make table for stat_pvalue_manual with rounded p-values
+pvals_table <- data.frame(
+  group1 = c("1-5","5-35","35-63"),
+  group2 = c("5-35","35-63","1-5"),
+  p = round(pvals$p.value, 3),           # round to 3 decimals
+  y.position = max(metadata$shannon_entropy) + c(0.1,0.3,0.5)
+)
+
+# plot
+day_split_shannon <- ggplot(metadata, aes(x = day_split, y = shannon_entropy)) +
+  geom_boxplot() +
+  stat_pvalue_manual(pvals_table, label = "p") +
+  theme_bw() +
+  theme(
+    axis.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold"))+
+  labs(x = "Age (Days)",
+       y = "Shannon Entropy",
+       title = "Shannon Diversity for Age (Days) Split into 3 Groups")
+
+day_split_shannon
+
+# Save the figure
+ggsave(day_split_shannon, filename = "../05_figures/day_split_shannon.jpeg", device = "jpeg", dpi = 300, width = 8, height = 9)
+```
+
+
+## Day + Treatment (question 2)
+
+Shannon
+
+```{r}
+# Build model
+model_age_treatment_shannon <- lmer(shannon_entropy ~ treatment*day_split + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_age_treatment_shannon)
+# look at estimated variance components
+summary(model_age_treatment_shannon)
+# residual diagnostic plot, check assumptions
+anova(model_age_treatment_shannon)
+# pairwise comparisons
+emmeans(model_age_treatment_shannon, pairwise ~ treatment|day_split)
+```
+
+
+Really quick lets just look when we don't split day
+
+```{r}
+# Build model
+model_day_treatment_shannon2 <- lmer(shannon_entropy ~ treatment*day + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_treatment_shannon2)
+# look at estimated variance components
+summary(model_day_treatment_shannon2)
+# residual diagnostic plot, check assumptions
+anova(model_day_treatment_shannon2)
+# pairwise comparisons
+emmeans(model_day_treatment_shannon2, pairwise ~ treatment)
+```
+
+
+Evenness
+
+```{r}
+# Build model
+model_day_treatment_evenness <- lmer(pielou_evenness ~ treatment*day_split + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_treatment_evenness)
+# look at estimated variance components
+summary(model_day_treatment_evenness)
+# residual diagnostic plot, check assumptions
+anova(model_day_treatment_evenness)
+# pairwise comparisons
+emmeans(model_day_treatment_evenness, pairwise ~ treatment|day_split)
+```
+
+
+Observed Features
+
+```{r}
+# Build model
+model_day_treatment_obfeatures <- lmer(observed_features ~ treatment*day_split + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_treatment_obfeatures)
+# look at estimated variance components
+summary(model_day_treatment_obfeatures)
+# residual diagnostic plot, check assumptions
+anova(model_day_treatment_obfeatures)
+# pairwise comparisons
+emmeans(model_day_treatment_obfeatures, pairwise ~ treatment|day_split)
+```
+
+
+Faith's PD
+
+```{r}
+# Build model
+model_day_treatment_faithpd <- lmer(faith_pd ~ treatment*day_split + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_day_treatment_faithpd)
+# look at estimated variance components
+summary(model_day_treatment_faithpd)
+# residual diagnostic plot, check assumptions
+anova(model_day_treatment_faithpd)
+# pairwise comparisons
+emmeans(model_day_treatment_faithpd, pairwise ~ treatment|day_split)
+```
+
+
+# treatment figure ajusted for time (box plot) (3 timepoint box plot)
+
+```{r}
+model_day_treatment_faithpd <- lmer(faith_pd ~ treatment*day_split + (1|calf_id), data = metadata)  
+pvals <- pairs(
+  emmeans(model_day_treatment_faithpd, ~ treatment | day_split)
+) |> as.data.frame()
+pvals_table <- pvals %>%
+  separate(contrast, into = c("group1","group2"), sep = " - ") %>%
+  dplyr::mutate(
+    p = round(p.value, 4),
+    y.position = max(metadata$faith_pd) + 0.1
+  )
+pvals_table
+
+```
+
+
+## day + facility + sex (question 3)
+
+Shannon
+
+```{r}
+# Build model
+model_treatment_day_shannon <- lmer(shannon_entropy ~ treatment*day + sex + (1|calf_id), data = metadata)
+
+# Residual diagnostic plot, check assumptions
+plot(model_treatment_day_shannon)
+# look at estimated variance components
+summary(model_treatment_day_shannon)
+# residual diagnostic plot, check assumptions
+anova(model_treatment_day_shannon)
+# pairwise comparisons
+emmeans(model_treatment_day_shannon, pairwise ~ treatment|day)
+```
+
+
+Evenness
+
+```{r}
+# Build model
+model_treatment_day_evenness <- lmer(pielou_evenness ~ treatment*day + sex + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_treatment_day_evenness)
+# look at estimated variance components
+summary(model_treatment_day_evenness)
+# residual diagnostic plot, check assumptions
+anova(model_treatment_day_evenness)
+# pairwise comparisons
+emmeans(model_treatment_day_evenness, pairwise ~ treatment|day)
+```
+
+
+Observed features
+
+```{r}
+# Build model
+model_treatment_day_obfeatures <- lmer(observed_features ~ treatment*day + sex + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_treatment_day_obfeatures)
+# look at estimated variance components
+summary(model_treatment_day_obfeatures)
+# residual diagnostic plot, check assumptions
+anova(model_treatment_day_obfeatures)
+# pairwise comparisons
+emmeans(model_treatment_day_obfeatures, pairwise ~ treatment|day)
+```
+
+
+Faith's PD
+
+```{r}
+# Build model
+model_treatment_day_faithpd <- lmer(faith_pd ~ treatment*day + sex + (1|calf_id), data = metadata)  
+
+# Residual diagnostic plot, check assumptions
+plot(model_treatment_day_faithpd)
+# look at estimated variance components
+summary(model_treatment_day_faithpd)
+# residual diagnostic plot, check assumptions
+anova(model_treatment_day_faithpd)
+# pairwise comparisons
+emmeans(model_treatment_day_faithpd, pairwise ~ treatment|day)
+```
+
+## Sample type figure
+
+```{r}
+model_treatment_day_obfeatures <- lmer(observed_features ~ treatment*day + sex + (1|calf_id), data = metadata)  
+
+pvals <- pairs(
+  emmeans(model_treatment_day_obfeatures, ~ treatment | day)
+) |> as.data.frame()
+
+
+pvals_table <- pvals %>%
+  separate(contrast, into = c("group1","group2"), sep = " - ") %>%
+  dplyr::mutate(
+    p = round(p.value, 4),
+    y.position = max(metadata$observed_features) + 0.1
+  )
+pvals_table
+```
