@@ -35,12 +35,14 @@
             "id": "0bd4aeb8b6d8baa0",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.13.7"
+                "file": "Project/Project Pempek.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.13.7"
+              "icon": "lucide-file",
+              "title": "Project Pempek"
             }
           }
         ],
@@ -211,6 +213,8 @@
   },
   "active": "0bd4aeb8b6d8baa0",
   "lastOpenFiles": [
+    "01_homework/homework_4_Domi.md",
+    "01_homework/Picture for Homework 2 Level 7 Body SIte.png",
     "pempek/05_figures/day_split_shannon.jpeg",
     "pempek/03_metadata/metadata.txt",
     "pempek/03_metadata/pempek_metadata_noEC.txt",
@@ -230,9 +234,6 @@
     "pempek/05_figures/alpha_div_addOc.jpeg",
     "pempek/05_figures/add_split_shannon.jpeg",
     "pempek/05_figures/add_split_obsFeats_sampleType.jpeg",
-    "pempek/05_figures/add_split_faiths_facility.jpeg",
-    "r_decomp_tutorial copy/05_figures/taxa_genus_sample_type_arf.jpeg",
-    "01_homework/homework_4_Domi.md",
     "Project/Project Pempek.md",
     "01_homework/homework_3_Domi.md",
     "VS_code_in_obsidian.md",
