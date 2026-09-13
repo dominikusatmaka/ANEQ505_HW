@@ -30,9 +30,21 @@
               "icon": "lucide-file",
               "title": "Project Pempek"
             }
+          },
+          {
+            "id": "0bd4aeb8b6d8baa0",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.13.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.13.7"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -52,7 +64,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -183,9 +197,9 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
       "vscode-editor:Create Code File": false,
       "open-vscode:VSCode": false,
-      "obsidian-git:Open Git source control": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -195,7 +209,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "4bdfd221d605dd27",
+  "active": "0bd4aeb8b6d8baa0",
   "lastOpenFiles": [
     "pempek/05_figures/day_split_shannon.jpeg",
     "pempek/03_metadata/metadata.txt",
